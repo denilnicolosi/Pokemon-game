@@ -1,6 +1,6 @@
-﻿using ProgettoPOIS.Skills;
+﻿
 
-namespace ProgettoPOIS.Pokémon
+namespace ProgettoPOIS.Model
 {
     abstract class Pokémon
     {
@@ -17,21 +17,24 @@ namespace ProgettoPOIS.Pokémon
         private int _attack;
         private int _defence;
         private int _level;
+        private Pokémon _nextLevel;
+
         #endregion
 
         #region Protected 
-        protected int HealthPoints { get => _healthPoints; set => _healthPoints = value; }
-        protected typeAttribute Attribute { get => _attribute; set => _attribute = value; }
-        protected string Name { get => _name; set => _name = value; }
-        protected int Exp { get => _exp; set => _exp = value; }
-        protected int Attack { get => _attack; set => _attack = value; }
-        protected int Defence { get => _defence; set => _defence = value; }
-        protected int Level { get => _level; set => _level = value; }
-      
+        public int HealthPoints { get => _healthPoints; set => _healthPoints = value; }
+        public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
+        public string Name { get => _name; set => _name = value; }
+        public int Exp { get => _exp; set => _exp = value; }
+        public int Attack { get => _attack; set => _attack = value; }
+        public int Defence { get => _defence; set => _defence = value; }
+        public int Level { get => _level; set => _level = value; }
+        public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }
+
         #endregion
 
         #region Methods
-        protected Pokémon(typeAttribute attribute, string name, int healthPoints, int exp, int attack, int defence, int level)
+        protected Pokémon(int level, typeAttribute attribute, string name, int healthPoints, int exp, int attack, int defence)
         {
             _attribute = attribute;
             _name = name;
@@ -39,7 +42,7 @@ namespace ProgettoPOIS.Pokémon
             _exp = exp;
             _attack = attack;
             _defence = defence;
-            _level = 1;
+            _level = 1;            
         }
         #endregion
 

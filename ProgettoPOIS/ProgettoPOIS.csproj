@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\IController.cs" />
     <Compile Include="Model\Skills\Attack.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
