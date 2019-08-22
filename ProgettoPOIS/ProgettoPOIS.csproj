@@ -46,14 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\ControllerGame.cs" />
+    <Compile Include="Controller\ControllerChoose.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Model\Skills\Attack.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\FormChoose.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\FormChoose.Designer.cs">
+      <DependentUpon>FormChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormGame.Designer.cs">
+      <DependentUpon>FormGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Pokémon\Level3.cs" />
     <Compile Include="Model\Pokémon\Level2.cs" />
@@ -63,8 +70,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Skills\Defence.cs" />
     <Compile Include="Model\Skills\Skill.cs" />
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormChoose.resx">
+      <DependentUpon>FormChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormGame.resx">
+      <DependentUpon>FormGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +85,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="csv\skill.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="csv\pokémon.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

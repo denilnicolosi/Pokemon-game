@@ -42,7 +42,7 @@ namespace ProgettoPOIS.Model
             _exp = exp;
             _attack = attack;
             _defence = defence;
-            _level = 1;            
+            _level = level;            
         }
         #endregion
 
