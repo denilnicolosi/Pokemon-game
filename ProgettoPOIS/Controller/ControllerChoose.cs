@@ -11,6 +11,7 @@ namespace ProgettoPOIS.Controller
         private List<Pokémon> pokémonList;
         private List<Pokémon> pokémonPlayer1;
         private List<Pokémon> pokémonPlayer2;
+        private FormGame viewGame;
 
         public List<Pokémon> PokémonPlayer1 { get => pokémonPlayer1; set => pokémonPlayer1 = value; }
         public List<Pokémon> PokémonPlayer2 { get => pokémonPlayer2; set => pokémonPlayer2 = value; }
@@ -92,7 +93,7 @@ namespace ProgettoPOIS.Controller
                                         break;
                                 }
 
-                                tmpPokémon = new Level1(Int32.Parse(values[0]), t, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                tmpPokémon = new Level1(t, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
                                     listSkill.Where(s => s.Name == values[5]).FirstOrDefault(),
                                     listSkill.Where(s => s.Name == values[6]).FirstOrDefault());
 
@@ -101,14 +102,16 @@ namespace ProgettoPOIS.Controller
                                 //livello;nomePokemonPrecedente;nuovoNome;nomeSkill
                                 prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
-                                tmpPokémon = new Level2((Level1)prevPokémon, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]), listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
+                                tmpPokémon = new Level2(prevPokémon.Attribute, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                    ((Level1)prevPokémon).S1, ((Level1)prevPokémon).S2, listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
 
                                 prevPokémon.NextLevel = tmpPokémon;
                                 break;
                             case 3:
                                 //livello;nomePokemonPrecedente;nuovoNome;nomeSkill
                                 prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
-                                Level3 l= new Level3((Level2)prevPokémon, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]), listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
+                                Level3 l = new Level3(prevPokémon.Attribute, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                    ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2, ((Level2)prevPokémon).S3, listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
                                 tmpPokémon = l;
                                 prevPokémon.NextLevel = tmpPokémon;
                                 break;
@@ -133,7 +136,8 @@ namespace ProgettoPOIS.Controller
 
         public void startGame()
         {
-            throw new NotImplementedException();
+           viewGame = new FormGame(pokémonPlayer1, pokémonPlayer2);
+            
         }
 
         public void Exit()
@@ -141,12 +145,12 @@ namespace ProgettoPOIS.Controller
             throw new NotImplementedException();
         }
 
-        public void Player1Turn()
+        public void Player1Shift()
         {
             throw new NotImplementedException();
         }
 
-        public void Player2Turn()
+        public void Player2Shift()
         {
             throw new NotImplementedException();
         }

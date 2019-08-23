@@ -102,5 +102,14 @@
   <ItemGroup>
     <None Include="csv\pokémon.csv" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="sprites\bulbasaur.png" />
+    <Content Include="sprites\charmander.png" />
+    <Content Include="sprites\oddish.png" />
+    <Content Include="sprites\pichu.png" />
+    <Content Include="sprites\poliwag.png" />
+    <Content Include="sprites\squirtle.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,7 @@
 
 namespace ProgettoPOIS.Model
 {
-    abstract class Skill
+    public abstract class Skill
     {
         private string _name;
         private int _expEarned;
@@ -16,8 +16,6 @@ namespace ProgettoPOIS.Model
             ExpEarned = expEarned;
         }
 
-
-        public abstract void doSkill();
 
     }
 }

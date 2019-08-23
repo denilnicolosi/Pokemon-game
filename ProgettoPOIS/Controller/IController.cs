@@ -4,8 +4,8 @@
     {
         // Dichiarazione dei metodi di Interfaccia
         void Exit();
-        void Player1Turn();
-        void Player2Turn();
+        void Player1Shift();
+        void Player2Shift();
 
     }
 }

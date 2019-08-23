@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgettoPOIS.Model
 {
-    class Defence : Skill
+    public class Defence : Skill
     {
         private int _healthEarned;
 
@@ -16,10 +16,6 @@ namespace ProgettoPOIS.Model
         {
             HealthEarned = healthEarned;
         }
-
-        public override void doSkill()
-        {
-            throw new NotImplementedException();
-        }
+    
     }
 }

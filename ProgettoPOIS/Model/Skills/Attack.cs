@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgettoPOIS.Model
 {
-    class Attack : Skill
+    public class Attack : Skill
     {
         int _damage;
 
@@ -18,9 +18,6 @@ namespace ProgettoPOIS.Model
             _damage = damage;
         }
 
-        public override void doSkill()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

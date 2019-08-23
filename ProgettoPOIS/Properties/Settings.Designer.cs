@@ -40,5 +40,17 @@ namespace ProgettoPOIS.Properties {
                 return ((string)(this["pathSkill"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Denil\\Desktop\\Uni\\POIS\\ProgettoPOIS\\ProgettoPOIS\\sprites\\")]
+        public string pathSprites {
+            get {
+                return ((string)(this["pathSprites"]));
+            }
+            set {
+                this["pathSprites"] = value;
+            }
+        }
     }
 }
