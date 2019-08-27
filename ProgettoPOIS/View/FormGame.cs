@@ -1,14 +1,16 @@
 ﻿using ProgettoPOIS.Controller;
 using ProgettoPOIS.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ProgettoPOIS
+namespace ProgettoPOIS.View
 {
     public partial class FormGame : Form
     {
         private ControllerGame game;
+       
         private Pokémon p1, p2;
 
         public FormGame(List<Pokémon> pokémonPlayer1, List<Pokémon> pokémonPlayer2)
@@ -16,6 +18,11 @@ namespace ProgettoPOIS
             InitializeComponent();
 
             game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
+
+            game.changePokémon();
+            game.NumRound++;
+            game.changePokémon();
+            game.NumRound++;
 
             change_round();
         }
@@ -26,19 +33,27 @@ namespace ProgettoPOIS
 
             game.NumRound++;
 
+            if (game.PokémonSelectedPlayer1.HealthPoints == 0)
+                changeDeadPokémon(game.PokémonSelectedPlayer1);
+
+            if (game.PokémonSelectedPlayer2.HealthPoints == 0)
+                changeDeadPokémon(game.PokémonSelectedPlayer2);
+
             if (game.NumRound % 2 == 0)
             {
+                labelPlayer.Text = "Player 1";
                 p1 = game.PokémonSelectedPlayer1;
-                p2 = game.PokémonSelectedPlayer2;
+                p2 = game.PokémonSelectedPlayer2;                
             }
             else
             {
+                labelPlayer.Text = "Player 2";
                 p1 = game.PokémonSelectedPlayer2;
                 p2 = game.PokémonSelectedPlayer1;
             }
-
-            p1_level = game.levelOf(p1);
-            p2_level = game.levelOf(p2);
+           
+            p1_level = ControllerGame.levelOf(p1);
+            p2_level = ControllerGame.levelOf(p2);
 
             picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites + p1.Name + ".png");
             picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + p2.Name + ".png");
@@ -52,6 +67,9 @@ namespace ProgettoPOIS
             labelName1.Text = p1.Name;
             labelName2.Text = p2.Name;
 
+            labelExp1.Text = p1.Exp.ToString();
+            labelExp2.Text = p2.Exp.ToString();
+
             if (p1_level == 1)
             {
                 buttonSkill1.Text = ((Level1)p1).S1.Name;
@@ -64,7 +82,7 @@ namespace ProgettoPOIS
             else if (p1_level == 2)
             {
                 buttonSkill1.Text = ((Level2)p1).S1.Name;
-                buttonSkill2.Text = ((Level2)p1).S2.Name;                
+                buttonSkill2.Text = ((Level2)p1).S2.Name;
                 buttonSkill3.Text = ((Level2)p1).S3.Name;
 
                 buttonSkill3.Visible = true;
@@ -82,14 +100,16 @@ namespace ProgettoPOIS
             }
         }
 
-        private void change_pokémon()
+        private void changeDeadPokémon(Pokémon p)
         {
-
-        }
+            MessageBox.Show("Pokémon " + p.Name + " died!", "Pokémon died", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            game.changePokémon();
+        }       
 
         private void ButtonChangePokémon_Click(object sender, System.EventArgs e)
         {
-
+            game.changePokémon();
+            change_round();
         }
 
         #region BUTTON SKILL
@@ -103,7 +123,8 @@ namespace ProgettoPOIS
             else
                 p = (Level1)game.PokémonSelectedPlayer2;
 
-            game.doSkill(p.S1);
+            if(!game.doSkill(p.S1))
+                MessageBox.Show(p1.Name + " failed " + p.S1.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             change_round();
         }
@@ -117,7 +138,8 @@ namespace ProgettoPOIS
             else
                 p = (Level1)game.PokémonSelectedPlayer2;
 
-            game.doSkill(p.S1);
+            if (!game.doSkill(p.S2))
+                MessageBox.Show(p1.Name + " failed " + p.S2.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             change_round();
         }
@@ -130,10 +152,12 @@ namespace ProgettoPOIS
             else
                 p = (Level2)game.PokémonSelectedPlayer2;
 
-            game.doSkill(p.S1);
+            if (!game.doSkill(p.S3))
+                MessageBox.Show(p1.Name + " failed " + p.S3.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             change_round();
         }
+
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {
@@ -144,7 +168,8 @@ namespace ProgettoPOIS
             else
                 p = (Level3)game.PokémonSelectedPlayer2;
 
-            game.doSkill(p.S1);
+            if (!game.doSkill(p.S4))
+                MessageBox.Show(p1.Name + " failed " + p.S4.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             change_round();
         }

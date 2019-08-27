@@ -2,13 +2,18 @@
 
 namespace ProgettoPOIS.Model
 {
+    /// <summary>
+    /// The father of all Pokémon.
+    /// contains all the basic attributes and methods of a pokémon.
+    /// </summary>
     public abstract class Pokémon
     {
-
-        #region Public
+        // Definition of public enumerators.
+        #region Enum
         public enum typeAttribute { Fire, Water, Earth }
         #endregion
 
+        // Definition of private internal attributes.
         #region Private 
         private typeAttribute _attribute;
         private string _name;
@@ -17,10 +22,10 @@ namespace ProgettoPOIS.Model
         private int _attack;
         private int _defence;
         private Pokémon _nextLevel;
-
         #endregion
 
-        #region Protected 
+        // Definition of public attributes, for the "get/set" methods.
+        #region Public 
         public int HealthPoints
         {
             get => _healthPoints;
@@ -41,10 +46,19 @@ namespace ProgettoPOIS.Model
         public int Attack { get => _attack; set => _attack = value; }
         public int Defence { get => _defence; set => _defence = value; }
         public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }
-
         #endregion
 
+        // Definition of class methods.
         #region Methods
+
+        /// <summary>
+        /// Constructor method of the <c>Pokémon</c> class.
+        /// </summary>
+        /// <typeparam name="typeAttribute"> Enumerator for the attributes of Pokémon: fire, water, earth. </typeparam>
+        /// <param name="attribute"> Pokémon attribute. </param>
+        /// <param name="name"> Pokémon name. </param>
+        /// <param name="attack"> Value of the Pokémon attack. </param>
+        /// <param name="defence"> Value of the Pokémon defence. </param>
         protected Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
             _attribute = attribute;
@@ -52,9 +66,9 @@ namespace ProgettoPOIS.Model
             _healthPoints = 100;
             _exp = 0;
             _attack = attack;
-            _defence = defence;                    
+            _defence = defence;
         }
-        #endregion
 
+        #endregion
     }
 }

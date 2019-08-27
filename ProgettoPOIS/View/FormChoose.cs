@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.CheckedListBox;
 
 
-namespace ProgettoPOIS
+namespace ProgettoPOIS.View
 {
     public partial class FormChoose : Form
     {
@@ -23,6 +23,8 @@ namespace ProgettoPOIS
             foreach (Pokémon p in choose.PokémonList)
                 if (p.GetType() == typeof(Level1))
                     checkedListBox.Items.Add(p.Name, false);
+
+            checkedListBox.SelectedIndex=0;
 
         }
 
@@ -42,7 +44,10 @@ namespace ProgettoPOIS
 
                 labelPlayer.Text = "Player2";
                 buttonStart.Text = "Start game";
-                checkedListBox.ClearSelected();
+
+                //clear selected
+                for (int i = 0; i < checkedListBox.Items.Count; i++)
+                    checkedListBox.SetItemCheckState(i, CheckState.Unchecked);
             }
             else
             {
@@ -50,7 +55,10 @@ namespace ProgettoPOIS
                 foreach (string pName in checkedPlayer)
                     choose.PokémonPlayer2.Add(choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault());
 
+                
                 choose.startGame();
+                this.Hide();
+                
             }
 
         }

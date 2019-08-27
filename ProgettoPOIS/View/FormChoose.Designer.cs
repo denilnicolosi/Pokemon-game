@@ -1,4 +1,4 @@
-﻿namespace ProgettoPOIS
+﻿namespace ProgettoPOIS.View
 {
     partial class FormChoose
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChoose));
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.labelPlayer = new System.Windows.Forms.Label();
@@ -241,6 +242,8 @@
             this.Controls.Add(this.labelPlayer);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.checkedListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChoose";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

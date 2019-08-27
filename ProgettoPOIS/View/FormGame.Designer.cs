@@ -1,4 +1,4 @@
-﻿namespace ProgettoPOIS
+﻿namespace ProgettoPOIS.View
 {
     partial class FormGame
     {
@@ -28,19 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGame));
             this.picture1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSkill3 = new System.Windows.Forms.Button();
+            this.labelPlayer = new System.Windows.Forms.Label();
             this.buttonSkill4 = new System.Windows.Forms.Button();
             this.buttonSkill1 = new System.Windows.Forms.Button();
-            this.buttonSkill2 = new System.Windows.Forms.Button();
             this.ButtonChangePokémon = new System.Windows.Forms.Button();
+            this.buttonSkill2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelExp1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.labelName1 = new System.Windows.Forms.Label();
             this.labelLevel1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelExp2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.labelName2 = new System.Windows.Forms.Label();
             this.labelLevel2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,35 +72,49 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.buttonSkill3);
+            this.panel1.Controls.Add(this.labelPlayer);
             this.panel1.Controls.Add(this.buttonSkill4);
             this.panel1.Controls.Add(this.buttonSkill1);
+            this.panel1.Controls.Add(this.ButtonChangePokémon);
             this.panel1.Controls.Add(this.buttonSkill2);
-            this.panel1.Location = new System.Drawing.Point(107, 315);
+            this.panel1.Location = new System.Drawing.Point(24, 315);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 132);
+            this.panel1.Size = new System.Drawing.Size(368, 132);
             this.panel1.TabIndex = 4;
             // 
             // buttonSkill3
             // 
-            this.buttonSkill3.Location = new System.Drawing.Point(157, 17);
+            this.buttonSkill3.Location = new System.Drawing.Point(247, 17);
             this.buttonSkill3.Name = "buttonSkill3";
             this.buttonSkill3.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill3.TabIndex = 4;
             this.buttonSkill3.Text = "Skill 3";
             this.buttonSkill3.UseVisualStyleBackColor = true;
+            this.buttonSkill3.Click += new System.EventHandler(this.ButtonSkill3_Click);
+            // 
+            // labelPlayer
+            // 
+            this.labelPlayer.AutoSize = true;
+            this.labelPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlayer.Location = new System.Drawing.Point(13, 23);
+            this.labelPlayer.Name = "labelPlayer";
+            this.labelPlayer.Size = new System.Drawing.Size(101, 29);
+            this.labelPlayer.TabIndex = 10;
+            this.labelPlayer.Text = "Player1";
             // 
             // buttonSkill4
             // 
-            this.buttonSkill4.Location = new System.Drawing.Point(157, 73);
+            this.buttonSkill4.Location = new System.Drawing.Point(247, 73);
             this.buttonSkill4.Name = "buttonSkill4";
             this.buttonSkill4.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill4.TabIndex = 3;
             this.buttonSkill4.Text = "Skill 4";
             this.buttonSkill4.UseVisualStyleBackColor = true;
+            this.buttonSkill4.Click += new System.EventHandler(this.ButtonSkill4_Click);
             // 
             // buttonSkill1
             // 
-            this.buttonSkill1.Location = new System.Drawing.Point(21, 17);
+            this.buttonSkill1.Location = new System.Drawing.Point(124, 17);
             this.buttonSkill1.Name = "buttonSkill1";
             this.buttonSkill1.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill1.TabIndex = 2;
@@ -100,44 +122,75 @@
             this.buttonSkill1.UseVisualStyleBackColor = true;
             this.buttonSkill1.Click += new System.EventHandler(this.ButtonSkill1_Click);
             // 
-            // buttonSkill2
-            // 
-            this.buttonSkill2.Location = new System.Drawing.Point(21, 73);
-            this.buttonSkill2.Name = "buttonSkill2";
-            this.buttonSkill2.Size = new System.Drawing.Size(108, 38);
-            this.buttonSkill2.TabIndex = 1;
-            this.buttonSkill2.Text = "Skill 2";
-            this.buttonSkill2.UseVisualStyleBackColor = true;
-            // 
             // ButtonChangePokémon
             // 
-            this.ButtonChangePokémon.Location = new System.Drawing.Point(24, 361);
+            this.ButtonChangePokémon.Location = new System.Drawing.Point(7, 73);
             this.ButtonChangePokémon.Name = "ButtonChangePokémon";
-            this.ButtonChangePokémon.Size = new System.Drawing.Size(77, 38);
+            this.ButtonChangePokémon.Size = new System.Drawing.Size(104, 38);
             this.ButtonChangePokémon.TabIndex = 5;
             this.ButtonChangePokémon.Text = "Change pokemon";
             this.ButtonChangePokémon.UseVisualStyleBackColor = true;
             this.ButtonChangePokémon.Click += new System.EventHandler(this.ButtonChangePokémon_Click);
             // 
+            // buttonSkill2
+            // 
+            this.buttonSkill2.Location = new System.Drawing.Point(124, 73);
+            this.buttonSkill2.Name = "buttonSkill2";
+            this.buttonSkill2.Size = new System.Drawing.Size(108, 38);
+            this.buttonSkill2.TabIndex = 1;
+            this.buttonSkill2.Text = "Skill 2";
+            this.buttonSkill2.UseVisualStyleBackColor = true;
+            this.buttonSkill2.Click += new System.EventHandler(this.ButtonSkill2_Click);
+            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.labelExp1);
+            this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.labelName1);
             this.panel3.Controls.Add(this.labelLevel1);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.progressBar1);
-            this.panel3.Location = new System.Drawing.Point(192, 212);
+            this.panel3.Location = new System.Drawing.Point(148, 212);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 87);
+            this.panel3.Size = new System.Drawing.Size(244, 87);
             this.panel3.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(128, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "/100";
+            // 
+            // labelExp1
+            // 
+            this.labelExp1.AutoSize = true;
+            this.labelExp1.Location = new System.Drawing.Point(110, 33);
+            this.labelExp1.Name = "labelExp1";
+            this.labelExp1.Size = new System.Drawing.Size(13, 13);
+            this.labelExp1.TabIndex = 5;
+            this.labelExp1.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(79, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Exp";
             // 
             // labelName1
             // 
             this.labelName1.AutoSize = true;
-            this.labelName1.Location = new System.Drawing.Point(17, 12);
+            this.labelName1.Location = new System.Drawing.Point(15, 12);
             this.labelName1.Name = "labelName1";
-            this.labelName1.Size = new System.Drawing.Size(35, 13);
+            this.labelName1.Size = new System.Drawing.Size(38, 13);
             this.labelName1.TabIndex = 3;
-            this.labelName1.Text = "label2";
+            this.labelName1.Text = "Name ";
             // 
             // labelLevel1
             // 
@@ -160,29 +213,60 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(17, 57);
+            this.progressBar1.MarqueeAnimationSpeed = 0;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(165, 17);
+            this.progressBar1.Size = new System.Drawing.Size(214, 17);
             this.progressBar1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.labelExp2);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.labelName2);
             this.panel2.Controls.Add(this.labelLevel2);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.progressBar2);
             this.panel2.Location = new System.Drawing.Point(24, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 87);
+            this.panel2.Size = new System.Drawing.Size(244, 87);
             this.panel2.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(129, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "/100";
+            // 
+            // labelExp2
+            // 
+            this.labelExp2.AutoSize = true;
+            this.labelExp2.Location = new System.Drawing.Point(111, 33);
+            this.labelExp2.Name = "labelExp2";
+            this.labelExp2.Size = new System.Drawing.Size(13, 13);
+            this.labelExp2.TabIndex = 8;
+            this.labelExp2.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(80, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Exp";
             // 
             // labelName2
             // 
             this.labelName2.AutoSize = true;
-            this.labelName2.Location = new System.Drawing.Point(17, 12);
+            this.labelName2.Location = new System.Drawing.Point(16, 12);
             this.labelName2.Name = "labelName2";
             this.labelName2.Size = new System.Drawing.Size(35, 13);
             this.labelName2.TabIndex = 3;
-            this.labelName2.Text = "label2";
+            this.labelName2.Text = "Name";
             // 
             // labelLevel2
             // 
@@ -205,8 +289,9 @@
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(17, 57);
+            this.progressBar2.MarqueeAnimationSpeed = 0;
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(165, 17);
+            this.progressBar2.Size = new System.Drawing.Size(214, 17);
             this.progressBar2.TabIndex = 0;
             // 
             // picture2
@@ -223,12 +308,14 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.picture2);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.ButtonChangePokémon);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.picture1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGame";
             ((System.ComponentModel.ISupportInitialize)(this.picture1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -259,6 +346,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.PictureBox picture2;
+        private System.Windows.Forms.Label labelPlayer;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelExp1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelExp2;
+        private System.Windows.Forms.Label label8;
     }
 }
 

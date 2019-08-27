@@ -6,7 +6,7 @@
 2;Charmander;Charmeleon;30;15;Lanciafiamme
 3;Charmeleon;Charizard;70;40;Turbofuoco
 
-1;Water;Squirtle;0;10;Pistolacqua;Botta
+1;Water;Squirtle;0;10;Botta;Pistolacqua
 2;Squirtle;Wartortle;20;30;Ritirata
 3;Wartortle;Blastoise;40;70;Idropompa
 
@@ -14,7 +14,7 @@
 2;Pichu;Pikachu;35;10;Cometapugno
 3;Pikachu;Raichu;60;40;Rimonta
 
-1;Earth;Oddish;5;5;Morso;Botta
+1;Earth;Oddish;5;5;Morso;Crescita
 2;Oddish;Gloom;10;40;Frustata
 3;Gloom;Vileplume;25;75;Rimonta
 

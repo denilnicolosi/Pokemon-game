@@ -1,13 +1,15 @@
 ﻿using ProgettoPOIS.Model;
+using ProgettoPOIS.View;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ProgettoPOIS.Controller
 {
-    class ControllerGame 
+    class ControllerGame
     {
         private int _numRound;
+        private FormChange change;
         private Pokémon _pokémonSelectedPlayer1;
         private Pokémon _pokémonSelectedPlayer2;
         private List<Pokémon> _pokémonPlayer1;
@@ -24,18 +26,9 @@ namespace ProgettoPOIS.Controller
             _pokémonPlayer2 = pokémonPlayer2;
             _numRound = 0;
 
-            _pokémonSelectedPlayer1 = _pokémonPlayer1[_pokémonPlayer1.Count-1];
-            _pokémonSelectedPlayer2 = _pokémonPlayer2[_pokémonPlayer2.Count-1];
-
-            //game();
-        }
-
-        public void game()
-        {            
-            if(_pokémonPlayer1.Count > 0)
-                MessageBox.Show("Player 1 win!", "End game", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Player 2 win!", "End game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //_pokémonSelectedPlayer1 = _pokémonPlayer1[_pokémonPlayer1.Count - 1];
+            //_pokémonSelectedPlayer2 = _pokémonPlayer2[_pokémonPlayer2.Count - 1];
+                        
         }
 
         public void choosePokèmon(Pokémon p)
@@ -44,6 +37,49 @@ namespace ProgettoPOIS.Controller
                 _pokémonSelectedPlayer1 = p;
             else
                 _pokémonSelectedPlayer2 = p;
+        }
+
+        public void changePokémon()
+        {
+            Pokémon p;
+
+            checkVictory();
+
+            if (_numRound % 2 == 0)
+                change = new FormChange(_pokémonPlayer1);
+            else
+                change = new FormChange(_pokémonPlayer2);
+
+            change.ShowDialog();
+            p = change.SelectedPokémon;
+            choosePokèmon(p);
+        }
+
+        public void checkVictory()
+        {
+            int n = 0;
+            if (_numRound % 2 == 0)
+            {
+                foreach (Pokémon p in _pokémonPlayer1)
+                    if (p.HealthPoints == 0)
+                        n++;
+                if (n == _pokémonPlayer1.Count)
+                {
+                    MessageBox.Show("Player 2 win!", "End game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Environment.Exit(-1);
+                }
+            }
+            else
+            {
+                foreach (Pokémon p in _pokémonPlayer2)
+                    if (p.HealthPoints == 0)
+                        n++;
+                if (n == _pokémonPlayer2.Count)
+                {
+                    MessageBox.Show("Player 1 win!", "End game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Environment.Exit(-1);
+                }
+            }
         }
 
         public bool doSkill(Skill s)
@@ -55,17 +91,27 @@ namespace ProgettoPOIS.Controller
                     {
                         _pokémonSelectedPlayer2.HealthPoints -= calculatesDamage(_pokémonSelectedPlayer1, _pokémonSelectedPlayer2, (Attack)s);
                         _pokémonSelectedPlayer1.Exp += s.ExpEarned;
+                        //if (_pokémonSelectedPlayer2.HealthPoints == 0)
+                        //{
+                        //    _pokémonPlayer2.Remove(_pokémonSelectedPlayer2);
+                        //    _pokémonSelectedPlayer2 = null;
+                        //}
                     }
                     else
                     {
                         _pokémonSelectedPlayer1.HealthPoints -= calculatesDamage(_pokémonSelectedPlayer2, _pokémonSelectedPlayer1, (Attack)s);
                         _pokémonSelectedPlayer2.Exp += s.ExpEarned;
+                        //if (_pokémonSelectedPlayer1.HealthPoints == 0)
+                        //{
+                        //    _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);
+                        //    _pokémonSelectedPlayer1 = null;
+                        //}
                     }
+                else if (_numRound % 2 == 0)
+                    _pokémonSelectedPlayer1.HealthPoints += ((Defence)s).HealthEarned;
                 else
-                    if (_numRound % 2 == 0)
-                        _pokémonSelectedPlayer1.HealthPoints += ((Defence)s).HealthEarned;
-                    else
-                        _pokémonSelectedPlayer2.HealthPoints += ((Defence)s).HealthEarned;
+                    _pokémonSelectedPlayer2.HealthPoints += ((Defence)s).HealthEarned;
+                
             return success;
         }
 
@@ -92,17 +138,17 @@ namespace ProgettoPOIS.Controller
                 else if (p2.Attribute == Pokémon.typeAttribute.Water)
                     bonusAttribute = -10;
 
-            else if (p1.Attribute == Pokémon.typeAttribute.Water)
-                if (p2.Attribute == Pokémon.typeAttribute.Fire)
-                    bonusAttribute = 10;
-                else if (p2.Attribute == Pokémon.typeAttribute.Earth)
-                    bonusAttribute = -10;
- 
-            else if (p1.Attribute == Pokémon.typeAttribute.Earth)
-                if (p2.Attribute == Pokémon.typeAttribute.Water)
-                    bonusAttribute = 10;
-                else if (p2.Attribute == Pokémon.typeAttribute.Fire)
-                    bonusAttribute = -10;
+                else if (p1.Attribute == Pokémon.typeAttribute.Water)
+                    if (p2.Attribute == Pokémon.typeAttribute.Fire)
+                        bonusAttribute = 10;
+                    else if (p2.Attribute == Pokémon.typeAttribute.Earth)
+                        bonusAttribute = -10;
+
+                    else if (p1.Attribute == Pokémon.typeAttribute.Earth)
+                        if (p2.Attribute == Pokémon.typeAttribute.Water)
+                            bonusAttribute = 10;
+                        else if (p2.Attribute == Pokémon.typeAttribute.Fire)
+                            bonusAttribute = -10;
 
             totalDmg = s.Damage + ((s.Damage * p1.Attack) / 100);
             totalDmg = totalDmg + ((totalDmg * bonusAttribute) / 100);
@@ -110,7 +156,7 @@ namespace ProgettoPOIS.Controller
             return totalDmg;
         }
 
-        public int levelOf(Pokémon p)
+        public static int levelOf(Pokémon p)
         {
             int level;
             if (p.GetType() == typeof(Level1))

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ProgettoPOIS.View;
 
 namespace ProgettoPOIS.Controller
 {
@@ -136,8 +137,9 @@ namespace ProgettoPOIS.Controller
 
         public void startGame()
         {
-           viewGame = new FormGame(pokémonPlayer1, pokémonPlayer2);
-            
+           
+            viewGame = new FormGame(pokémonPlayer1, pokémonPlayer2);
+            viewGame.Show(); 
         }
 
         public void Exit()
