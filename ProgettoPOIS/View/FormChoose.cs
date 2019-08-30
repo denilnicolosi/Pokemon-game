@@ -18,6 +18,9 @@ namespace ProgettoPOIS.View
         {
             InitializeComponent();
 
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
             choose = new ControllerChoose();
 
             foreach (Pokémon p in choose.PokémonList)

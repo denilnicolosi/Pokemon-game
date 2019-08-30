@@ -25,7 +25,7 @@ namespace ProgettoPOIS.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Denil\\Desktop\\Uni\\POIS\\ProgettoPOIS\\ProgettoPOIS\\csv\\pokémon.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\csv\\pokémon.csv")]
         public string pathPokemon {
             get {
                 return ((string)(this["pathPokemon"]));
@@ -34,7 +34,7 @@ namespace ProgettoPOIS.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Denil\\Desktop\\Uni\\POIS\\ProgettoPOIS\\ProgettoPOIS\\csv\\skill.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\csv\\skill.csv")]
         public string pathSkill {
             get {
                 return ((string)(this["pathSkill"]));
@@ -43,7 +43,7 @@ namespace ProgettoPOIS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Denil\\Desktop\\Uni\\POIS\\ProgettoPOIS\\ProgettoPOIS\\sprites\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\sprites\\")]
         public string pathSprites {
             get {
                 return ((string)(this["pathSprites"]));

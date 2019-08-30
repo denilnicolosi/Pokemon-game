@@ -50,6 +50,9 @@
   <PropertyGroup>
     <ApplicationIcon>pokemon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ProgettoPOIS.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />

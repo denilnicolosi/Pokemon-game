@@ -23,7 +23,10 @@ namespace ProgettoPOIS.View
         public FormChange(List<Pokémon> _pokémonPlayer)
         {
             InitializeComponent();
-            
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
             _pokémonList = _pokémonPlayer;
 
             foreach (Pokémon p in _pokémonList)

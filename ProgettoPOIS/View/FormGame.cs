@@ -17,6 +17,9 @@ namespace ProgettoPOIS.View
         {
             InitializeComponent();
 
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
             game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
 
             game.changePokémon();

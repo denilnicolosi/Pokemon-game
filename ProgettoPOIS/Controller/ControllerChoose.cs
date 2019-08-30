@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ProgettoPOIS.View;
+using System.Xml.Serialization;
 
 namespace ProgettoPOIS.Controller
 {
@@ -65,11 +66,13 @@ namespace ProgettoPOIS.Controller
             List<Skill> listSkill = new List<Skill>();
 
             StreamReader rPokémon, rSkill;
+            XmlSerializer xmlPokémon, xmlSkill;
             Pokémon.typeAttribute t;
 
             try
             {
                 // Reading skills from file.
+                xmlSkill = new XmlSerializer(typeof(List<Skill>), new XmlRootAttribute("SKILL"));
                 rSkill = new StreamReader(pathSkill);
                 while (!rSkill.EndOfStream)
                 {
