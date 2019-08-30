@@ -7,17 +7,37 @@ using ProgettoPOIS.View;
 
 namespace ProgettoPOIS.Controller
 {
+    /// <summary>
+    /// "Controller" class for the pokèmon selection.
+    /// Contains methods and attributes used to interact with models.
+    /// </summary>
+    /// <remarks>
+    /// It implements the "IController" interface.
+    /// See <see cref="ProgettoPOIS.Controller.IController"/> For more information.
+    /// </remarks>
     class ControllerChoose : IController
     {
+        // Definition of private internal attributes.
+        #region Private 
         private List<Pokémon> pokémonList;
         private List<Pokémon> pokémonPlayer1;
         private List<Pokémon> pokémonPlayer2;
         private FormGame viewGame;
+        #endregion
 
+        // Definition of public attributes, for the "get/set" methods.
+        #region Public
         public List<Pokémon> PokémonPlayer1 { get => pokémonPlayer1; set => pokémonPlayer1 = value; }
         public List<Pokémon> PokémonPlayer2 { get => pokémonPlayer2; set => pokémonPlayer2 = value; }
         public List<Pokémon> PokémonList { get => pokémonList; set => pokémonList = value; }
+        #endregion
 
+        // Definition of class methods.
+        #region Methods
+
+        /// <summary>
+        /// Constructor method of the <c>ControllerChoose</c> class.
+        /// </summary>
         public ControllerChoose()
         {
             pokémonPlayer1 = new List<Pokémon>();
@@ -27,6 +47,15 @@ namespace ProgettoPOIS.Controller
                                       Properties.Settings.Default.pathSkill);
         }
 
+        /// <summary>
+        /// Method that reads data from files to load pokémon in the list.
+        /// </summary>
+        /// <remarks>
+        /// Reading takes place on two ".csv" files, one for pokémon and one for skills.
+        /// </remarks>
+        /// <param name="pathPokémon">File path with pokémon data.</param>
+        /// <param name="pathSkill">file path with skills data.</param>
+        /// <returns>List of pokémon with the appropriate skills.</returns>
         public List<Pokémon> loadPokémon(string pathPokémon, string pathSkill)
         {
             Pokémon tmpPokémon, prevPokémon;
@@ -40,7 +69,7 @@ namespace ProgettoPOIS.Controller
 
             try
             {
-                // Lettura delle Skill dal file
+                // Reading skills from file.
                 rSkill = new StreamReader(pathSkill);
                 while (!rSkill.EndOfStream)
                 {
@@ -65,7 +94,8 @@ namespace ProgettoPOIS.Controller
                             listSkill.Add(tmpSkill);
                     }
                 }
-                // Lettura Pokémon dal file
+
+                // Reading pokémon from file
                 rPokémon = new StreamReader(pathPokémon);
                 while (!rPokémon.EndOfStream)
                 {
@@ -77,7 +107,6 @@ namespace ProgettoPOIS.Controller
                         switch (Int32.Parse(values[0]))
                         {
                             case 1:
-                                //livello;tipoPokemon;nomePokemon;attacco;difesa;nomeSkill1;nomeSkill2
                                 switch (values[1].ToLower().Trim())
                                 {
                                     case "earth":
@@ -100,7 +129,6 @@ namespace ProgettoPOIS.Controller
 
                                 break;
                             case 2:
-                                //livello;nomePokemonPrecedente;nuovoNome;nomeSkill
                                 prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
                                 tmpPokémon = new Level2(prevPokémon.Attribute, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
@@ -109,7 +137,6 @@ namespace ProgettoPOIS.Controller
                                 prevPokémon.NextLevel = tmpPokémon;
                                 break;
                             case 3:
-                                //livello;nomePokemonPrecedente;nuovoNome;nomeSkill
                                 prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
                                 Level3 l = new Level3(prevPokémon.Attribute, values[2], Int32.Parse(values[3]), Int32.Parse(values[4]),
                                     ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2, ((Level2)prevPokémon).S3, listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
@@ -135,9 +162,14 @@ namespace ProgettoPOIS.Controller
             }
         }
 
+        /// <summary>
+        /// Method that starts the game form.
+        /// </summary>
+        /// <remarks>
+        /// It instantiates a <c>FormGame</c> object and shows it.
+        /// </remarks>
         public void startGame()
         {
-           
             viewGame = new FormGame(pokémonPlayer1, pokémonPlayer2);
             viewGame.Show(); 
         }
@@ -157,5 +189,6 @@ namespace ProgettoPOIS.Controller
             throw new NotImplementedException();
         }
 
+        #endregion
     }
 }

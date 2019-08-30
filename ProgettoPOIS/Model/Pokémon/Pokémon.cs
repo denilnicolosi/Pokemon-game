@@ -54,11 +54,11 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Pokémon</c> class.
         /// </summary>
-        /// <typeparam name="typeAttribute"> Enumerator for the attributes of Pokémon: fire, water, earth. </typeparam>
-        /// <param name="attribute"> Pokémon attribute. </param>
-        /// <param name="name"> Pokémon name. </param>
-        /// <param name="attack"> Value of the Pokémon attack. </param>
-        /// <param name="defence"> Value of the Pokémon defence. </param>
+        /// <typeparam name="typeAttribute">Enumerator for the attributes of Pokémon: Fire, Water, Earth.</typeparam>
+        /// <param name="attribute">Pokémon attribute.</param>
+        /// <param name="name">Pokémon name.</param>
+        /// <param name="attack">Value of the Pokémon attack.</param>
+        /// <param name="defence">Value of the Pokémon defence.</param>
         protected Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
             _attribute = attribute;

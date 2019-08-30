@@ -146,7 +146,7 @@ namespace ProgettoPOIS.View
         private void ButtonSkill3_Click(object sender, System.EventArgs e)
         {
             Level2 p;
-
+            
             if (game.NumRound % 2 == 0)
                 p = (Level2)game.PokémonSelectedPlayer1;
             else

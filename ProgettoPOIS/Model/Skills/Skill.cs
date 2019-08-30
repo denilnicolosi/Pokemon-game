@@ -26,8 +26,8 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Pokémon</c> class.
         /// </summary>
-        /// <param name="name"> Name of the skill. </param>
-        /// <param name="expEarned"> Experience earned. </param>
+        /// <param name="name">Name of the skill.</param>
+        /// <param name="expEarned">Experience earned.</param>
         public Skill(string name, int expEarned)
         {
             Name = name;

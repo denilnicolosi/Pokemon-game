@@ -2,11 +2,11 @@
 namespace ProgettoPOIS.Model
 {
     /// <summary>
-    /// Class that extends Pokémon.
+    /// Class that extends <c>Pokémon</c>.
     /// Represents a Pokémon on its first evolution.
     /// </summary>
     /// <remarks>
-    /// This class adds 2 skills to the Pokémon.
+    /// This class adds two skills to the Pokémon.
     /// </remarks>
     public class Level1 : Pokémon
     {
@@ -27,14 +27,14 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Level</c> class.
         /// </summary>
-        /// <typeparam name="typeAttribute"> Enumerator for the attributes of Pokémon: fire, water, earth. </typeparam> 
-        /// <typeparam name="Skill"> <typeparamref name"Skill"/> Object </typeParam>
-        /// <param name="attribute"> Pokémon attribute. </param>
-        /// <param name="name"> Pokémon name. </param>
-        /// <param name="attack"> Value of the Pokémon attack. </param>
-        /// <param name="defence"> Value of the Pokémon defence. </param>
-        /// <param name="s1"> Skill number one of the Pokémon. </param>
-        /// <param name="s2"> Skill number two of the Pokémon. </param>
+        /// <typeparam name="typeAttribute">Enumerator for the attributes of Pokémon: Fire, Water, Earth.</typeparam> 
+        /// <typeparam name="Skill"><typeparamref name"Skill"/>Object of type Skill.</typeParam>
+        /// <param name="attribute">Pokémon attribute.</param>
+        /// <param name="name">Pokémon name.</param>
+        /// <param name="attack">Value of the Pokémon attack.</param>
+        /// <param name="defence">Value of the Pokémon defence.</param>
+        /// <param name="s1">Skill number one of the Pokémon.</param>
+        /// <param name="s2">Skill number two of the Pokémon.</param>
         public Level1(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2)
             : base(attribute, name, attack, defence)
         {
