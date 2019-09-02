@@ -3,6 +3,7 @@ using ProgettoPOIS.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ProgettoPOIS.View
@@ -27,6 +28,7 @@ namespace ProgettoPOIS.View
             game.changePokémon();
             game.NumRound++;
 
+
             change_round();
         }
 
@@ -36,34 +38,58 @@ namespace ProgettoPOIS.View
 
             game.NumRound++;
 
+
             if (game.PokémonSelectedPlayer1.HealthPoints == 0)
                 changeDeadPokémon(game.PokémonSelectedPlayer1);
 
             if (game.PokémonSelectedPlayer2.HealthPoints == 0)
                 changeDeadPokémon(game.PokémonSelectedPlayer2);
+            
+            progressBar1.Value = game.PokémonSelectedPlayer1.HealthPoints;
+            progressBar4.Value = game.PokémonSelectedPlayer1.HealthPoints;
 
+            progressBar2.Value = game.PokémonSelectedPlayer2.HealthPoints;
+            progressBar3.Value = game.PokémonSelectedPlayer2.HealthPoints;
+             
+           // progressBar1.Visible = progressBar2.Visible = true;
+            //progressBar3.Visible = progressBar4.Visible = true;
+            //progressBar1.Show();
+            //progressBar2.Show();
+            //progressBar3.Show();
+            //progressBar4.Show();
+            
             if (game.NumRound % 2 == 0)
             {
                 labelPlayer.Text = "Player 1";
                 p1 = game.PokémonSelectedPlayer1;
-                p2 = game.PokémonSelectedPlayer2;                
+                p2 = game.PokémonSelectedPlayer2;
+                              
+                progressBar1.BringToFront();
+                progressBar2.BringToFront();
+
             }
             else
             {
                 labelPlayer.Text = "Player 2";
                 p1 = game.PokémonSelectedPlayer2;
                 p2 = game.PokémonSelectedPlayer1;
+                               
+                progressBar3.BringToFront();
+                progressBar4.BringToFront();
+                            
             }
-           
+            hp1.Text = p1.HealthPoints.ToString();
+            hp2.Text = p2.HealthPoints.ToString();
+
             p1_level = ControllerGame.levelOf(p1);
             p2_level = ControllerGame.levelOf(p2);
 
-            picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites + p1.Name + ".png");
-            picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + p2.Name + ".png");
-
-            progressBar1.Value = p1.HealthPoints;
-            progressBar2.Value = p2.HealthPoints;
-
+            picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites +
+                "/back/" + p1.Name + ".gif");
+            
+            picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + 
+                "/front/" + p2.Name + ".gif");
+                      
             labelLevel1.Text = p1_level.ToString();
             labelLevel2.Text = p2_level.ToString();
 
@@ -160,7 +186,6 @@ namespace ProgettoPOIS.View
 
             change_round();
         }
-
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {

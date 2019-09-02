@@ -80,7 +80,7 @@ namespace ProgettoPOIS.View
                 labelDefence.Text = pokémonSelected.Defence.ToString();
                 labelSkill1.Text = pokémonSelected.S1.Name;
                 labelSkill2.Text = pokémonSelected.S2.Name;
-                picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + pokémonSelected.Name.ToLower() + ".png");
+                picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
             }
 
         }

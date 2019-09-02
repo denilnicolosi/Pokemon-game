@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using ProgettoPOIS.View;
 using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace ProgettoPOIS.Controller
 {
@@ -161,6 +162,7 @@ namespace ProgettoPOIS.Controller
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                MessageBox.Show("Errore: " + ex, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }

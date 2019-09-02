@@ -38,6 +38,8 @@
             this.ButtonChangePokémon = new System.Windows.Forms.Button();
             this.buttonSkill2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.hp1 = new System.Windows.Forms.Label();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
             this.labelExp1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,6 +48,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.hp2 = new System.Windows.Forms.Label();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.label6 = new System.Windows.Forms.Label();
             this.labelExp2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -144,6 +148,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.hp1);
+            this.panel3.Controls.Add(this.progressBar3);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.labelExp1);
             this.panel3.Controls.Add(this.label3);
@@ -155,6 +161,24 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(244, 87);
             this.panel3.TabIndex = 7;
+            // 
+            // hp1
+            // 
+            this.hp1.AutoSize = true;
+            this.hp1.Location = new System.Drawing.Point(216, 57);
+            this.hp1.Name = "hp1";
+            this.hp1.Size = new System.Drawing.Size(25, 13);
+            this.hp1.TabIndex = 12;
+            this.hp1.Text = "100";
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(17, 57);
+            this.progressBar3.MarqueeAnimationSpeed = 0;
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(196, 17);
+            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar3.TabIndex = 7;
             // 
             // label5
             // 
@@ -215,11 +239,14 @@
             this.progressBar1.Location = new System.Drawing.Point(17, 57);
             this.progressBar1.MarqueeAnimationSpeed = 0;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(214, 17);
+            this.progressBar1.Size = new System.Drawing.Size(196, 17);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.hp2);
+            this.panel2.Controls.Add(this.progressBar4);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.labelExp2);
             this.panel2.Controls.Add(this.label8);
@@ -231,6 +258,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(244, 87);
             this.panel2.TabIndex = 9;
+            // 
+            // hp2
+            // 
+            this.hp2.AutoSize = true;
+            this.hp2.Location = new System.Drawing.Point(216, 57);
+            this.hp2.Name = "hp2";
+            this.hp2.Size = new System.Drawing.Size(25, 13);
+            this.hp2.TabIndex = 11;
+            this.hp2.Text = "100";
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(17, 57);
+            this.progressBar4.MarqueeAnimationSpeed = 0;
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(196, 17);
+            this.progressBar4.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar4.TabIndex = 10;
             // 
             // label6
             // 
@@ -291,7 +336,8 @@
             this.progressBar2.Location = new System.Drawing.Point(17, 57);
             this.progressBar2.MarqueeAnimationSpeed = 0;
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(214, 17);
+            this.progressBar2.Size = new System.Drawing.Size(196, 17);
+            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar2.TabIndex = 0;
             // 
             // picture2
@@ -353,6 +399,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelExp2;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ProgressBar progressBar3;
+        private System.Windows.Forms.ProgressBar progressBar4;
+        private System.Windows.Forms.Label hp2;
+        private System.Windows.Forms.Label hp1;
     }
 }
 

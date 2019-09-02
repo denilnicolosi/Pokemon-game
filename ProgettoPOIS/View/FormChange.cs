@@ -50,7 +50,7 @@ namespace ProgettoPOIS.View
             Level1 pokémonSelected = (Level1)_pokémonList.Where(p => p.Name == pokemonName).FirstOrDefault();
             int level = ControllerGame.levelOf(pokémonSelected);
 
-            picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + pokémonSelected.Name.ToLower() + ".png");
+            picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
             labelName.Text = pokémonSelected.Name;
             labelAttribute.Text = pokémonSelected.Attribute.ToString();
             labelAttack.Text = pokémonSelected.Attack.ToString();

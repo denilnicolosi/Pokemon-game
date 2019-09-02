@@ -1,10 +1,8 @@
-﻿
-
-namespace ProgettoPOIS.Model
+﻿namespace ProgettoPOIS.Model
 {
     /// <summary>
     /// The father of all Pokémon.
-    /// contains all the basic attributes and methods of a pokémon.
+    /// Contains all the basic attributes and methods of a pokémon.
     /// </summary>
     public abstract class Pokémon
     {
