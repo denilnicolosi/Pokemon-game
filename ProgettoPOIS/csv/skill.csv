@@ -19,6 +19,6 @@ attack;Cometapugno;20;30
 attack;MegaPugno;25;50
 
 defence;Crescita;10;25
-defence;Ritirata;30;25
-defence;Riposo;20;10
-defence;Rimonta;40;40
+defence;Ritirata;20;25
+defence;Riposo;15;10
+defence;Rimonta;25;40

@@ -18,9 +18,12 @@ namespace ProgettoPOIS.View
         {
             InitializeComponent();
 
+            pictureBackground.Image= Image.FromFile(Properties.Settings.Default.pathSprites +
+                "back.png");
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-
+            
             game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
 
             game.changePokémon();
@@ -38,7 +41,6 @@ namespace ProgettoPOIS.View
 
             game.NumRound++;
 
-
             if (game.PokémonSelectedPlayer1.HealthPoints == 0)
                 changeDeadPokémon(game.PokémonSelectedPlayer1);
 
@@ -47,16 +49,8 @@ namespace ProgettoPOIS.View
             
             progressBar1.Value = game.PokémonSelectedPlayer1.HealthPoints;
             progressBar4.Value = game.PokémonSelectedPlayer1.HealthPoints;
-
             progressBar2.Value = game.PokémonSelectedPlayer2.HealthPoints;
-            progressBar3.Value = game.PokémonSelectedPlayer2.HealthPoints;
-             
-           // progressBar1.Visible = progressBar2.Visible = true;
-            //progressBar3.Visible = progressBar4.Visible = true;
-            //progressBar1.Show();
-            //progressBar2.Show();
-            //progressBar3.Show();
-            //progressBar4.Show();
+            progressBar3.Value = game.PokémonSelectedPlayer2.HealthPoints;                       
             
             if (game.NumRound % 2 == 0)
             {
@@ -66,7 +60,6 @@ namespace ProgettoPOIS.View
                               
                 progressBar1.BringToFront();
                 progressBar2.BringToFront();
-
             }
             else
             {
@@ -75,9 +68,9 @@ namespace ProgettoPOIS.View
                 p2 = game.PokémonSelectedPlayer1;
                                
                 progressBar3.BringToFront();
-                progressBar4.BringToFront();
-                            
+                progressBar4.BringToFront();                            
             }
+
             hp1.Text = p1.HealthPoints.ToString();
             hp2.Text = p2.HealthPoints.ToString();
 
@@ -186,6 +179,7 @@ namespace ProgettoPOIS.View
 
             change_round();
         }
+
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {

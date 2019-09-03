@@ -38,9 +38,24 @@
                     _healthPoints = 0;
             }
         }
+
+        public int Exp {
+            get => _exp;
+            set
+            {
+                if (value > 0)
+                    if (value > 100)
+                        _exp = 100;
+                    else
+                        _exp = value;
+                else
+                    _exp = 0;
+            }
+        }
+
         public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
         public string Name { get => _name; set => _name = value; }
-        public int Exp { get => _exp; set => _exp = value; }
+      
         public int Attack { get => _attack; set => _attack = value; }
         public int Defence { get => _defence; set => _defence = value; }
         public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }

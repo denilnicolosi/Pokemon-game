@@ -248,9 +248,10 @@
             // 
             // picture
             // 
-            this.picture.Location = new System.Drawing.Point(96, 10);
+            this.picture.Location = new System.Drawing.Point(117, 10);
             this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(113, 84);
+            this.picture.Size = new System.Drawing.Size(80, 80);
+            this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture.TabIndex = 7;
             this.picture.TabStop = false;
             // 
@@ -354,6 +355,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChange";
             this.Text = "Change pokémon";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormChange_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();

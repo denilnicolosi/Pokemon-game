@@ -170,9 +170,10 @@
             // 
             // picture
             // 
-            this.picture.Location = new System.Drawing.Point(97, 37);
+            this.picture.Location = new System.Drawing.Point(119, 42);
             this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(113, 84);
+            this.picture.Size = new System.Drawing.Size(80, 80);
+            this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture.TabIndex = 7;
             this.picture.TabStop = false;
             // 

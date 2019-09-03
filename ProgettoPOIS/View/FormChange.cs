@@ -83,5 +83,14 @@ namespace ProgettoPOIS.View
 
             
         }
+
+        private void FormChange_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (selectedPokémon == null)
+            {
+                string selected = (string)comboBox.SelectedItem;
+                selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
+            }
+        }
     }
 }

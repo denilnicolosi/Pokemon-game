@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="pokemon.ico" />
+    <Content Include="sprites\back.png" />
     <Content Include="sprites\back\blastoise.gif" />
     <Content Include="sprites\back\bulbasaur.gif" />
     <Content Include="sprites\back\charizard.gif" />

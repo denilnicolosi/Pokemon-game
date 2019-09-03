@@ -131,8 +131,8 @@ namespace ProgettoPOIS.Controller
                 else
                     _pokémonSelectedPlayer2.HealthPoints += ((Defence)s).HealthEarned;
                 
-                if ((_pokémonSelectedPlayer1.Exp >= 100) ||
-                    (_pokémonSelectedPlayer2.Exp >= 100))
+                if ((_pokémonSelectedPlayer1.Exp == 100) ||
+                    (_pokémonSelectedPlayer2.Exp == 100))
                 {
                     evolve();
                 }
@@ -147,22 +147,24 @@ namespace ProgettoPOIS.Controller
             {
                 if (_pokémonSelectedPlayer1.NextLevel != null)
                 {
+                    MessageBox.Show("Pokémon " + _pokémonSelectedPlayer1.Name + " evolved!", "Pokémon evolved",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);
                     _pokémonPlayer1.Add(_pokémonSelectedPlayer1.NextLevel);
                     _pokémonSelectedPlayer1 = _pokémonSelectedPlayer1.NextLevel;
-                    MessageBox.Show("Pokémon " + _pokémonSelectedPlayer1.Name + " evolved!","Pokémon evolved",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                 }
             }
             else
             {
                 if (_pokémonSelectedPlayer2.NextLevel!= null)
                 {
+                    MessageBox.Show("Pokémon " + _pokémonSelectedPlayer2.Name + " evolved!", "Pokémon evolved",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _pokémonPlayer2.Remove(_pokémonSelectedPlayer2);
                     _pokémonPlayer2.Add(_pokémonSelectedPlayer2.NextLevel);
                     _pokémonSelectedPlayer2 = _pokémonSelectedPlayer2.NextLevel;
-                    MessageBox.Show("Pokémon " + _pokémonSelectedPlayer2.Name + " evolved!", "Pokémon evolved",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  
                 }
             }
             return success;
