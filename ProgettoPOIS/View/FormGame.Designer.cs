@@ -38,6 +38,7 @@
             this.ButtonChangePokémon = new System.Windows.Forms.Button();
             this.buttonSkill2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.hp1 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.hp2 = new System.Windows.Forms.Label();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,20 +60,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.picture2 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pictureBackground = new System.Windows.Forms.PictureBox();
+            this.labelMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picture1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             this.SuspendLayout();
             // 
             // picture1
             // 
-            this.picture1.Location = new System.Drawing.Point(37, 214);
+            this.picture1.BackColor = System.Drawing.Color.Transparent;
+            this.picture1.Location = new System.Drawing.Point(25, 226);
             this.picture1.Name = "picture1";
             this.picture1.Size = new System.Drawing.Size(80, 80);
             this.picture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -87,14 +87,14 @@
             this.panel1.Controls.Add(this.buttonSkill1);
             this.panel1.Controls.Add(this.ButtonChangePokémon);
             this.panel1.Controls.Add(this.buttonSkill2);
-            this.panel1.Location = new System.Drawing.Point(24, 315);
+            this.panel1.Location = new System.Drawing.Point(12, 315);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(368, 132);
+            this.panel1.Size = new System.Drawing.Size(392, 132);
             this.panel1.TabIndex = 4;
             // 
             // buttonSkill3
             // 
-            this.buttonSkill3.Location = new System.Drawing.Point(247, 17);
+            this.buttonSkill3.Location = new System.Drawing.Point(259, 17);
             this.buttonSkill3.Name = "buttonSkill3";
             this.buttonSkill3.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill3.TabIndex = 4;
@@ -114,7 +114,7 @@
             // 
             // buttonSkill4
             // 
-            this.buttonSkill4.Location = new System.Drawing.Point(247, 73);
+            this.buttonSkill4.Location = new System.Drawing.Point(259, 73);
             this.buttonSkill4.Name = "buttonSkill4";
             this.buttonSkill4.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill4.TabIndex = 3;
@@ -124,7 +124,7 @@
             // 
             // buttonSkill1
             // 
-            this.buttonSkill1.Location = new System.Drawing.Point(124, 17);
+            this.buttonSkill1.Location = new System.Drawing.Point(131, 17);
             this.buttonSkill1.Name = "buttonSkill1";
             this.buttonSkill1.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill1.TabIndex = 2;
@@ -144,7 +144,7 @@
             // 
             // buttonSkill2
             // 
-            this.buttonSkill2.Location = new System.Drawing.Point(124, 73);
+            this.buttonSkill2.Location = new System.Drawing.Point(131, 73);
             this.buttonSkill2.Name = "buttonSkill2";
             this.buttonSkill2.Size = new System.Drawing.Size(108, 38);
             this.buttonSkill2.TabIndex = 1;
@@ -165,10 +165,19 @@
             this.panel3.Controls.Add(this.labelLevel1);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.progressBar1);
-            this.panel3.Location = new System.Drawing.Point(138, 212);
+            this.panel3.Location = new System.Drawing.Point(142, 216);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(254, 87);
             this.panel3.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "HP";
             // 
             // hp1
             // 
@@ -264,10 +273,19 @@
             this.panel2.Controls.Add(this.labelLevel2);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.progressBar2);
-            this.panel2.Location = new System.Drawing.Point(24, 36);
+            this.panel2.Location = new System.Drawing.Point(27, 39);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(254, 87);
             this.panel2.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 59);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(22, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "HP";
             // 
             // hp2
             // 
@@ -352,52 +370,42 @@
             // 
             // picture2
             // 
-            this.picture2.Location = new System.Drawing.Point(297, 39);
+            this.picture2.BackColor = System.Drawing.Color.Transparent;
+            this.picture2.Location = new System.Drawing.Point(313, 54);
             this.picture2.Name = "picture2";
             this.picture2.Size = new System.Drawing.Size(80, 80);
             this.picture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture2.TabIndex = 8;
             this.picture2.TabStop = false;
             // 
-            // label2
+            // labelMessage
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "HP";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 59);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(22, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "HP";
-            // 
-            // pictureBackground
-            // 
-            this.pictureBackground.Location = new System.Drawing.Point(12, 12);
-            this.pictureBackground.Name = "pictureBackground";
-            this.pictureBackground.Size = new System.Drawing.Size(392, 297);
-            this.pictureBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBackground.TabIndex = 10;
-            this.pictureBackground.TabStop = false;
+            this.labelMessage.AutoSize = true;
+            this.labelMessage.BackColor = System.Drawing.Color.Transparent;
+            this.labelMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMessage.Location = new System.Drawing.Point(27, 157);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new System.Drawing.Size(112, 29);
+            this.labelMessage.TabIndex = 11;
+            this.labelMessage.Text = "message";
             // 
             // FormGame
             // 
-            this.ClientSize = new System.Drawing.Size(416, 465);
-            this.Controls.Add(this.panel2);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(416, 456);
+            this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.picture2);
+            this.Controls.Add(this.picture1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.picture1);
-            this.Controls.Add(this.pictureBackground);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGame";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picture1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -406,8 +414,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -445,7 +453,7 @@
         private System.Windows.Forms.Label hp1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBackground;
+        private System.Windows.Forms.Label labelMessage;
     }
 }
 

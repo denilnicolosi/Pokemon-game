@@ -1,24 +1,24 @@
-﻿attack;Foglielama;20;20
-attack;Frustata;30;16
-attack;Spora;25;24
-attack;Solarraggio;45;40
+﻿attack;Razor Leaf;20;20
+attack;Lash;30;16
+attack;Spore;40;50
+attack;Solar Beam;45;40
 
-attack;Bracere;20;20
-attack;Lanciafiamme;30;16
-attack;Fuocopugno;25;24
-attack;Turbofuoco;45;40
+attack;Ember;20;20
+attack;Flamethrower;30;16
+attack;Fire Punch;25;30
+attack;Fire Blast;45;40
 
-attack;Pistolacqua;20;20
-attack;Bollaraggio;30;16
-attack;Surf;25;24
-attack;Idropompa;45;40
+attack;Water Gun;20;20
+attack;Bubble Beam;30;16
+attack;Surf;45;40
+attack;Hydro Cannon;50;35
 
-attack;Botta;10;20
-attack;Morso;15;20
-attack;Cometapugno;20;30
-attack;MegaPugno;25;50
+attack;Scratch;12;20
+attack;Bite;15;15
+attack;Comet Punch;20;30
+attack;Mega Punch;25;50
 
-defence;Crescita;10;25
-defence;Ritirata;20;25
-defence;Riposo;15;10
-defence;Rimonta;25;40
+defence;Growth;10;25
+defence;Retreat;20;25
+defence;Repose;15;10
+defence;Comeback;25;40

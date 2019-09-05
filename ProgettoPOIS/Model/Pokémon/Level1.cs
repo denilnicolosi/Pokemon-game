@@ -28,7 +28,7 @@ namespace ProgettoPOIS.Model
         /// Constructor method of the <c>Level</c> class.
         /// </summary>
         /// <typeparam name="typeAttribute">Enumerator for the attributes of Pokémon: Fire, Water, Earth.</typeparam> 
-        /// <typeparam name="Skill"><typeparamref name"Skill"/>Object of type Skill.</typeParam>
+        /// <typeparam name="Skill"><typeparamref name="Skill"/>Object of type Skill.</typeparam>
         /// <param name="attribute">Pokémon attribute.</param>
         /// <param name="name">Pokémon name.</param>
         /// <param name="attack">Value of the Pokémon attack.</param>

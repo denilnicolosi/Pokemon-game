@@ -1,23 +1,23 @@
-﻿1;Earth;Bulbasaur;0;10;Foglielama;Morso
-2;Bulbasaur;Ivysaur;25;25;Frustata
-3;Ivysaur;Venusaur;55;55;Solarraggio
+﻿1;Grass;Bulbasaur;0;10;Razor Leaf;Bite
+2;Bulbasaur;Ivysaur;25;25;Lash
+3;Ivysaur;Venusaur;55;55;Solar Beam
 
-1;Fire;Charmander;10;0;Bracere;Botta
-2;Charmander;Charmeleon;30;15;Lanciafiamme
-3;Charmeleon;Charizard;70;40;Turbofuoco
+1;Fire;Charmander;10;0;Ember;Scratch
+2;Charmander;Charmeleon;30;15;Flamethrower
+3;Charmeleon;Charizard;70;40;Fire Blast
 
-1;Water;Squirtle;0;10;Botta;Pistolacqua
-2;Squirtle;Wartortle;20;30;Ritirata
-3;Wartortle;Blastoise;40;70;Idropompa
+1;Water;Squirtle;0;10;Water Gun;Scratch
+2;Squirtle;Wartortle;20;30;Retreat
+3;Wartortle;Blastoise;40;70;Hydro Cannon
 
-1;Fire;Pichu;5;5;Bracere;Morso
-2;Pichu;Pikachu;35;10;Cometapugno
-3;Pikachu;Raichu;60;40;Rimonta
+1;Fire;Torchic;5;5;Ember;Bite
+2;Torchic;Combusken;35;10;Fire Punch
+3;Combusken;Blaziken;60;40;Comeback
 
-1;Earth;Oddish;5;5;Morso;Crescita
-2;Oddish;Gloom;10;40;Frustata
-3;Gloom;Vileplume;25;75;Rimonta
+1;Grass;Oddish;5;5;Bite;Growth
+2;Oddish;Gloom;10;40;Spore
+3;Gloom;Vileplume;25;75;Repose
 
-1;Water;Poliwag;6;4;Morso;Pistolacqua
-2;Poliwag;Poliwhirl;30;15;MegaPugno
-3;Poliwhirl;Poliwrath;65;45;Idropompa
+1;Water;Poliwag;6;4;Bite;Water Gun
+2;Poliwag;Poliwhirl;30;15;Mega Punch
+3;Poliwhirl;Poliwrath;65;45;Surf

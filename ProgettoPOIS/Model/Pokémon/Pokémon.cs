@@ -8,7 +8,7 @@
     {
         // Definition of public enumerators.
         #region Enum
-        public enum typeAttribute { Fire, Water, Earth }
+        public enum typeAttribute { Fire, Water, Grass }
         #endregion
 
         // Definition of private internal attributes.

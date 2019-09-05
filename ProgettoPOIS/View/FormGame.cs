@@ -16,21 +16,16 @@ namespace ProgettoPOIS.View
 
         public FormGame(List<Pokémon> pokémonPlayer1, List<Pokémon> pokémonPlayer2)
         {
-            InitializeComponent();
-
-            pictureBackground.Image= Image.FromFile(Properties.Settings.Default.pathSprites +
-                "back.png");
+            InitializeComponent();                   
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            
+
+            labelMessage.Text = "";
+
             game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
 
-            game.changePokémon();
-            game.NumRound++;
-            game.changePokémon();
-            game.NumRound++;
-
+            game.start(); 
 
             change_round();
         }
@@ -77,9 +72,9 @@ namespace ProgettoPOIS.View
             p1_level = ControllerGame.levelOf(p1);
             p2_level = ControllerGame.levelOf(p2);
 
+       
             picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites +
-                "/back/" + p1.Name + ".gif");
-            
+                "/back/" + p1.Name + ".gif");            
             picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + 
                 "/front/" + p2.Name + ".gif");
                       
@@ -96,17 +91,14 @@ namespace ProgettoPOIS.View
             {
                 buttonSkill1.Text = ((Level1)p1).S1.Name;
                 buttonSkill2.Text = ((Level1)p1).S2.Name;
-
                 buttonSkill3.Visible = false;
                 buttonSkill4.Visible = false;
-
             }
             else if (p1_level == 2)
             {
                 buttonSkill1.Text = ((Level2)p1).S1.Name;
                 buttonSkill2.Text = ((Level2)p1).S2.Name;
                 buttonSkill3.Text = ((Level2)p1).S3.Name;
-
                 buttonSkill3.Visible = true;
                 buttonSkill4.Visible = false;
             }
@@ -116,16 +108,27 @@ namespace ProgettoPOIS.View
                 buttonSkill2.Text = ((Level3)p1).S2.Name;
                 buttonSkill3.Text = ((Level3)p1).S3.Name;
                 buttonSkill4.Text = ((Level3)p1).S4.Name;
-
                 buttonSkill3.Visible = true;
                 buttonSkill4.Visible = true;
             }
         }
 
-        private void changeDeadPokémon(Pokémon p)
+        public void writeMessage(string message)
         {
-            MessageBox.Show("Pokémon " + p.Name + " died!", "Pokémon died", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            game.changePokémon();
+            labelMessage.Text = message;                     
+        }
+
+        private void changeDeadPokémon(Pokémon p)
+        {           
+            writeMessage("Pokémon " + p.Name + " died!");
+            if (!game.changePokémon())
+            {
+                if (MessageBox.Show("Player " + ((game.IsRoundPlayer1)?"1":"2") + " win! \n Do you want restart?", "End game",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    game.Restart();
+                else
+                    game.exit();
+            }
         }       
 
         private void ButtonChangePokémon_Click(object sender, System.EventArgs e)
@@ -134,71 +137,74 @@ namespace ProgettoPOIS.View
             change_round();
         }
 
+        private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            game.exit();
+        }
+
         #region BUTTON SKILL
 
         private void ButtonSkill1_Click(object sender, System.EventArgs e)
         {
-            Level1 p;
+            Level1 p = (Level1)p1;
 
-            if (game.NumRound % 2 == 0)
-                p = (Level1)game.PokémonSelectedPlayer1;
+            if (!game.doSkill(p.S1))
+                writeMessage(p.Name + " failed " + p.S1.Name + "!");
             else
-                p = (Level1)game.PokémonSelectedPlayer2;
+                writeMessage(p.Name + " use " + p.S1.Name + "!");
 
-            if(!game.doSkill(p.S1))
-                MessageBox.Show(p1.Name + " failed " + p.S1.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (game.evolve())
+                writeMessage(p.Name + " evolved!");
 
             change_round();
         }
 
         private void ButtonSkill2_Click(object sender, System.EventArgs e)
         {
-            Level1 p;
-
-            if (game.NumRound % 2 == 0)
-                p = (Level1)game.PokémonSelectedPlayer1;
+            Level1 p = (Level1) p1;
+            
+            if (!game.doSkill(p.S2))                
+                writeMessage(p.Name + " failed " + p.S2.Name + "!");
             else
-                p = (Level1)game.PokémonSelectedPlayer2;
+                writeMessage(p.Name + " use " + p.S2.Name + "!");
 
-            if (!game.doSkill(p.S2))
-                MessageBox.Show(p1.Name + " failed " + p.S2.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (game.evolve())
+                writeMessage(p.Name + " evolved!");
 
             change_round();
         }
+
         private void ButtonSkill3_Click(object sender, System.EventArgs e)
         {
-            Level2 p;
-            
-            if (game.NumRound % 2 == 0)
-                p = (Level2)game.PokémonSelectedPlayer1;
-            else
-                p = (Level2)game.PokémonSelectedPlayer2;
+            Level2 p = (Level2) p1;         
 
             if (!game.doSkill(p.S3))
-                MessageBox.Show(p1.Name + " failed " + p.S3.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                writeMessage(p.Name + " failed " + p.S3.Name + "!");
+            else
+                writeMessage(p.Name + " use " + p.S3.Name + "!");
+
+            if (game.evolve())
+                writeMessage(p.Name + " evolved!");
 
             change_round();
-        }
-
+        }     
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {
-            Level3 p;
+            Level3 p = (Level3) p1;           
 
-            if (game.NumRound % 2 == 0)
-                p = (Level3)game.PokémonSelectedPlayer1;
+            if (!game.doSkill(p.S4))                
+                writeMessage(p.Name + " failed " + p.S4.Name + "!");
             else
-                p = (Level3)game.PokémonSelectedPlayer2;
+                writeMessage(p.Name + " use " + p.S4.Name + "!");
 
-            if (!game.doSkill(p.S4))
-                MessageBox.Show(p1.Name + " failed " + p.S4.Name, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+            if (game.evolve())            
+                writeMessage(p.Name + " evolved!");         
+                  
             change_round();
         }
 
         #endregion
-
-
 
     }
 }

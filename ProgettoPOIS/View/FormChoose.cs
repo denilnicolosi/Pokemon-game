@@ -59,7 +59,7 @@ namespace ProgettoPOIS.View
                     choose.PokémonPlayer2.Add(choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault());
 
                 
-                choose.startGame();
+                choose.start();
                 this.Hide();
                 
             }
@@ -85,6 +85,9 @@ namespace ProgettoPOIS.View
 
         }
 
-       
+        private void FormChoose_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            choose.exit();
+        }
     }
 }
