@@ -39,7 +39,13 @@ namespace ProgettoPOIS.Model
         public Level2(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2, Skill s3)
             : base(attribute, name, attack, defence, s1, s2)
         {
-            _s3 = s3;
+            if (s1 != null && s2 != null)
+            {
+                _s3 = s3;
+            }
+            else
+                throw new SkillNotFoundException();
+            
         }
 
         #endregion

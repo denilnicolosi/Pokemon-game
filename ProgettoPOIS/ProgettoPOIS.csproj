@@ -74,6 +74,8 @@
     <Compile Include="Controller\ControllerGame.cs" />
     <Compile Include="Controller\ControllerChoose.cs" />
     <Compile Include="Controller\IController.cs" />
+    <Compile Include="Exception\PokémonNotFoundException.cs" />
+    <Compile Include="Exception\SkillNotFoundException.cs" />
     <Compile Include="Model\Skills\Attack.cs" />
     <Compile Include="View\FormChange.cs">
       <SubType>Form</SubType>
@@ -194,5 +196,6 @@
     <Content Include="sprites\front\vileplume.gif" />
     <Content Include="sprites\front\wartortle.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

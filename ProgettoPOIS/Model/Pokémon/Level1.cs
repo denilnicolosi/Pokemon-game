@@ -8,7 +8,7 @@ namespace ProgettoPOIS.Model
     /// <remarks>
     /// This class adds two skills to the Pokémon.
     /// </remarks>
-    public class Level1 : Pokémon
+    public class Level1 : Pokémon 
     {
         // Definition of private internal attributes.
         #region Private
@@ -38,8 +38,13 @@ namespace ProgettoPOIS.Model
         public Level1(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2)
             : base(attribute, name, attack, defence)
         {
-            _s1 = s1;
-            _s2 = s2;
+            if (s1 != null && s2 != null)
+            {
+                _s1 = s1;
+                _s2 = s2;
+            }
+            else
+                throw new SkillNotFoundException();
         }
 
         #endregion

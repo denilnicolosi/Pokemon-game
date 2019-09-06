@@ -174,6 +174,7 @@ namespace ProgettoPOIS.Controller
             bool success = false;
 
             if (_isRoundPlayer1)
+            {
                 if (_pokémonSelectedPlayer1.Exp == 100 && _pokémonSelectedPlayer1.NextLevel != null)
                 {
                     _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);
@@ -181,7 +182,9 @@ namespace ProgettoPOIS.Controller
                     _pokémonSelectedPlayer1 = _pokémonSelectedPlayer1.NextLevel;
                     success = true;
                 }
+            }
             else
+            {
                 if (_pokémonSelectedPlayer2.Exp == 100 && _pokémonSelectedPlayer2.NextLevel != null)
                 {
                     _pokémonPlayer2.Remove(_pokémonSelectedPlayer2);
@@ -189,7 +192,7 @@ namespace ProgettoPOIS.Controller
                     _pokémonSelectedPlayer2 = _pokémonSelectedPlayer2.NextLevel;
                     success = false;
                 }
-
+            }
             return success;
         }
 
@@ -252,7 +255,7 @@ namespace ProgettoPOIS.Controller
             }
 
             // Calculation of actual damage.
-            totalDmg = (int)(s.Damage + ((s.Damage * p1.Attack) / 100) * bonusAttribute);
+            totalDmg = (int)((s.Damage + ((s.Damage * p1.Attack) / 100)) * bonusAttribute);
 
             return totalDmg;
         }
@@ -293,8 +296,9 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         public void Restart()
         {
+            //Application.Exit();
             Application.Restart();
-            Environment.Exit(0);            
+            //Environment.Exit(0);            
         }
 
         #endregion

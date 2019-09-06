@@ -1,4 +1,6 @@
-﻿namespace ProgettoPOIS.Model
+﻿using System;
+
+namespace ProgettoPOIS.Model
 {
     /// <summary>
     /// The father of all Pokémon.
@@ -74,12 +76,17 @@
         /// <param name="defence">Value of the Pokémon defence.</param>
         protected Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
-            _attribute = attribute;
-            _name = name;
-            _healthPoints = 100;
-            _exp = 0;
-            _attack = attack;
-            _defence = defence;
+            if (attack < 0 && defence < 0)
+                throw new ArgumentException(name + ": attack/defence must be positive.");
+            else
+            {
+                _attribute = attribute;
+                _name = name;
+                _healthPoints = 100;
+                _exp = 0;
+                _attack = attack;
+                _defence = defence;
+            }
         }
 
         #endregion

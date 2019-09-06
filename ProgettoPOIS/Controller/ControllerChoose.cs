@@ -69,6 +69,7 @@ namespace ProgettoPOIS.Controller
             StreamReader readerPokémon, readerSkill;     
             Pokémon.typeAttribute attribute;
 
+            #region Reading/loading skill
             try
             {
                 // Reading skills from file.              
@@ -83,7 +84,7 @@ namespace ProgettoPOIS.Controller
                         switch (values[0].ToLower().Trim())
                         {
                             case "attack":
-                                tmpSkill = new Attack(values[1], 
+                                tmpSkill = new Attack(values[1],
                                                       Int32.Parse(values[2]),
                                                       Int32.Parse(values[3]));
                                 break;
@@ -93,15 +94,47 @@ namespace ProgettoPOIS.Controller
                                                        Int32.Parse(values[3]));
                                 break;
                             default:
-                                tmpSkill = null;
-                                Console.WriteLine("Error reading from skill file.");
+                                throw new FormatException();
                                 break;
                         }
-                        if (tmpSkill != null)
-                            listSkill.Add(tmpSkill);
+                        listSkill.Add(tmpSkill);
                     }
                 }
+            }
+            catch (ArgumentNullException argNullEx)
+            {
+                Console.WriteLine(argNullEx);
+                MessageBox.Show("A value of a skill is missing.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
+            }
+            catch (ArgumentException argEx)
+            {
+                Console.WriteLine(argEx);
+                MessageBox.Show("A value of a skill is incorrect.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
+            }
+            catch (OverflowException overfEx)
+            {
+                Console.WriteLine(overfEx);
+                MessageBox.Show("A value of a skill is overflowed.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
+            }
+            catch (SystemException sysEx)      // Capture the StreaReader exceptions.
+            {
+                Console.WriteLine(sysEx);
+                MessageBox.Show("Error reading skill.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
+            }
 
+            #endregion
+
+            #region Reading/loading pokémon
+            try
+            { 
                 // Reading pokémon from file
                 readerPokémon = new StreamReader(pathPokémon);
                 while (!readerPokémon.EndOfStream)
@@ -111,80 +144,87 @@ namespace ProgettoPOIS.Controller
 
                     if (!string.IsNullOrEmpty(line))
                     {
-                        // Switch on level.
-                        switch (Int32.Parse(values[0]))
-                        {
-                            case 1:
-                                // Definition of pokémon attribute.
-                                switch (values[1].ToLower().Trim())
-                                {
-                                    case "grass":
-                                        attribute = Pokémon.typeAttribute.Grass;
-                                        break;
-                                    case "fire":
-                                        attribute = Pokémon.typeAttribute.Fire;
-                                        break;
-                                    case "water":
-                                        attribute = Pokémon.typeAttribute.Water;
-                                        break;
-                                    default:
-                                        attribute = Pokémon.typeAttribute.Grass;
-                                        break;
-                                }
+                     // Switch on level.
+                    switch (Int32.Parse(values[0]))
+                    {
+                        case 1:
+                            // Definition of pokémon attribute.
+                            switch (values[1].ToLower().Trim())
+                            {
+                                case "grass":
+                                    attribute = Pokémon.typeAttribute.Grass;
+                                    break;
+                                case "fire":
+                                    attribute = Pokémon.typeAttribute.Fire;
+                                    break;
+                                case "water":
+                                    attribute = Pokémon.typeAttribute.Water;
+                                    break;
+                                default:
+                                        throw new ArgumentException("Attribute not found.");
+                            }
 
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level1(attribute, values[2],
-                                                        Int32.Parse(values[3]),
-                                                        Int32.Parse(values[4]),
-                                                        listSkill.Where(s => s.Name == values[5]).FirstOrDefault(),
-                                                        listSkill.Where(s => s.Name == values[6]).FirstOrDefault());
+                            // Pokémon instance creation.
+                            tmpPokémon = new Level1(attribute, values[2],
+                                                    Int32.Parse(values[3]),
+                                                    Int32.Parse(values[4]),
+                                                    listSkill.Where(s => s.Name == values[5]).FirstOrDefault(),
+                                                    listSkill.Where(s => s.Name == values[6]).FirstOrDefault());
+                            break;
 
-                                break;
+                        case 2:
+                            // Creation of links between levels 1 and 2.
+                            prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
-                            case 2:
-                                // Creation of links between levels 1 and 2.
-                                prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
+                            // Pokémon instance creation.
+                            tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
+                                                    Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                                    ((Level1)prevPokémon).S1, ((Level1)prevPokémon).S2,
+                                                    listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
 
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
-                                                        Int32.Parse(values[3]), Int32.Parse(values[4]),
-                                                        ((Level1)prevPokémon).S1, ((Level1)prevPokémon).S2,
-                                                        listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
+                            prevPokémon.NextLevel = tmpPokémon;
+                            break;
 
-                                prevPokémon.NextLevel = tmpPokémon;
-                                break;
+                        case 3:
+                            // creation of links between levels 2 and 3.
+                            prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
-                            case 3:
-                                // creation of links between levels 2 and 3.
-                                prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
-
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level3(prevPokémon.Attribute, values[2],
-                                                      Int32.Parse(values[3]), Int32.Parse(values[4]),
-                                                      ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2,
-                                                      ((Level2)prevPokémon).S3, 
-                                                      listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
+                            // Pokémon instance creation.
+                            tmpPokémon = new Level3(prevPokémon.Attribute, values[2],
+                                                    Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                                    ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2,
+                                                    ((Level2)prevPokémon).S3, 
+                                                    listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
  
-                                prevPokémon.NextLevel = tmpPokémon;
-                                break;
+                            prevPokémon.NextLevel = tmpPokémon;
+                            break;
 
-                            default:
-                                Console.WriteLine("Error reading from pokèmon file.");
-                                tmpPokémon = null;
-                                break;
-                        }
+                        default:
+                            Console.WriteLine("Error reading from pokèmon file.");
+                            tmpPokémon = null;
+                            break;
+                    }
 
-                        if (tmpPokémon != null)
-                            listPokémon.Add(tmpPokémon);
+                    if (tmpPokémon != null)
+                        listPokémon.Add(tmpPokémon);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ArgumentException argEx)
             {
-                Console.WriteLine(ex);
-                MessageBox.Show("Error reading pokémon.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(argEx);
+                MessageBox.Show(argEx.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SystemException sysEx)      // Capture the StreaReader exceptions.
+            {
+                Console.WriteLine(sysEx);
+                MessageBox.Show("Error reading pokémon.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 exit();
             }
+
+            #endregion
 
             return listPokémon;
         }
