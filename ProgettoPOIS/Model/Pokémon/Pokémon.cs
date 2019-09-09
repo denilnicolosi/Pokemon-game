@@ -15,13 +15,13 @@ namespace ProgettoPOIS.Model
 
         // Definition of private internal attributes.
         #region Private 
-        private typeAttribute _attribute;
-        private string _name;
-        private int _healthPoints = 100;
-        private int _exp = 0;
-        private int _attack;
-        private int _defence;
-        private Pokémon _nextLevel;
+        protected typeAttribute _attribute;
+        protected string _name;
+        protected int _healthPoints = 100;
+        protected int _exp = 0;
+        protected int _attack;
+        protected int _defence;
+        protected Pokémon _nextLevel;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
@@ -89,11 +89,7 @@ namespace ProgettoPOIS.Model
             }
         }
 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
-
+        public abstract object Clone();
         #endregion
     }
 }

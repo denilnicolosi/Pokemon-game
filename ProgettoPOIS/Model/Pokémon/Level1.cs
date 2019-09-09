@@ -10,11 +10,11 @@ namespace ProgettoPOIS.Model
     /// <remarks>
     /// This class adds two skills to the Pokémon.
     /// </remarks>
-    public class Level1 : Pokémon
+    public class Level1 : Pokémon, ICloneable
     {
         // Definition of private internal attributes.
         #region Private
-        private Skill _s1, _s2;
+        protected Skill _s1, _s2;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
@@ -47,6 +47,12 @@ namespace ProgettoPOIS.Model
             }
             else
                 throw new SkillNotFoundException();
+        }
+
+        public override object Clone()
+        {
+            return new Level1(_attribute, _name, _attack, _defence, _s1, _s2);
+            //return this.MemberwiseClone();
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using ProgettoPOIS.Exceptions;
+﻿using System;
+using ProgettoPOIS.Exceptions;
 
 namespace ProgettoPOIS.Model
 {
@@ -9,11 +10,11 @@ namespace ProgettoPOIS.Model
     /// <remarks>
     /// This class adds one skill to the level one pokemon.
     /// </remarks>
-    public class Level2 : Level1
+    public class Level2 : Level1, ICloneable
     {
         // Definition of private internal attributes.
         #region Private
-        private Skill _s3;
+        protected Skill _s3;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
@@ -45,7 +46,13 @@ namespace ProgettoPOIS.Model
             }
             else
                 throw new SkillNotFoundException();
-            
+
+        }
+
+        public override object Clone()
+        {
+            return new Level2(_attribute, _name, _attack, _defence, _s1, _s2, _s3);
+            //return this.MemberwiseClone();
         }
 
         #endregion

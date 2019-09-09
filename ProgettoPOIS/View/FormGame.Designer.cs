@@ -405,6 +405,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGame";
+            this.Text = "Pokémon battle";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picture1)).EndInit();
             this.panel1.ResumeLayout(false);

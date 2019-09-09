@@ -189,7 +189,7 @@ namespace ProgettoPOIS.Controller
                     _pokémonPlayer2.Remove(_pokémonSelectedPlayer2);
                     _pokémonPlayer2.Add(next);
                     _pokémonSelectedPlayer2 = next;
-                    success = false;
+                    success = true;
                 }
             }
             return success;
