@@ -1,3 +1,5 @@
+using System;
+using ProgettoPOIS.Exceptions;
 
 namespace ProgettoPOIS.Model
 {
@@ -8,7 +10,7 @@ namespace ProgettoPOIS.Model
     /// <remarks>
     /// This class adds two skills to the Pokémon.
     /// </remarks>
-    public class Level1 : Pokémon 
+    public class Level1 : Pokémon
     {
         // Definition of private internal attributes.
         #region Private

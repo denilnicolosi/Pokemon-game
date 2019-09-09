@@ -74,8 +74,9 @@
     <Compile Include="Controller\ControllerGame.cs" />
     <Compile Include="Controller\ControllerChoose.cs" />
     <Compile Include="Controller\IController.cs" />
-    <Compile Include="Exception\PokémonNotFoundException.cs" />
-    <Compile Include="Exception\SkillNotFoundException.cs" />
+    <Compile Include="Exceptions\ChangeException.cs" />
+    <Compile Include="Exceptions\PokémonNotFoundException.cs" />
+    <Compile Include="Exceptions\SkillNotFoundException.cs" />
     <Compile Include="Model\Skills\Attack.cs" />
     <Compile Include="View\FormChange.cs">
       <SubType>Form</SubType>

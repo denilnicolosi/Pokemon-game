@@ -7,9 +7,11 @@ using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.CheckedListBox;
 
-
 namespace ProgettoPOIS.View
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class FormChoose : Form
     {
         ControllerChoose choose;
@@ -28,7 +30,6 @@ namespace ProgettoPOIS.View
                     checkedListBox.Items.Add(p.Name, false);
 
             checkedListBox.SelectedIndex=0;
-
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -43,7 +44,7 @@ namespace ProgettoPOIS.View
             {
                 //select pokémon player 1
                 foreach (string pName in checkedPlayer)
-                    choose.PokémonPlayer1.Add(choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault());
+                    choose.PokémonPlayer1.Add((Pokémon)choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
 
                 labelPlayer.Text = "Player2";
                 buttonStart.Text = "Start game";
@@ -56,14 +57,11 @@ namespace ProgettoPOIS.View
             {
                 //select pokémon player 2
                 foreach (string pName in checkedPlayer)
-                    choose.PokémonPlayer2.Add(choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault());
+                    choose.PokémonPlayer2.Add((Pokémon)choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
 
-                
                 choose.start();
                 this.Hide();
-                
             }
-
         }
 
         private void CheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,7 +80,6 @@ namespace ProgettoPOIS.View
                 labelSkill2.Text = pokémonSelected.S2.Name;
                 picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
             }
-
         }
 
         private void FormChoose_FormClosed(object sender, FormClosedEventArgs e)

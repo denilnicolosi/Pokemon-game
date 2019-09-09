@@ -1,8 +1,9 @@
-﻿using ProgettoPOIS.Model;
-using ProgettoPOIS.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ProgettoPOIS.Model;
+using ProgettoPOIS.View;
+using ProgettoPOIS.Exceptions;
 
 namespace ProgettoPOIS.Controller
 {
@@ -54,14 +55,6 @@ namespace ProgettoPOIS.Controller
             NumRound = 0;
         }
 
-        public void start()
-        {
-            changePokémon();
-            NumRound++;
-            changePokémon();
-            NumRound++;
-        }
-
         /// <summary>
         /// Select the main Pokémon of current player.
         /// </summary>
@@ -83,8 +76,8 @@ namespace ProgettoPOIS.Controller
         public bool changePokémon()
         {
             bool success = false;
-            Pokémon p;
-
+            Pokémon selectePokémon;
+            
             if (!checkDefeat())
             {
                 if (_isRoundPlayer1)
@@ -93,14 +86,17 @@ namespace ProgettoPOIS.Controller
                     change = new FormChange(_pokémonPlayer2);
 
                 change.ShowDialog();
-                p = change.SelectedPokémon;
+                selectePokémon = change.SelectedPokémon;
 
-                if (p != null)
-                    choosePokèmon(p);
+                if (selectePokémon == ((_isRoundPlayer1) ? _pokémonSelectedPlayer1
+                                                         : _pokémonSelectedPlayer2))
+                    throw new ChangeException();
+
+                if (selectePokémon != null)
+                    choosePokèmon(selectePokémon);
 
                 success = true;
             }
-
             return success;
         }
 
@@ -172,14 +168,16 @@ namespace ProgettoPOIS.Controller
         public bool evolve()
         {
             bool success = false;
+            Pokémon next;
 
             if (_isRoundPlayer1)
             {
                 if (_pokémonSelectedPlayer1.Exp == 100 && _pokémonSelectedPlayer1.NextLevel != null)
                 {
-                    _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);
-                    _pokémonPlayer1.Add(_pokémonSelectedPlayer1.NextLevel);
-                    _pokémonSelectedPlayer1 = _pokémonSelectedPlayer1.NextLevel;
+                    next = (Pokémon)_pokémonSelectedPlayer1.NextLevel.Clone();
+                    _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);                    
+                    _pokémonPlayer1.Add(next);
+                    _pokémonSelectedPlayer1 = next;
                     success = true;
                 }
             }
@@ -187,9 +185,10 @@ namespace ProgettoPOIS.Controller
             {
                 if (_pokémonSelectedPlayer2.Exp == 100 && _pokémonSelectedPlayer2.NextLevel != null)
                 {
+                    next = (Pokémon)_pokémonSelectedPlayer2.NextLevel.Clone();
                     _pokémonPlayer2.Remove(_pokémonSelectedPlayer2);
-                    _pokémonPlayer2.Add(_pokémonSelectedPlayer2.NextLevel);
-                    _pokémonSelectedPlayer2 = _pokémonSelectedPlayer2.NextLevel;
+                    _pokémonPlayer2.Add(next);
+                    _pokémonSelectedPlayer2 = next;
                     success = false;
                 }
             }
@@ -282,6 +281,14 @@ namespace ProgettoPOIS.Controller
             return level;
         }
 
+        public void start()
+        {
+            changePokémon();
+            NumRound++;
+            changePokémon();
+            NumRound++;
+        }
+
         /// <summary>
         /// End program execution.
         /// </summary>
@@ -294,11 +301,10 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Restart program execution.
         /// </summary>
-        public void Restart()
-        {
-            //Application.Exit();
-            Application.Restart();
-            //Environment.Exit(0);            
+        public void restart()
+        {   
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            exit();
         }
 
         #endregion

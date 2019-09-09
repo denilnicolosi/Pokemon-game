@@ -6,7 +6,7 @@ namespace ProgettoPOIS.Model
     /// The father of all Pokémon.
     /// Contains all the basic attributes and methods of a pokémon.
     /// </summary>
-    public abstract class Pokémon
+    public abstract class Pokémon : ICloneable
     {
         // Definition of public enumerators.
         #region Enum
@@ -87,6 +87,11 @@ namespace ProgettoPOIS.Model
                 _attack = attack;
                 _defence = defence;
             }
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
         #endregion

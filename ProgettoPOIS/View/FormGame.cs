@@ -1,10 +1,12 @@
 ﻿using ProgettoPOIS.Controller;
 using ProgettoPOIS.Model;
+using ProgettoPOIS.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+
 
 namespace ProgettoPOIS.View
 {
@@ -125,7 +127,7 @@ namespace ProgettoPOIS.View
             {
                 if (MessageBox.Show("Player " + ((game.IsRoundPlayer1)?"1":"2") + " win! \n Do you want restart?", "End game",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    game.Restart();
+                    game.restart();
                 else
                     game.exit();
             }
@@ -133,8 +135,17 @@ namespace ProgettoPOIS.View
 
         private void ButtonChangePokémon_Click(object sender, System.EventArgs e)
         {
-            game.changePokémon();
-            change_round();
+            try
+            {
+                game.changePokémon();
+                change_round();
+            }
+            catch(ChangeException ex) 
+            {
+                MessageBox.Show(ex.Message, "Pokémon change",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
         }
 
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)

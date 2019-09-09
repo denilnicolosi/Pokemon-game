@@ -1,4 +1,5 @@
 ﻿using ProgettoPOIS.Model;
+using ProgettoPOIS.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -95,7 +96,6 @@ namespace ProgettoPOIS.Controller
                                 break;
                             default:
                                 throw new FormatException();
-                                break;
                         }
                         listSkill.Add(tmpSkill);
                     }
@@ -122,7 +122,7 @@ namespace ProgettoPOIS.Controller
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 exit();
             }
-            catch (SystemException sysEx)      // Capture the StreaReader exceptions.
+            catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
                 MessageBox.Show("Error reading skill.", "Error",
@@ -176,8 +176,11 @@ namespace ProgettoPOIS.Controller
                             // Creation of links between levels 1 and 2.
                             prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
+                            if (prevPokémon==null)
+                                throw new PokémonNotFoundException();
+
                             // Pokémon instance creation.
-                            tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
+                                tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
                                                     Int32.Parse(values[3]), Int32.Parse(values[4]),
                                                     ((Level1)prevPokémon).S1, ((Level1)prevPokémon).S2,
                                                     listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
@@ -189,12 +192,15 @@ namespace ProgettoPOIS.Controller
                             // creation of links between levels 2 and 3.
                             prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
+                            if (prevPokémon==null)
+                                throw new PokémonNotFoundException();
+
                             // Pokémon instance creation.
                             tmpPokémon = new Level3(prevPokémon.Attribute, values[2],
-                                                    Int32.Parse(values[3]), Int32.Parse(values[4]),
-                                                    ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2,
-                                                    ((Level2)prevPokémon).S3, 
-                                                    listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
+                                                Int32.Parse(values[3]), Int32.Parse(values[4]),
+                                                ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2,
+                                                ((Level2)prevPokémon).S3, 
+                                                listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
  
                             prevPokémon.NextLevel = tmpPokémon;
                             break;
@@ -210,13 +216,21 @@ namespace ProgettoPOIS.Controller
                     }
                 }
             }
-            catch (ArgumentException argEx)
+            catch (ArgumentNullException argNullEx)     // Missing argument.
+            {
+                Console.WriteLine(argNullEx);
+                MessageBox.Show("A value of a pokémon is missing.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
+            }
+            catch (ArgumentException argEx)     // Errors during instance creation.
             {
                 Console.WriteLine(argEx);
                 MessageBox.Show(argEx.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exit();
             }
-            catch (SystemException sysEx)      // Capture the StreaReader exceptions.
+            catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
                 MessageBox.Show("Error reading pokémon.", "Error",
@@ -230,7 +244,7 @@ namespace ProgettoPOIS.Controller
         }
 
         /// <summary>
-        /// Method that starts the game form.
+        /// Method that starts the choose form.
         /// </summary>
         /// <remarks>
         /// It instantiates a <c>FormGame</c> object and shows it.
@@ -241,6 +255,9 @@ namespace ProgettoPOIS.Controller
             viewGame.Show(); 
         }
 
+        /// <summary>
+        /// End program execution.
+        /// </summary>
         public void exit()
         {
             Application.Exit();

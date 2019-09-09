@@ -1,10 +1,23 @@
 ﻿namespace ProgettoPOIS.Controller
 {
+    /// <summary>
+    /// Interface for controllers.
+    /// </summary>
     public interface IController
     {
-        // Dichiarazione dei metodi di Interfaccia
+        // Definition of class methods.
+        #region Methods
+
+        /// <summary>
+        /// End program execution.
+        /// </summary>
         void exit();
+
+        /// <summary>
+        /// Method that starts the form.
+        /// </summary>
         void start();
 
+        #endregion
     }
 }

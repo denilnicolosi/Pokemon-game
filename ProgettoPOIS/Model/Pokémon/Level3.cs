@@ -1,4 +1,4 @@
-﻿
+﻿using ProgettoPOIS.Exceptions;
 
 namespace ProgettoPOIS.Model
 {
