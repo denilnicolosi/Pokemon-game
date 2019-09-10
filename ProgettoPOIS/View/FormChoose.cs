@@ -10,12 +10,25 @@ using static System.Windows.Forms.CheckedListBox;
 namespace ProgettoPOIS.View
 {
     /// <summary>
-    /// 
+    /// Form for choosing your own pokémon.
     /// </summary>
+    /// <remarks>
+    /// Extends the <c>Form</c> class.
+    /// <see cref="Form"/>
+    /// </remarks>
     public partial class FormChoose : Form
     {
-        ControllerChoose choose;
+        // Definition of private internal attributes.
+        #region Private 
+        private ControllerChoose _choose;
+        #endregion
 
+        // Definition of class methods.
+        #region Methods
+
+        /// <summary>
+        /// Constructor method pf the <c>FormChange</c> class.
+        /// </summary>
         public FormChoose()
         {
             InitializeComponent();
@@ -23,15 +36,20 @@ namespace ProgettoPOIS.View
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
-            choose = new ControllerChoose();
+            _choose = new ControllerChoose();
 
-            foreach (Pokémon p in choose.PokémonList)
+            foreach (Pokémon p in _choose.PokémonList)
                 if (p.GetType() == typeof(Level1))
                     checkedListBox.Items.Add(p.Name, false);
 
             checkedListBox.SelectedIndex=0;
         }
 
+        /// <summary>
+        /// Action to take when "Button1" is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
             CheckedItemCollection checkedPlayer = checkedListBox.CheckedItems;
@@ -40,35 +58,40 @@ namespace ProgettoPOIS.View
             {
                 MessageBox.Show("Select 3 pokémon!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (choose.PokémonPlayer1.Count == 0)
+            else if (_choose.PokémonPlayer1.Count == 0)
             {
-                //select pokémon player 1
+                // Select pokémon player 1.
                 foreach (string pName in checkedPlayer)
-                    choose.PokémonPlayer1.Add((Pokémon)choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
+                    _choose.PokémonPlayer1.Add((Pokémon)_choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
 
                 labelPlayer.Text = "Player2";
                 buttonStart.Text = "Start game";
 
-                //clear selected
+                // Clear selected.
                 for (int i = 0; i < checkedListBox.Items.Count; i++)
                     checkedListBox.SetItemCheckState(i, CheckState.Unchecked);
             }
             else
             {
-                //select pokémon player 2
+                // Select pokémon player 2.
                 foreach (string pName in checkedPlayer)
-                    choose.PokémonPlayer2.Add((Pokémon)choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
+                    _choose.PokémonPlayer2.Add((Pokémon)_choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
 
-                choose.start();
+                _choose.start();
                 this.Hide();
             }
         }
 
+        /// <summary>
+        /// Action to take when changing a selection in the "CheckedListBox".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //detail pokémon on the right side
             string pokemonName = (string)checkedListBox.SelectedItem;                       
-            Level1 pokémonSelected = (Level1)(choose.PokémonList.Where(p => p.Name == pokemonName).FirstOrDefault());
+            Level1 pokémonSelected = (Level1)(_choose.PokémonList.Where(p => p.Name == pokemonName).FirstOrDefault());
 
             if (pokémonSelected != null)
             {
@@ -82,9 +105,16 @@ namespace ProgettoPOIS.View
             }
         }
 
+        /// <summary>
+        /// Action to take when the form is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormChoose_FormClosed(object sender, FormClosedEventArgs e)
         {
-            choose.exit();
+            _choose.exit();
         }
+
+        #endregion
     }
 }

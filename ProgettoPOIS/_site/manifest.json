@@ -1,0 +1,368 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Alessandro/Documents/Universita/POIS/Progetto-POIS/ProgettoPOIS",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "3EvT6h0D8X5So2dK/kRe1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "VzpyjGxFIMmXU/iojGW7tQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "t7iiFrmuYmrKWisdq+lN6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "FChcU/sE8PW4gegXxbUirQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Controller.ControllerChoose.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Controller.ControllerChoose.html",
+          "hash": "0W/KrYDZghHuLmgURP7Law=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Controller.ControllerGame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Controller.ControllerGame.html",
+          "hash": "ouCi1mDdOvecD3SHejSS5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Controller.IController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Controller.IController.html",
+          "hash": "3uqPUBtM9VG9yDGPGLIliA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Controller.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Controller.html",
+          "hash": "xvQn9WrJqjf/gV8kXlaR8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Exceptions.PokémonNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Exceptions.PokémonNotFoundException.html",
+          "hash": "Jw0fvPzL3K7ZzX25s2KmhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Exceptions.SkillNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Exceptions.SkillNotFoundException.html",
+          "hash": "zwhxO0tar729fKc5d1jZrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Exceptions.html",
+          "hash": "BP7jpe52W5n69NrKknwElQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Attack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Attack.html",
+          "hash": "75FtOvRXNDWXl4WhaZ26nA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Defence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Defence.html",
+          "hash": "YvRsRkFgRaOLeaG0DpIs7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Level1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Level1.html",
+          "hash": "KAWuZZ4gdny4pUGXSkSN+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Level2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Level2.html",
+          "hash": "RLlH5lsPPMfIAnsS50uFGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Level3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Level3.html",
+          "hash": "0G5w6ABMo9HNOL5ZFAL93Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Pokémon.typeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Pokémon.typeAttribute.html",
+          "hash": "sTpFur1V72Zf8gEMT7Z73g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Pokémon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Pokémon.html",
+          "hash": "lyJ38gafqfkGzUKLWoG3oA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.Skill.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.Skill.html",
+          "hash": "FGMqkUWQpd2QgjijD3Htyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.Model.html",
+          "hash": "vo15GU4jkFY0Tfy1PbuaEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.View.FormChange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.View.FormChange.html",
+          "hash": "UQ299etOVEBm3yvwvfDWlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.View.FormChoose.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.View.FormChoose.html",
+          "hash": "vQYaVbtUmjZWVvcky9+ziA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.View.FormGame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.View.FormGame.html",
+          "hash": "FO/KREq5O/AOkG3vWHNHVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/ProgettoPOIS.View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ProgettoPOIS.View.html",
+          "hash": "SQd0NH4mBfAbWOVJVF/pEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "FZL82HhnRr5Y/rWJZWd4+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Sg+nKmnHP++YKMT39ruhpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 20,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

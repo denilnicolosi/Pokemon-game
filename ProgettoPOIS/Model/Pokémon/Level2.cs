@@ -28,8 +28,6 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Leve2</c> class.
         /// </summary>
-        /// <typeparam name="typeAttribute">Enumerator for the attributes of Pokémon: Fire, Water, Earth.</typeparam> 
-        /// <typeparam name="Skill"><typeparamref name"Skill"/>Object of type Skill.</typeParam>
         /// <param name="attribute">Pokémon attribute.</param>
         /// <param name="name">Pokémon name.</param>
         /// <param name="attack">Value of the Pokémon attack.</param>
@@ -37,6 +35,7 @@ namespace ProgettoPOIS.Model
         /// <param name="s1">Skill number one of the Pokémon.</param>
         /// <param name="s2">Skill number two of the Pokémon.</param>
         /// <param name="s3">Skill number three of the Pokèmon.</param>
+        /// <exception cref="ProgettoPOIS.Exceptions.SkillNotFoundException">Reference to the skill not found.</exception>
         public Level2(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2, Skill s3)
             : base(attribute, name, attack, defence, s1, s2)
         {
@@ -49,10 +48,13 @@ namespace ProgettoPOIS.Model
 
         }
 
+        /// <summary>
+        /// Create a new instance of the class with the same value as an existing instance.
+        /// </summary>
+        /// <returns>New object which is a copy of the current instance.</returns>
         public override object Clone()
         {
             return new Level2(_attribute, _name, _attack, _defence, _s1, _s2, _s3);
-            //return this.MemberwiseClone();
         }
 
         #endregion

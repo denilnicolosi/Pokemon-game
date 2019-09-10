@@ -1,33 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProgettoPOIS.Model;
 using ProgettoPOIS.Controller;
 
 namespace ProgettoPOIS.View
 {
+    /// <summary>
+    /// Form for changing the main pokémon.
+    /// </summary>
+    /// <remarks>
+    /// Extends the <c>Form</c> class.
+    /// <see cref="Form"/>
+    /// </remarks>
     public partial class FormChange : Form
     {
+        // Definition of private internal attributes.
+        #region Private 
         private List<Pokémon> _pokémonList;
+        private Pokémon _selectedPokémon;
+        #endregion
 
-        private Pokémon selectedPokémon;
+        // Definition of public attributes, for the "get/set" methods.
+        #region Public 
+        public Pokémon SelectedPokémon { get => _selectedPokémon; set => _selectedPokémon = value; }
+        #endregion
 
-        public Pokémon SelectedPokémon { get => selectedPokémon; set => selectedPokémon = value; }
+        // Definition of class methods.
+        #region Methods
 
-        public FormChange(List<Pokémon> _pokémonPlayer)
+        /// <summary>
+        /// Constructor method of the <c>FormChange</c> class.
+        /// </summary>
+        /// <param name="pokémonList">List of pokémon of which one can choose.</param>
+        public FormChange(List<Pokémon> pokémonList)
         {
             InitializeComponent();
 
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
 
-            _pokémonList = _pokémonPlayer;
+            _pokémonList = pokémonList;
 
             foreach (Pokémon p in _pokémonList)
                 if(p.HealthPoints>0)
@@ -36,16 +52,26 @@ namespace ProgettoPOIS.View
             comboBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Action to take when "ButtonChange" is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonChange_Click(object sender, EventArgs e)
         {
             string selected = (string)comboBox.SelectedItem;
-            selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
+            _selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
             Close();
         }
 
+        /// <summary>
+        /// Action to take when changing a section in the "ComboBox".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //detail pokémon on the right side
+            // Detail pokémon on the right side.
             string pokemonName = (string)comboBox.SelectedItem;
             Level1 pokémonSelected = (Level1)_pokémonList.Where(p => p.Name == pokemonName).FirstOrDefault();
             int level = ControllerGame.levelOf(pokémonSelected);
@@ -80,17 +106,22 @@ namespace ProgettoPOIS.View
                 labelSkill4.Visible = false;
                 labelTxtSkill4.Visible = false;
             }
-
-            
         }
 
+        /// <summary>
+        /// Action to take when the form is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormChange_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (selectedPokémon == null)
+            if (_selectedPokémon == null)
             {
                 string selected = (string)comboBox.SelectedItem;
-                selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
+                _selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
             }
         }
+
+        #endregion
     }
 }

@@ -33,7 +33,7 @@ namespace ProgettoPOIS.Model
         /// <param name="expEarned">Experience earned.</param>
         public Defence(string name, int healthEarned, int expEarned) : base(name, expEarned)
         {
-            HealthEarned = healthEarned;
+            _healthEarned = healthEarned;
         }
 
         #endregion

@@ -1,21 +1,36 @@
 ﻿using ProgettoPOIS.Controller;
 using ProgettoPOIS.Model;
 using ProgettoPOIS.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 
 namespace ProgettoPOIS.View
 {
+    /// <summary>
+    /// Form for fighting between the pokémon of the two players.
+    /// </summary>
+    /// /// <remarks>
+    /// Extends the <c>Form</c> class.
+    /// <see cref="Form"/>
+    /// </remarks>
     public partial class FormGame : Form
     {
-        private ControllerGame game;
-       
-        private Pokémon p1, p2;
+        // Definition of private internal attributes.
+        #region Private 
+        private ControllerGame _game;
+        private Pokémon _p1, _p2;
+        #endregion
 
+        // Definition of class methods.
+        #region Methods
+
+        /// <summary>
+        /// Constructo method of the <c>FormGame</c> class.
+        /// </summary>
+        /// <param name="pokémonPlayer1">List of pokémon chosen by player one.</param>
+        /// <param name="pokémonPlayer2">List of pokémon chosen by player two.</param>
         public FormGame(List<Pokémon> pokémonPlayer1, List<Pokémon> pokémonPlayer2)
         {
             InitializeComponent();                   
@@ -25,35 +40,38 @@ namespace ProgettoPOIS.View
 
             labelMessage.Text = "";
 
-            game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
+            _game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
 
-            game.start(); 
+            _game.start(); 
 
             change_round();
         }
 
+        /// <summary>
+        /// Change the game round and then the form too.
+        /// </summary>
         private void change_round()
         {
             int p1_level, p2_level;
 
-            game.NumRound++;
+            _game.NumRound++;
 
-            if (game.PokémonSelectedPlayer1.HealthPoints == 0)
-                changeDeadPokémon(game.PokémonSelectedPlayer1);
+            if (_game.PokémonSelectedPlayer1.HealthPoints == 0)
+                changeDeadPokémon(_game.PokémonSelectedPlayer1);
 
-            if (game.PokémonSelectedPlayer2.HealthPoints == 0)
-                changeDeadPokémon(game.PokémonSelectedPlayer2);
+            if (_game.PokémonSelectedPlayer2.HealthPoints == 0)
+                changeDeadPokémon(_game.PokémonSelectedPlayer2);
             
-            progressBar1.Value = game.PokémonSelectedPlayer1.HealthPoints;
-            progressBar4.Value = game.PokémonSelectedPlayer1.HealthPoints;
-            progressBar2.Value = game.PokémonSelectedPlayer2.HealthPoints;
-            progressBar3.Value = game.PokémonSelectedPlayer2.HealthPoints;                       
+            progressBar1.Value = _game.PokémonSelectedPlayer1.HealthPoints;
+            progressBar4.Value = _game.PokémonSelectedPlayer1.HealthPoints;
+            progressBar2.Value = _game.PokémonSelectedPlayer2.HealthPoints;
+            progressBar3.Value = _game.PokémonSelectedPlayer2.HealthPoints;                       
             
-            if (game.NumRound % 2 == 0)
+            if (_game.NumRound % 2 == 0)
             {
                 labelPlayer.Text = "Player 1";
-                p1 = game.PokémonSelectedPlayer1;
-                p2 = game.PokémonSelectedPlayer2;
+                _p1 = _game.PokémonSelectedPlayer1;
+                _p2 = _game.PokémonSelectedPlayer2;
                               
                 progressBar1.BringToFront();
                 progressBar2.BringToFront();
@@ -61,83 +79,96 @@ namespace ProgettoPOIS.View
             else
             {
                 labelPlayer.Text = "Player 2";
-                p1 = game.PokémonSelectedPlayer2;
-                p2 = game.PokémonSelectedPlayer1;
+                _p1 = _game.PokémonSelectedPlayer2;
+                _p2 = _game.PokémonSelectedPlayer1;
                                
                 progressBar3.BringToFront();
                 progressBar4.BringToFront();                            
             }
 
-            hp1.Text = p1.HealthPoints.ToString();
-            hp2.Text = p2.HealthPoints.ToString();
+            hp1.Text = _p1.HealthPoints.ToString();
+            hp2.Text = _p2.HealthPoints.ToString();
 
-            p1_level = ControllerGame.levelOf(p1);
-            p2_level = ControllerGame.levelOf(p2);
+            p1_level = ControllerGame.levelOf(_p1);
+            p2_level = ControllerGame.levelOf(_p2);
 
        
             picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites +
-                "/back/" + p1.Name + ".gif");            
+                "/back/" + _p1.Name + ".gif");            
             picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + 
-                "/front/" + p2.Name + ".gif");
+                "/front/" + _p2.Name + ".gif");
                       
             labelLevel1.Text = p1_level.ToString();
             labelLevel2.Text = p2_level.ToString();
 
-            labelName1.Text = p1.Name;
-            labelName2.Text = p2.Name;
+            labelName1.Text = _p1.Name;
+            labelName2.Text = _p2.Name;
 
-            labelExp1.Text = p1.Exp.ToString();
-            labelExp2.Text = p2.Exp.ToString();
+            labelExp1.Text = _p1.Exp.ToString();
+            labelExp2.Text = _p2.Exp.ToString();
 
             if (p1_level == 1)
             {
-                buttonSkill1.Text = ((Level1)p1).S1.Name;
-                buttonSkill2.Text = ((Level1)p1).S2.Name;
+                buttonSkill1.Text = ((Level1)_p1).S1.Name;
+                buttonSkill2.Text = ((Level1)_p1).S2.Name;
                 buttonSkill3.Visible = false;
                 buttonSkill4.Visible = false;
             }
             else if (p1_level == 2)
             {
-                buttonSkill1.Text = ((Level2)p1).S1.Name;
-                buttonSkill2.Text = ((Level2)p1).S2.Name;
-                buttonSkill3.Text = ((Level2)p1).S3.Name;
+                buttonSkill1.Text = ((Level2)_p1).S1.Name;
+                buttonSkill2.Text = ((Level2)_p1).S2.Name;
+                buttonSkill3.Text = ((Level2)_p1).S3.Name;
                 buttonSkill3.Visible = true;
                 buttonSkill4.Visible = false;
             }
             else
             {
-                buttonSkill1.Text = ((Level3)p1).S1.Name;
-                buttonSkill2.Text = ((Level3)p1).S2.Name;
-                buttonSkill3.Text = ((Level3)p1).S3.Name;
-                buttonSkill4.Text = ((Level3)p1).S4.Name;
+                buttonSkill1.Text = ((Level3)_p1).S1.Name;
+                buttonSkill2.Text = ((Level3)_p1).S2.Name;
+                buttonSkill3.Text = ((Level3)_p1).S3.Name;
+                buttonSkill4.Text = ((Level3)_p1).S4.Name;
                 buttonSkill3.Visible = true;
                 buttonSkill4.Visible = true;
             }
         }
 
+        /// <summary>
+        /// Write a new message.
+        /// </summary>
+        /// <param name="message">The new message.</param>
         public void writeMessage(string message)
         {
             labelMessage.Text = message;                     
         }
 
+        /// <summary>
+        /// Allows you to change the pokémon that was defeated.
+        /// </summary>
+        /// <param name="p">Pokémon to change.</param>
         private void changeDeadPokémon(Pokémon p)
         {           
             writeMessage("Pokémon " + p.Name + " died!");
-            if (!game.changePokémon())
+            if (!_game.changePokémon())
             {
-                if (MessageBox.Show("Player " + ((game.IsRoundPlayer1)?"1":"2") + " win! \n Do you want restart?", "End game",
+                if (MessageBox.Show("Player " + ((_game.IsRoundPlayer1)?"1":"2") + " win! \n Do you want restart?", "End game",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    game.restart();
+                    _game.restart();
                 else
-                    game.exit();
+                    _game.exit();
             }
         }       
 
+        /// <summary>
+        /// Action to take when "ButtonChangePokémon" is clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonChangePokémon_Click(object sender, System.EventArgs e)
         {
             try
             {
-                game.changePokémon();
+                _game.changePokémon();
                 change_round();
             }
             catch(ChangeException ex) 
@@ -148,23 +179,28 @@ namespace ProgettoPOIS.View
 
         }
 
+        /// <summary>
+        /// Action to take when the form is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
         {
-            game.exit();
+            _game.exit();
         }
 
         #region BUTTON SKILL
 
         private void ButtonSkill1_Click(object sender, System.EventArgs e)
         {
-            Level1 p = (Level1)p1;
+            Level1 p = (Level1)_p1;
 
-            if (!game.doSkill(p.S1))
+            if (!_game.doSkill(p.S1))
                 writeMessage(p.Name + " failed " + p.S1.Name + "!");
             else
                 writeMessage(p.Name + " use " + p.S1.Name + "!");
 
-            if (game.evolve())
+            if (_game.evolve())
                 writeMessage(p.Name + " evolved!");
 
             change_round();
@@ -172,14 +208,14 @@ namespace ProgettoPOIS.View
 
         private void ButtonSkill2_Click(object sender, System.EventArgs e)
         {
-            Level1 p = (Level1) p1;
+            Level1 p = (Level1) _p1;
             
-            if (!game.doSkill(p.S2))                
+            if (!_game.doSkill(p.S2))                
                 writeMessage(p.Name + " failed " + p.S2.Name + "!");
             else
                 writeMessage(p.Name + " use " + p.S2.Name + "!");
 
-            if (game.evolve())
+            if (_game.evolve())
                 writeMessage(p.Name + " evolved!");
 
             change_round();
@@ -187,29 +223,29 @@ namespace ProgettoPOIS.View
 
         private void ButtonSkill3_Click(object sender, System.EventArgs e)
         {
-            Level2 p = (Level2) p1;         
+            Level2 p = (Level2) _p1;         
 
-            if (!game.doSkill(p.S3))
+            if (!_game.doSkill(p.S3))
                 writeMessage(p.Name + " failed " + p.S3.Name + "!");
             else
                 writeMessage(p.Name + " use " + p.S3.Name + "!");
 
-            if (game.evolve())
+            if (_game.evolve())
                 writeMessage(p.Name + " evolved!");
 
             change_round();
-        }     
+        }
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {
-            Level3 p = (Level3) p1;           
+            Level3 p = (Level3) _p1;           
 
-            if (!game.doSkill(p.S4))                
+            if (!_game.doSkill(p.S4))                
                 writeMessage(p.Name + " failed " + p.S4.Name + "!");
             else
                 writeMessage(p.Name + " use " + p.S4.Name + "!");
 
-            if (game.evolve())            
+            if (_game.evolve())            
                 writeMessage(p.Name + " evolved!");         
                   
             change_round();
@@ -217,5 +253,6 @@ namespace ProgettoPOIS.View
 
         #endregion
 
+        #endregion
     }
 }

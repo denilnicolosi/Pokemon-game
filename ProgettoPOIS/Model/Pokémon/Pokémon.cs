@@ -40,7 +40,6 @@ namespace ProgettoPOIS.Model
                     _healthPoints = 0;
             }
         }
-
         public int Exp {
             get => _exp;
             set
@@ -54,10 +53,8 @@ namespace ProgettoPOIS.Model
                     _exp = 0;
             }
         }
-
         public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
         public string Name { get => _name; set => _name = value; }
-      
         public int Attack { get => _attack; set => _attack = value; }
         public int Defence { get => _defence; set => _defence = value; }
         public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }
@@ -69,11 +66,11 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Pokémon</c> class.
         /// </summary>
-        /// <typeparam name="typeAttribute">Enumerator for the attributes of Pokémon: Fire, Water, Earth.</typeparam>
         /// <param name="attribute">Pokémon attribute.</param>
         /// <param name="name">Pokémon name.</param>
         /// <param name="attack">Value of the Pokémon attack.</param>
         /// <param name="defence">Value of the Pokémon defence.</param>
+        /// <exception cref="System.ArgumentException">Negative attack or defense.</exception>
         protected Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
             if (attack < 0 && defence < 0)
@@ -89,6 +86,10 @@ namespace ProgettoPOIS.Model
             }
         }
 
+        /// <summary>
+        /// Create a new instance of the class with the same value as an existing instance.
+        /// </summary>
+        /// <returns>New object which is a copy of the current instance.</returns>
         public abstract object Clone();
         #endregion
     }

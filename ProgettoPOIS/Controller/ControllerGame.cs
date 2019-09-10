@@ -11,7 +11,7 @@ namespace ProgettoPOIS.Controller
     /// Controller for the game.
     /// Contains all the basic attributes and methods to control the game.
     /// </summary>
-    class ControllerGame: IController
+    public class ControllerGame: IController
     {
         // Definition of private internal attributes.
         #region Private 
@@ -58,7 +58,6 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Select the main Pokémon of current player.
         /// </summary>
-        /// <typeparam name="Pokémon"><typeparamref name="Pokémon"/>Object of type Pokémon.</typeparam>
         /// <param name="p">Pokémon that will become the main one.</param>
         public void choosePokèmon(Pokémon p)
         {
@@ -73,6 +72,9 @@ namespace ProgettoPOIS.Controller
         /// and make it effective.
         /// </summary>
         /// <returns>Boolean for the success of the exchange.</returns>
+        /// <exception cref="ProgettoPOIS.Exceptions.ChangeException">
+        /// Pokémon already in the battlefield.
+        /// </exception>
         public bool changePokémon()
         {
             bool success = false;
@@ -134,7 +136,6 @@ namespace ProgettoPOIS.Controller
         /// <remarks>
         /// Calculate and make changes to pokémon values.
         /// </remarks>
-        /// <typeparam name="Skill"><typeparamref name="Skill"/>Object of type Skill.</typeparam>
         /// <param name="s">Skill to try to perform.</param>
         /// <returns>Boolean for the success of the skill.</returns>
         public bool doSkill(Skill s)
@@ -198,9 +199,8 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Calculate the possibility that a pokémon fails the skill.
         /// </summary>
-        /// <typeparam name="Pokémon"><typeparamref name="Pokémon"/>Object of type Pokémon.</typeparam>
         /// <param name="p">Pokémon for which you want to calculate the chance of success.</param>
-        /// <returns>Boolean for calculation success.</returns
+        /// <returns>Boolean for calculation success.</returns>
         private bool calculatesPossibility(Pokémon p)
         {
             bool success = false;
@@ -220,10 +220,9 @@ namespace ProgettoPOIS.Controller
         /// <remarks>
         /// It is calculated based on the attacking pokémon, attacked pokémon and the skill.
         /// </remarks>
-        /// <typeparam name="Pokémon"><typeparamref name="Pokémon"/>Object of type Pokémon.</typeparam>
-        /// <typeparam name="Skill"><typeparamref name="Attack"/>Object of type Attack (Skill).</typeparam>
         /// <param name="p1">Attacking pokémon.</param>
         /// <param name="p2">Attacked pokémon.</param>
+        /// <param name="s">Attack skill used.</param>
         private int calculatesDamage(Pokémon p1, Pokémon p2, Attack s)
         {
             double bonusAttribute = 1;
@@ -262,7 +261,6 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Determines the level of a pokémon.
         /// </summary>
-        /// <typeparam name="Pokémon"><typeparamref name="Pokémon"/>Object of type Pokémon.</typeparam>
         /// <param name="p">Pokémon that wants to determine the level.</param>
         /// <returns>Level in integer format.</returns>
         public static int levelOf(Pokémon p)
@@ -281,6 +279,9 @@ namespace ProgettoPOIS.Controller
             return level;
         }
 
+        /// <summary>
+        /// Method that starts the form.
+        /// </summary>
         public void start()
         {
             changePokémon();
