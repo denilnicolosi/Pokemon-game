@@ -13,15 +13,19 @@ namespace ProgettoPOIS.Model
     public class Level1 : Pokémon, ICloneable
     {
         // Definition of private internal attributes.
-        #region Private
-        protected Skill _s1, _s2;
+        #region Protected
+        private Skill _s1;
+        private Skill _s2;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public 
+        /// <summary>Reference to skill number one.</summary>
         public Skill S1 { get => _s1; set => _s1 = value; }
+        /// <summary>Reference to skill number two.</summary>
         public Skill S2 { get => _s2; set => _s2 = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methonds
@@ -35,7 +39,7 @@ namespace ProgettoPOIS.Model
         /// <param name="defence">Value of the Pokémon defence.</param>
         /// <param name="s1">Skill number one of the Pokémon.</param>
         /// <param name="s2">Skill number two of the Pokémon.</param>
-        /// <exception cref="ProgettoPOIS.Exceptions.SkillNotFoundException">Reference to the skill not found.</exception>
+        /// <exception cref="SkillNotFoundException">Reference to the skill not found.</exception>
         public Level1(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2)
             : base(attribute, name, attack, defence)
         {
@@ -54,7 +58,7 @@ namespace ProgettoPOIS.Model
         /// <returns>New object which is a copy of the current instance.</returns>
         public override object Clone()
         {
-            return new Level1(_attribute, _name, _attack, _defence, _s1, _s2);
+            return new Level1(Attribute, Name, Attack, Defence, _s1, _s2);
         }
 
         #endregion

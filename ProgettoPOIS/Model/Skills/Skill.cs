@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProgettoPOIS.Model
+﻿namespace ProgettoPOIS.Model
 {
     /// <summary>
     /// The father of all Skills.
@@ -16,9 +14,12 @@ namespace ProgettoPOIS.Model
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public 
+        /// <summary>Name of the skill.</summary>
         public string Name { get => _name; set => _name = value; }
+        /// <summary>Experience points earned by the skill.</summary>
         public int ExpEarned { get => _expEarned; set => _expEarned = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods
@@ -30,8 +31,8 @@ namespace ProgettoPOIS.Model
         /// <param name="expEarned">Experience earned.</param>
         public Skill(string name, int expEarned)
         {
-            Name = name;
-            ExpEarned = expEarned;
+            _name = name;
+            _expEarned = expEarned;
         }
 
         #endregion

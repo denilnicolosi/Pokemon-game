@@ -19,14 +19,16 @@ namespace ProgettoPOIS.Model
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
+        /// <summary>Reference to skill number three.</summary>
         public Skill S4 { get => _s4; set => _s4 = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methonds
 
         /// <summary>
-        /// Constructor method of the <c>Leve2</c> class.
+        /// Constructor method of the <c>Level3</c> class.
         /// </summary>
         /// <param name="attribute">Pokémon attribute.</param>
         /// <param name="name">Pokémon name.</param>
@@ -41,9 +43,7 @@ namespace ProgettoPOIS.Model
             : base(attribute, name, attack, defence, s1, s2, s3)
         {
             if (s1 != null && s2 != null)
-            {
                 _s4 = s4;
-            }
             else
                 throw new SkillNotFoundException();
         }
@@ -54,7 +54,7 @@ namespace ProgettoPOIS.Model
         /// <returns>New object which is a copy of the current instance.</returns>
         public override object Clone()
         {
-            return new Level3(_attribute, _name, _attack, _defence, _s1, _s2, _s3, _s4);
+            return new Level3(Attribute, Name, Attack, Defence, S1, S2, S3, _s4);
         }
 
         #endregion

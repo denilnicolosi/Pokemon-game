@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProgettoPOIS.Model
+﻿namespace ProgettoPOIS.Model
 {
     /// <summary>
     /// Class that extends Skill.
@@ -19,8 +13,10 @@ namespace ProgettoPOIS.Model
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
+        /// <summary>Health points earned.</summary>
         public int HealthEarned { get => _healthEarned; set => _healthEarned = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods

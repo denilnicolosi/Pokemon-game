@@ -9,23 +9,39 @@ namespace ProgettoPOIS.Model
     public abstract class Pokémon : ICloneable
     {
         // Definition of public enumerators.
-        #region Enum
-        public enum typeAttribute { Fire, Water, Grass }
+        #region Public Enumerator
+        /// <summary>
+        /// Enumerator for the Pokémon attribute.
+        /// </summary>
+        public enum typeAttribute
+        {
+            /// <summary>Fire attribute.</summary>
+            Fire,
+            /// <summary>Water attribute.</summary>
+            Water,
+            /// <summary>Grass attribute.</summary>
+            Grass
+        }
         #endregion
 
         // Definition of private internal attributes.
-        #region Private 
-        protected typeAttribute _attribute;
-        protected string _name;
-        protected int _healthPoints = 100;
-        protected int _exp = 0;
-        protected int _attack;
-        protected int _defence;
-        protected Pokémon _nextLevel;
+        #region Private
+        private typeAttribute _attribute;
+        private string _name;
+        private int _healthPoints;
+        private int _exp;
+        private int _attack;
+        private int _defence;
+        private Pokémon _nextLevel;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
-        #region Public 
+        #region Public
+        /// <summary>Pokemon type attribute.</summary>
+        public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
+        /// <summary>Name of the pokémon.</summary>
+        public string Name { get => _name; set => _name = value; }
+        /// <summary>Health points of the pokémon.</summary>
         public int HealthPoints
         {
             get => _healthPoints;
@@ -40,6 +56,7 @@ namespace ProgettoPOIS.Model
                     _healthPoints = 0;
             }
         }
+        /// <summary>Current experience points of the pokémon.</summary>
         public int Exp {
             get => _exp;
             set
@@ -53,12 +70,14 @@ namespace ProgettoPOIS.Model
                     _exp = 0;
             }
         }
-        public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
-        public string Name { get => _name; set => _name = value; }
+        /// <summary>Points of defence of the pokémon.</summary>
         public int Attack { get => _attack; set => _attack = value; }
+        /// <summary>Reference to the evolution of the pokémon.</summary>
         public int Defence { get => _defence; set => _defence = value; }
+        /// <summary>Reference to the evolution of the pokémon.</summary>
         public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods
@@ -71,7 +90,7 @@ namespace ProgettoPOIS.Model
         /// <param name="attack">Value of the Pokémon attack.</param>
         /// <param name="defence">Value of the Pokémon defence.</param>
         /// <exception cref="System.ArgumentException">Negative attack or defense.</exception>
-        protected Pokémon(typeAttribute attribute, string name, int attack, int defence)
+        public Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
             if (attack < 0 && defence < 0)
                 throw new ArgumentException(name + ": attack/defence must be positive.");

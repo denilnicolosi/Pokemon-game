@@ -25,9 +25,11 @@ namespace ProgettoPOIS.View
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
-        #region Public 
+        #region Public
+        /// <summary>SPokémon that was selected.</summary>
         public Pokémon SelectedPokémon { get => _selectedPokémon; set => _selectedPokémon = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods
