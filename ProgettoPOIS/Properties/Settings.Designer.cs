@@ -25,7 +25,7 @@ namespace ProgettoPOIS.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\csv\\pokémon.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\csv\\pokemon.csv")]
         public string pathPokemon {
             get {
                 return ((string)(this["pathPokemon"]));

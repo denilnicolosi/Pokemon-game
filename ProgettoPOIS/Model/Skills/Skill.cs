@@ -25,7 +25,7 @@
         #region Methods
 
         /// <summary>
-        /// Constructor method of the <c>Pokémon</c> class.
+        /// Constructor method of the <c>Pokemon</c> class.
         /// </summary>
         /// <param name="name">Name of the skill.</param>
         /// <param name="expEarned">Experience earned.</param>

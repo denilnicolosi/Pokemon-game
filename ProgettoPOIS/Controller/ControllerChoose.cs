@@ -21,20 +21,20 @@ namespace ProgettoPOIS.Controller
     {
         // Definition of private internal attributes.
         #region Private 
-        private List<Pokémon> _pokémonList;
-        private List<Pokémon> _pokémonPlayer1;
-        private List<Pokémon> _pokémonPlayer2;
+        private List<Pokemon> _pokemonList;
+        private List<Pokemon> _pokemonPlayer1;
+        private List<Pokemon> _pokemonPlayer2;
         private FormGame _viewGame;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
-        /// <summary>List of pokémon chosen by player one.</summary>
-        public List<Pokémon> PokémonPlayer1 { get => _pokémonPlayer1; set => _pokémonPlayer1 = value; }
-        /// <summary>List of pokémon chosen by player one.</summary>
-        public List<Pokémon> PokémonPlayer2 { get => _pokémonPlayer2; set => _pokémonPlayer2 = value; }
-        /// <summary>List of pokémon to choose.</summary>
-        public List<Pokémon> PokémonList { get => _pokémonList; set => _pokémonList = value; }
+        /// <summary>List of pokemon chosen by player one.</summary>
+        public List<Pokemon> PokemonPlayer1 { get => _pokemonPlayer1; set => _pokemonPlayer1 = value; }
+        /// <summary>List of pokemon chosen by player one.</summary>
+        public List<Pokemon> PokemonPlayer2 { get => _pokemonPlayer2; set => _pokemonPlayer2 = value; }
+        /// <summary>List of pokemon to choose.</summary>
+        public List<Pokemon> PokemonList { get => _pokemonList; set => _pokemonList = value; }
         #endregion
 
 
@@ -46,32 +46,32 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         public ControllerChoose()
         {
-            _pokémonPlayer1 = new List<Pokémon>();
-            _pokémonPlayer2 = new List<Pokémon>();
+            _pokemonPlayer1 = new List<Pokemon>();
+            _pokemonPlayer2 = new List<Pokemon>();
 
-            _pokémonList = LoadPokémon(Properties.Settings.Default.pathPokemon,
+            _pokemonList = LoadPokemon(Properties.Settings.Default.pathPokemon,
                                       Properties.Settings.Default.pathSkill);
         }
 
         /// <summary>
-        /// Method that reads data from files to load pokémon in the list.
+        /// Method that reads data from files to load pokemon in the list.
         /// </summary>
         /// <remarks>
-        /// Reading takes place on two ".csv" files, one for pokémon and one for skills.
+        /// Reading takes place on two ".csv" files, one for pokemon and one for skills.
         /// </remarks>
-        /// <param name="pathPokémon">File path with pokémon data.</param>
+        /// <param name="pathPokemon">File path with pokemon data.</param>
         /// <param name="pathSkill">file path with skills data.</param>
-        /// <returns>List of pokémon with the appropriate skills.</returns>
-        public List<Pokémon> LoadPokémon(string pathPokémon, string pathSkill)
+        /// <returns>List of pokemon with the appropriate skills.</returns>
+        public List<Pokemon> LoadPokemon(string pathPokemon, string pathSkill)
         {
-            Pokémon tmpPokémon, prevPokémon;
+            Pokemon tmpPokemon, prevPokemon;
             Skill tmpSkill;
 
-            List<Pokémon> listPokémon = new List<Pokémon>();
+            List<Pokemon> listPokemon = new List<Pokemon>();
             List<Skill> listSkill = new List<Skill>();
 
-            StreamReader readerPokémon, readerSkill;
-            Pokémon.typeAttribute attribute;
+            StreamReader readerPokemon, readerSkill;
+            Pokemon.typeAttribute attribute;
 
             #region Reading/loading skill
             try
@@ -135,14 +135,14 @@ namespace ProgettoPOIS.Controller
 
             #endregion
 
-            #region Reading/loading pokémon
+            #region Reading/loading pokemon
             try
             {
-                // Reading pokémon from file
-                readerPokémon = new StreamReader(pathPokémon);
-                while (!readerPokémon.EndOfStream)
+                // Reading pokemon from file
+                readerPokemon = new StreamReader(pathPokemon);
+                while (!readerPokemon.EndOfStream)
                 {
-                    string line = readerPokémon.ReadLine();
+                    string line = readerPokemon.ReadLine();
                     string[] values = line.Split(';');
 
                     if (!string.IsNullOrEmpty(line))
@@ -151,24 +151,24 @@ namespace ProgettoPOIS.Controller
                         switch (Int32.Parse(values[0]))
                         {
                             case 1:
-                                // Definition of pokémon attribute.
+                                // Definition of pokemon attribute.
                                 switch (values[1].ToLower().Trim())
                                 {
                                     case "grass":
-                                        attribute = Pokémon.typeAttribute.Grass;
+                                        attribute = Pokemon.typeAttribute.Grass;
                                         break;
                                     case "fire":
-                                        attribute = Pokémon.typeAttribute.Fire;
+                                        attribute = Pokemon.typeAttribute.Fire;
                                         break;
                                     case "water":
-                                        attribute = Pokémon.typeAttribute.Water;
+                                        attribute = Pokemon.typeAttribute.Water;
                                         break;
                                     default:
                                         throw new ArgumentException("Attribute not found.");
                                 }
 
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level1(attribute, values[2],
+                                // Pokemon instance creation.
+                                tmpPokemon = new Level1(attribute, values[2],
                                                         Int32.Parse(values[3]),
                                                         Int32.Parse(values[4]),
                                                         listSkill.Where(s => s.Name == values[5]).FirstOrDefault(),
@@ -177,55 +177,55 @@ namespace ProgettoPOIS.Controller
 
                             case 2:
                                 // Creation of links between levels 1 and 2.
-                                prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
+                                prevPokemon = (Level1)listPokemon.Where(p => p.Name == values[1]).FirstOrDefault();
 
-                                if (prevPokémon == null)
+                                if (prevPokemon == null)
                                 {
-                                    throw new PokémonNotFoundException("Prev. pokémon not found for level 2.");
+                                    throw new PokemonNotFoundException("Prev. pokemon not found for level 2.");
                                 }
 
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
+                                // Pokemon instance creation.
+                                tmpPokemon = new Level2(prevPokemon.Attribute, values[2],
                                                     Int32.Parse(values[3]), Int32.Parse(values[4]),
-                                                    ((Level1)prevPokémon).S1, ((Level1)prevPokémon).S2,
+                                                    ((Level1)prevPokemon).S1, ((Level1)prevPokemon).S2,
                                                     listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
 
-                                prevPokémon.NextLevel = tmpPokémon;
+                                prevPokemon.NextLevel = tmpPokemon;
                                 break;
 
                             case 3:
                                 // creation of links between levels 2 and 3.
-                                prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
+                                prevPokemon = (Level2)listPokemon.Where(p => p.Name == values[1]).FirstOrDefault();
 
-                                if (prevPokémon == null)
+                                if (prevPokemon == null)
                                 {
-                                    throw new PokémonNotFoundException("Prev. pokémon not found for level 3.");
+                                    throw new PokemonNotFoundException("Prev. pokemon not found for level 3.");
                                 }
 
-                                // Pokémon instance creation.
-                                tmpPokémon = new Level3(prevPokémon.Attribute, values[2],
+                                // Pokemon instance creation.
+                                tmpPokemon = new Level3(prevPokemon.Attribute, values[2],
                                                     Int32.Parse(values[3]), Int32.Parse(values[4]),
-                                                    ((Level2)prevPokémon).S1, ((Level2)prevPokémon).S2,
-                                                    ((Level2)prevPokémon).S3,
+                                                    ((Level2)prevPokemon).S1, ((Level2)prevPokemon).S2,
+                                                    ((Level2)prevPokemon).S3,
                                                     listSkill.Where(s => s.Name == values[5]).FirstOrDefault());
 
-                                prevPokémon.NextLevel = tmpPokémon;
+                                prevPokemon.NextLevel = tmpPokemon;
                                 break;
 
                             default:
                                 Console.WriteLine("Error reading from pokèmon file.");
-                                tmpPokémon = null;
+                                tmpPokemon = null;
                                 break;
                         }
 
-                        if (tmpPokémon != null)
+                        if (tmpPokemon != null)
                         {
-                            listPokémon.Add(tmpPokémon);
+                            listPokemon.Add(tmpPokemon);
                         }
                     }
                 }
             }
-            catch (PokémonNotFoundException pnfEx)      // Pokémon not found.
+            catch (PokemonNotFoundException pnfEx)      // Pokemon not found.
             {
                 Console.WriteLine(pnfEx);
                 MessageBox.Show(pnfEx.Message, "Error", MessageBoxButtons.OK,
@@ -234,7 +234,7 @@ namespace ProgettoPOIS.Controller
             catch (ArgumentNullException argNullEx)     // Missing argument.
             {
                 Console.WriteLine(argNullEx);
-                MessageBox.Show("A value of a pokémon is missing.", "Error",
+                MessageBox.Show("A value of a pokemon is missing.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit();
             }
@@ -248,14 +248,14 @@ namespace ProgettoPOIS.Controller
             catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
-                MessageBox.Show("Error reading pokémon.\n" + sysEx.Message, "Error",
+                MessageBox.Show("Error reading pokemon.\n" + sysEx.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit();
             }
 
             #endregion
 
-            return listPokémon;
+            return listPokemon;
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace ProgettoPOIS.Controller
         /// </remarks>
         public void Start()
         {
-            _viewGame = new FormGame(_pokémonPlayer1, _pokémonPlayer2);
+            _viewGame = new FormGame(_pokemonPlayer1, _pokemonPlayer2);
             _viewGame.Show();
         }
 

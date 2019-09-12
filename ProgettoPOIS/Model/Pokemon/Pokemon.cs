@@ -3,15 +3,15 @@
 namespace ProgettoPOIS.Model
 {
     /// <summary>
-    /// The father of all Pokémon.
-    /// Contains all the basic attributes and methods of a pokémon.
+    /// The father of all Pokemon.
+    /// Contains all the basic attributes and methods of a pokemon.
     /// </summary>
-    public abstract class Pokémon : ICloneable
+    public abstract class Pokemon : ICloneable
     {
         // Definition of public enumerators.
         #region Public Enumerator
         /// <summary>
-        /// Enumerator for the Pokémon attribute.
+        /// Enumerator for the Pokemon attribute.
         /// </summary>
         public enum typeAttribute
         {
@@ -32,16 +32,16 @@ namespace ProgettoPOIS.Model
         private int _exp;
         private int _attack;
         private int _defence;
-        private Pokémon _nextLevel;
+        private Pokemon _nextLevel;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
         /// <summary>Pokemon type attribute.</summary>
         public typeAttribute Attribute { get => _attribute; set => _attribute = value; }
-        /// <summary>Name of the pokémon.</summary>
+        /// <summary>Name of the pokemon.</summary>
         public string Name { get => _name; set => _name = value; }
-        /// <summary>Health points of the pokémon.</summary>
+        /// <summary>Health points of the pokemon.</summary>
         public int HealthPoints
         {
             get => _healthPoints;
@@ -64,7 +64,7 @@ namespace ProgettoPOIS.Model
                 }
             }
         }
-        /// <summary>Current experience points of the pokémon.</summary>
+        /// <summary>Current experience points of the pokemon.</summary>
         public int Exp
         {
             get => _exp;
@@ -87,12 +87,12 @@ namespace ProgettoPOIS.Model
                 }
             }
         }
-        /// <summary>Points of defence of the pokémon.</summary>
+        /// <summary>Points of defence of the pokemon.</summary>
         public int Attack { get => _attack; set => _attack = value; }
-        /// <summary>Reference to the evolution of the pokémon.</summary>
+        /// <summary>Reference to the evolution of the pokemon.</summary>
         public int Defence { get => _defence; set => _defence = value; }
-        /// <summary>Reference to the evolution of the pokémon.</summary>
-        public Pokémon NextLevel { get => _nextLevel; set => _nextLevel = value; }
+        /// <summary>Reference to the evolution of the pokemon.</summary>
+        public Pokemon NextLevel { get => _nextLevel; set => _nextLevel = value; }
         #endregion
 
 
@@ -100,14 +100,14 @@ namespace ProgettoPOIS.Model
         #region Methods
 
         /// <summary>
-        /// Constructor method of the <c>Pokémon</c> class.
+        /// Constructor method of the <c>Pokemon</c> class.
         /// </summary>
-        /// <param name="attribute">Pokémon attribute.</param>
-        /// <param name="name">Pokémon name.</param>
-        /// <param name="attack">Value of the Pokémon attack.</param>
-        /// <param name="defence">Value of the Pokémon defence.</param>
+        /// <param name="attribute">Pokemon attribute.</param>
+        /// <param name="name">Pokemon name.</param>
+        /// <param name="attack">Value of the Pokemon attack.</param>
+        /// <param name="defence">Value of the Pokemon defence.</param>
         /// <exception cref="System.ArgumentException">Negative attack or defense.</exception>
-        public Pokémon(typeAttribute attribute, string name, int attack, int defence)
+        public Pokemon(typeAttribute attribute, string name, int attack, int defence)
         {
             if (attack < 0 && defence < 0)
             {

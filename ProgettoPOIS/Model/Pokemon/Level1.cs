@@ -4,13 +4,13 @@ using ProgettoPOIS.Exceptions;
 namespace ProgettoPOIS.Model
 {
     /// <summary>
-    /// Class that extends <c>Pokémon</c>.
-    /// Represents a Pokémon on its first evolution.
+    /// Class that extends <c>Pokemon</c>.
+    /// Represents a Pokemon on its first evolution.
     /// </summary>
     /// <remarks>
-    /// This class adds two skills to the Pokémon.
+    /// This class adds two skills to the Pokemon.
     /// </remarks>
-    public class Level1 : Pokémon, ICloneable
+    public class Level1 : Pokemon, ICloneable
     {
         // Definition of private internal attributes.
         #region Protected
@@ -33,12 +33,12 @@ namespace ProgettoPOIS.Model
         /// <summary>
         /// Constructor method of the <c>Level</c> class.
         /// </summary>
-        /// <param name="attribute">Pokémon attribute.</param>
-        /// <param name="name">Pokémon name.</param>
-        /// <param name="attack">Value of the Pokémon attack.</param>
-        /// <param name="defence">Value of the Pokémon defence.</param>
-        /// <param name="s1">Skill number one of the Pokémon.</param>
-        /// <param name="s2">Skill number two of the Pokémon.</param>
+        /// <param name="attribute">Pokemon attribute.</param>
+        /// <param name="name">Pokemon name.</param>
+        /// <param name="attack">Value of the Pokemon attack.</param>
+        /// <param name="defence">Value of the Pokemon defence.</param>
+        /// <param name="s1">Skill number one of the Pokemon.</param>
+        /// <param name="s2">Skill number two of the Pokemon.</param>
         /// <exception cref="SkillNotFoundException">Reference to the skill not found.</exception>
         public Level1(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2)
             : base(attribute, name, attack, defence)
@@ -60,7 +60,7 @@ namespace ProgettoPOIS.Model
         /// <returns>New object which is a copy of the current instance.</returns>
         public override object Clone()
         {
-            Pokémon p = new Level1(Attribute, Name, Attack, Defence, _s1, _s2);
+            Pokemon p = new Level1(Attribute, Name, Attack, Defence, _s1, _s2);
             p.NextLevel = NextLevel;
             return p;
         }

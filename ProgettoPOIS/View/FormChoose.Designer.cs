@@ -89,7 +89,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(308, 37);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Choose 3 pokémon";
+            this.label3.Text = "Choose 3 pokemon";
             // 
             // panel1
             // 

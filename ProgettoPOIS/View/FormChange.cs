@@ -10,7 +10,7 @@ using ProgettoPOIS.Model;
 namespace ProgettoPOIS.View
 {
     /// <summary>
-    /// Form for changing the main pokémon.
+    /// Form for changing the main pokemon.
     /// </summary>
     /// <remarks>
     /// Extends the <c>Form</c> class.
@@ -20,14 +20,14 @@ namespace ProgettoPOIS.View
     {
         // Definition of private internal attributes.
         #region Private 
-        private List<Pokémon> _pokémonList;
-        private Pokémon _selectedPokémon;
+        private List<Pokemon> _pokemonList;
+        private Pokemon _selectedPokemon;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
-        /// <summary>SPokémon that was selected.</summary>
-        public Pokémon SelectedPokémon { get => _selectedPokémon; set => _selectedPokémon = value; }
+        /// <summary>SPokemon that was selected.</summary>
+        public Pokemon SelectedPokemon { get => _selectedPokemon; set => _selectedPokemon = value; }
         #endregion
 
 
@@ -37,17 +37,17 @@ namespace ProgettoPOIS.View
         /// <summary>
         /// Constructor method of the <c>FormChange</c> class.
         /// </summary>
-        /// <param name="pokémonList">List of pokémon of which one can choose.</param>
-        public FormChange(List<Pokémon> pokémonList)
+        /// <param name="pokemonList">List of pokemon of which one can choose.</param>
+        public FormChange(List<Pokemon> pokemonList)
         {
             InitializeComponent();
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            _pokémonList = pokémonList;
+            _pokemonList = pokemonList;
 
-            foreach (Pokémon p in _pokémonList)
+            foreach (Pokemon p in _pokemonList)
             {
                 if (p.HealthPoints > 0)
                 {
@@ -66,7 +66,7 @@ namespace ProgettoPOIS.View
         private void ButtonChange_Click(object sender, EventArgs e)
         {
             string selected = (string)comboBox.SelectedItem;
-            _selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
+            _selectedPokemon = _pokemonList.Where(p => p.Name == selected).FirstOrDefault();
             Close();
         }
 
@@ -77,31 +77,31 @@ namespace ProgettoPOIS.View
         /// <param name="e"></param>
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Detail pokémon on the right side.
+            // Detail pokemon on the right side.
             string pokemonName = (string)comboBox.SelectedItem;
-            Level1 pokémonSelected = (Level1)_pokémonList.Where(p => p.Name == pokemonName).FirstOrDefault();
-            int level = ControllerGame.LevelOf(pokémonSelected);
+            Level1 pokemonSelected = (Level1)_pokemonList.Where(p => p.Name == pokemonName).FirstOrDefault();
+            int level = ControllerGame.LevelOf(pokemonSelected);
 
-            picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
-            labelName.Text = pokémonSelected.Name;
-            labelAttribute.Text = pokémonSelected.Attribute.ToString();
-            labelAttack.Text = pokémonSelected.Attack.ToString();
-            labelDefence.Text = pokémonSelected.Defence.ToString();
+            picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokemonSelected.Name + ".gif");
+            labelName.Text = pokemonSelected.Name;
+            labelAttribute.Text = pokemonSelected.Attribute.ToString();
+            labelAttack.Text = pokemonSelected.Attack.ToString();
+            labelDefence.Text = pokemonSelected.Defence.ToString();
             labelLevel.Text = level.ToString();
-            labelExperience.Text = pokémonSelected.Exp.ToString();
-            labelHealtPoints.Text = pokémonSelected.HealthPoints.ToString();
-            labelSkill1.Text = pokémonSelected.S1.Name;
-            labelSkill2.Text = pokémonSelected.S2.Name;
+            labelExperience.Text = pokemonSelected.Exp.ToString();
+            labelHealtPoints.Text = pokemonSelected.HealthPoints.ToString();
+            labelSkill1.Text = pokemonSelected.S1.Name;
+            labelSkill2.Text = pokemonSelected.S2.Name;
 
             if (level == 2)
             {
-                labelSkill3.Text = ((Level2)pokémonSelected).S3.Name;
+                labelSkill3.Text = ((Level2)pokemonSelected).S3.Name;
                 labelSkill3.Visible = true;
                 labelTxtSkill3.Visible = true;
             }
             else if (level == 3)
             {
-                labelSkill4.Text = ((Level3)pokémonSelected).S4.Name;
+                labelSkill4.Text = ((Level3)pokemonSelected).S4.Name;
                 labelSkill4.Visible = true;
                 labelTxtSkill4.Visible = true;
             }
@@ -121,10 +121,10 @@ namespace ProgettoPOIS.View
         /// <param name="e"></param>
         private void FormChange_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_selectedPokémon == null)
+            if (_selectedPokemon == null)
             {
                 string selected = (string)comboBox.SelectedItem;
-                _selectedPokémon = _pokémonList.Where(p => p.Name == selected).FirstOrDefault();
+                _selectedPokemon = _pokemonList.Where(p => p.Name == selected).FirstOrDefault();
             }
         }
 

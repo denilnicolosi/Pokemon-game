@@ -10,7 +10,7 @@ using static System.Windows.Forms.CheckedListBox;
 namespace ProgettoPOIS.View
 {
     /// <summary>
-    /// Form for choosing your own pokémon.
+    /// Form for choosing your own pokemon.
     /// </summary>
     /// <remarks>
     /// Extends the <c>Form</c> class.
@@ -39,7 +39,7 @@ namespace ProgettoPOIS.View
 
             _choose = new ControllerChoose();
 
-            foreach (Pokémon p in _choose.PokémonList)
+            foreach (Pokemon p in _choose.PokemonList)
             {
                 if (p.GetType() == typeof(Level1))
                 {
@@ -61,14 +61,14 @@ namespace ProgettoPOIS.View
 
             if (checkedPlayer.Count != 3)
             {
-                MessageBox.Show("Select 3 pokémon!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Select 3 pokemon!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (_choose.PokémonPlayer1.Count == 0)
+            else if (_choose.PokemonPlayer1.Count == 0)
             {
-                // Select pokémon player 1.
+                // Select pokemon player 1.
                 foreach (string pName in checkedPlayer)
                 {
-                    _choose.PokémonPlayer1.Add((Pokémon)_choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
+                    _choose.PokemonPlayer1.Add((Pokemon)_choose.PokemonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
                 }
 
                 labelPlayer.Text = "Player2";
@@ -82,10 +82,10 @@ namespace ProgettoPOIS.View
             }
             else
             {
-                // Select pokémon player 2.
+                // Select pokemon player 2.
                 foreach (string pName in checkedPlayer)
                 {
-                    _choose.PokémonPlayer2.Add((Pokémon)_choose.PokémonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
+                    _choose.PokemonPlayer2.Add((Pokemon)_choose.PokemonList.Where(p => p.Name == pName).FirstOrDefault().Clone());
                 }
 
                 _choose.Start();
@@ -100,19 +100,19 @@ namespace ProgettoPOIS.View
         /// <param name="e"></param>
         private void CheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //detail pokémon on the right side
+            //detail pokemon on the right side
             string pokemonName = (string)checkedListBox.SelectedItem;
-            Level1 pokémonSelected = (Level1)(_choose.PokémonList.Where(p => p.Name == pokemonName).FirstOrDefault());
+            Level1 pokemonSelected = (Level1)(_choose.PokemonList.Where(p => p.Name == pokemonName).FirstOrDefault());
 
-            if (pokémonSelected != null)
+            if (pokemonSelected != null)
             {
-                labelName.Text = pokémonSelected.Name;
-                labelAttribute.Text = pokémonSelected.Attribute.ToString();
-                labelAttack.Text = pokémonSelected.Attack.ToString();
-                labelDefence.Text = pokémonSelected.Defence.ToString();
-                labelSkill1.Text = pokémonSelected.S1.Name;
-                labelSkill2.Text = pokémonSelected.S2.Name;
-                picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
+                labelName.Text = pokemonSelected.Name;
+                labelAttribute.Text = pokemonSelected.Attribute.ToString();
+                labelAttack.Text = pokemonSelected.Attack.ToString();
+                labelDefence.Text = pokemonSelected.Defence.ToString();
+                labelSkill1.Text = pokemonSelected.S1.Name;
+                labelSkill2.Text = pokemonSelected.S2.Name;
+                picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokemonSelected.Name + ".gif");
             }
         }
 

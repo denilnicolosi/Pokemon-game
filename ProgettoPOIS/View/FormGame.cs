@@ -9,7 +9,7 @@ using ProgettoPOIS.Model;
 namespace ProgettoPOIS.View
 {
     /// <summary>
-    /// Form for fighting between the pokémon of the two players.
+    /// Form for fighting between the pokemon of the two players.
     /// </summary>
     /// /// <remarks>
     /// Extends the <c>Form</c> class.
@@ -20,8 +20,8 @@ namespace ProgettoPOIS.View
         // Definition of private internal attributes.
         #region Private 
         private ControllerGame _game;
-        private Pokémon _p1;
-        private Pokémon _p2;
+        private Pokemon _p1;
+        private Pokemon _p2;
         #endregion
 
 
@@ -31,9 +31,9 @@ namespace ProgettoPOIS.View
         /// <summary>
         /// Constructo method of the <c>FormGame</c> class.
         /// </summary>
-        /// <param name="pokémonPlayer1">List of pokémon chosen by player one.</param>
-        /// <param name="pokémonPlayer2">List of pokémon chosen by player two.</param>
-        public FormGame(List<Pokémon> pokémonPlayer1, List<Pokémon> pokémonPlayer2)
+        /// <param name="pokemonPlayer1">List of pokemon chosen by player one.</param>
+        /// <param name="pokemonPlayer2">List of pokemon chosen by player two.</param>
+        public FormGame(List<Pokemon> pokemonPlayer1, List<Pokemon> pokemonPlayer2)
         {
             InitializeComponent();
 
@@ -42,7 +42,7 @@ namespace ProgettoPOIS.View
 
             labelMessage.Text = "";
 
-            _game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
+            _game = new ControllerGame(pokemonPlayer1, pokemonPlayer2);
 
             _game.Start();
 
@@ -58,29 +58,29 @@ namespace ProgettoPOIS.View
 
             _game.NumRound++;
 
-            // If the pokémon has been defeated it will be asked to change it.
-            if (_game.PokémonSelectedPlayer1.HealthPoints == 0)
+            // If the pokemon has been defeated it will be asked to change it.
+            if (_game.PokemonSelectedPlayer1.HealthPoints == 0)
             {
-                ChangeDeadPokémon(_game.PokémonSelectedPlayer1);
+                ChangeDeadPokemon(_game.PokemonSelectedPlayer1);
             }
 
-            if (_game.PokémonSelectedPlayer2.HealthPoints == 0)
+            if (_game.PokemonSelectedPlayer2.HealthPoints == 0)
             {
-                ChangeDeadPokémon(_game.PokémonSelectedPlayer2);
+                ChangeDeadPokemon(_game.PokemonSelectedPlayer2);
             }
 
             // The correct values are assigned to the graphic elements based on the round.
 
-            progressBar1.Value = _game.PokémonSelectedPlayer1.HealthPoints;
-            progressBar4.Value = _game.PokémonSelectedPlayer1.HealthPoints;
-            progressBar2.Value = _game.PokémonSelectedPlayer2.HealthPoints;
-            progressBar3.Value = _game.PokémonSelectedPlayer2.HealthPoints;
+            progressBar1.Value = _game.PokemonSelectedPlayer1.HealthPoints;
+            progressBar4.Value = _game.PokemonSelectedPlayer1.HealthPoints;
+            progressBar2.Value = _game.PokemonSelectedPlayer2.HealthPoints;
+            progressBar3.Value = _game.PokemonSelectedPlayer2.HealthPoints;
 
             if (_game.IsRoundPlayer1)
             {
                 labelPlayer.Text = "Player 1";
-                _p1 = _game.PokémonSelectedPlayer1;
-                _p2 = _game.PokémonSelectedPlayer2;
+                _p1 = _game.PokemonSelectedPlayer1;
+                _p2 = _game.PokemonSelectedPlayer2;
 
                 progressBar1.BringToFront();
                 progressBar2.BringToFront();
@@ -88,8 +88,8 @@ namespace ProgettoPOIS.View
             else
             {
                 labelPlayer.Text = "Player 2";
-                _p1 = _game.PokémonSelectedPlayer2;
-                _p2 = _game.PokémonSelectedPlayer1;
+                _p1 = _game.PokemonSelectedPlayer2;
+                _p2 = _game.PokemonSelectedPlayer1;
 
                 progressBar3.BringToFront();
                 progressBar4.BringToFront();
@@ -116,7 +116,7 @@ namespace ProgettoPOIS.View
             labelExp1.Text = _p1.Exp.ToString();
             labelExp2.Text = _p2.Exp.ToString();
 
-            // Different actions are performed based on the level of the pokémon of the indicator.
+            // Different actions are performed based on the level of the pokemon of the indicator.
             if (p1_level == 1)
             {
                 buttonSkill1.Text = ((Level1)_p1).S1.Name;
@@ -153,13 +153,13 @@ namespace ProgettoPOIS.View
         }
 
         /// <summary>
-        /// Allows you to change the pokémon that was defeated.
+        /// Allows you to change the pokemon that was defeated.
         /// </summary>
-        /// <param name="p">Pokémon to change.</param>
-        private void ChangeDeadPokémon(Pokémon p)
+        /// <param name="p">Pokemon to change.</param>
+        private void ChangeDeadPokemon(Pokemon p)
         {
-            WriteMessage("Pokémon " + p.Name + " died!");
-            if (!_game.ChangePokémon())
+            WriteMessage("Pokemon " + p.Name + " died!");
+            if (!_game.ChangePokemon())
             {
                 if (MessageBox.Show("Player " + ((_game.IsRoundPlayer1) ? "1" : "2") + " win! \n Do you want restart?", "End game",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -174,20 +174,20 @@ namespace ProgettoPOIS.View
         }
 
         /// <summary>
-        /// Action to take when "ButtonChangePokémon" is clicked.
+        /// Action to take when "ButtonChangePokemon" is clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonChangePokémon_Click(object sender, System.EventArgs e)
+        private void ButtonChangePokemon_Click(object sender, System.EventArgs e)
         {
             try
             {
-                _game.ChangePokémon();
+                _game.ChangePokemon();
                 Change_round();
             }
             catch (ChangeException ex)
             {
-                MessageBox.Show(ex.Message, "Pokémon change", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Pokemon change", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 

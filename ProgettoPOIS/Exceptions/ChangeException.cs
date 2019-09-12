@@ -3,7 +3,7 @@
 namespace ProgettoPOIS.Exceptions
 {
     /// <summary>
-    /// Exception generated when a pokémon is already chosen on the battlefield.
+    /// Exception generated when a pokemon is already chosen on the battlefield.
     /// </summary>
     /// <remarks>
     /// The exception extends directly <c>Exception</c>.
@@ -18,7 +18,7 @@ namespace ProgettoPOIS.Exceptions
         /// It already includes a standard message.
         /// </summary>
         public ChangeException()
-            : base("Pokémon already in the battlefield.") { }
+            : base("Pokemon already in the battlefield.") { }
 
         /// <summary>
         /// Contructor method of the <c>SkillNotFoundException</c> class.

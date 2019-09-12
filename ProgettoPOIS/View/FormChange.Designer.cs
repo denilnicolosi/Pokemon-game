@@ -340,7 +340,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 22);
             this.label10.TabIndex = 10;
-            this.label10.Text = "Change pokémon";
+            this.label10.Text = "Change pokemon";
             // 
             // FormChange
             // 
@@ -354,7 +354,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChange";
-            this.Text = "Change pokémon";
+            this.Text = "Change pokemon";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormChange_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

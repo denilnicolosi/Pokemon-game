@@ -35,7 +35,7 @@
             this.labelPlayer = new System.Windows.Forms.Label();
             this.buttonSkill4 = new System.Windows.Forms.Button();
             this.buttonSkill1 = new System.Windows.Forms.Button();
-            this.ButtonChangePokémon = new System.Windows.Forms.Button();
+            this.ButtonChangePokemon = new System.Windows.Forms.Button();
             this.buttonSkill2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,7 +85,7 @@
             this.panel1.Controls.Add(this.labelPlayer);
             this.panel1.Controls.Add(this.buttonSkill4);
             this.panel1.Controls.Add(this.buttonSkill1);
-            this.panel1.Controls.Add(this.ButtonChangePokémon);
+            this.panel1.Controls.Add(this.ButtonChangePokemon);
             this.panel1.Controls.Add(this.buttonSkill2);
             this.panel1.Location = new System.Drawing.Point(12, 315);
             this.panel1.Name = "panel1";
@@ -132,15 +132,15 @@
             this.buttonSkill1.UseVisualStyleBackColor = true;
             this.buttonSkill1.Click += new System.EventHandler(this.ButtonSkill1_Click);
             // 
-            // ButtonChangePokémon
+            // ButtonChangePokemon
             // 
-            this.ButtonChangePokémon.Location = new System.Drawing.Point(7, 73);
-            this.ButtonChangePokémon.Name = "ButtonChangePokémon";
-            this.ButtonChangePokémon.Size = new System.Drawing.Size(104, 38);
-            this.ButtonChangePokémon.TabIndex = 5;
-            this.ButtonChangePokémon.Text = "Change pokemon";
-            this.ButtonChangePokémon.UseVisualStyleBackColor = true;
-            this.ButtonChangePokémon.Click += new System.EventHandler(this.ButtonChangePokémon_Click);
+            this.ButtonChangePokemon.Location = new System.Drawing.Point(7, 73);
+            this.ButtonChangePokemon.Name = "ButtonChangePokemon";
+            this.ButtonChangePokemon.Size = new System.Drawing.Size(104, 38);
+            this.ButtonChangePokemon.TabIndex = 5;
+            this.ButtonChangePokemon.Text = "Change pokemon";
+            this.ButtonChangePokemon.UseVisualStyleBackColor = true;
+            this.ButtonChangePokemon.Click += new System.EventHandler(this.ButtonChangePokemon_Click);
             // 
             // buttonSkill2
             // 
@@ -405,7 +405,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGame";
-            this.Text = "Pokémon battle";
+            this.Text = "Pokemon battle";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.picture1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -429,7 +429,7 @@
         private System.Windows.Forms.Button buttonSkill4;
         private System.Windows.Forms.Button buttonSkill1;
         private System.Windows.Forms.Button buttonSkill2;
-        private System.Windows.Forms.Button ButtonChangePokémon;
+        private System.Windows.Forms.Button ButtonChangePokemon;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
