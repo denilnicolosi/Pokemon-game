@@ -60,7 +60,9 @@ namespace ProgettoPOIS.Model
         /// <returns>New object which is a copy of the current instance.</returns>
         public override object Clone()
         {
-            return new Level1(Attribute, Name, Attack, Defence, _s1, _s2);
+            Pokémon p = new Level1(Attribute, Name, Attack, Defence, _s1, _s2);
+            p.NextLevel = NextLevel;
+            return p;
         }
 
         #endregion

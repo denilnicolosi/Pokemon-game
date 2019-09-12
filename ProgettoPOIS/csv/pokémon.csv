@@ -10,14 +10,26 @@
 2;Squirtle;Wartortle;20;30;Retreat
 3;Wartortle;Blastoise;40;70;Hydro Cannon
 
+1;Grass;Oddish;5;5;Growth;Bite
+2;Oddish;Gloom;10;40;Spore
+3;Gloom;Vileplume;25;75;Repose
+
 1;Fire;Torchic;5;5;Ember;Bite
 2;Torchic;Combusken;35;10;Fire Punch
 3;Combusken;Blaziken;60;40;Comeback
 
-1;Grass;Oddish;5;5;Bite;Growth
-2;Oddish;Gloom;10;40;Spore
-3;Gloom;Vileplume;25;75;Repose
-
 1;Water;Poliwag;6;4;Bite;Water Gun
 2;Poliwag;Poliwhirl;30;15;Mega Punch
 3;Poliwhirl;Poliwrath;65;45;Surf
+
+1;Grass;Treecko;4;6;Scratch;Razor Leaf
+2;Treecko;Grovyle;15;30;Spore
+3;Grovyle;Sceptile;45;65;Retreat
+
+1;Fire;Tepig;7;3;Bite;Ember
+2;Tepig;Pignite;35;10;Mega Punch
+3;Pignite;Emboar;70;30;Fire Blast
+
+1;Water;Mudkip;5;5;Water Gun;Comet Punch
+2;Mudkip;Marshtomp;15;35;Bubble Beam
+3;Marshtomp;Swampert;40;70;Comeback

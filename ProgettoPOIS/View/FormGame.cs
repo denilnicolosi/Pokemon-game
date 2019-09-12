@@ -209,13 +209,13 @@ namespace ProgettoPOIS.View
         {
             Level1 p = (Level1)_p1;
 
-            if (!_game.BoSkill(p.S1))
+            if (!_game.DoSkill(p.S1))
             {
                 WriteMessage(p.Name + " failed " + p.S1.Name + "!");
             }
             else
             {
-                WriteMessage(p.Name + " use " + p.S1.Name + "!");
+                WriteMessage(p.Name + " uses " + p.S1.Name + "!");
             }
 
             if (_game.Evolve())
@@ -230,13 +230,13 @@ namespace ProgettoPOIS.View
         {
             Level1 p = (Level1)_p1;
 
-            if (!_game.BoSkill(p.S2))
+            if (!_game.DoSkill(p.S2))
             {
                 WriteMessage(p.Name + " failed " + p.S2.Name + "!");
             }
             else
             {
-                WriteMessage(p.Name + " use " + p.S2.Name + "!");
+                WriteMessage(p.Name + " uses " + p.S2.Name + "!");
             }
 
             if (_game.Evolve())
@@ -251,7 +251,7 @@ namespace ProgettoPOIS.View
         {
             Level2 p = (Level2)_p1;
 
-            if (!_game.BoSkill(p.S3))
+            if (!_game.DoSkill(p.S3))
             {
                 WriteMessage(p.Name + " failed " + p.S3.Name + "!");
             }
@@ -272,7 +272,7 @@ namespace ProgettoPOIS.View
         {
             Level3 p = (Level3)_p1;
 
-            if (!_game.BoSkill(p.S4))
+            if (!_game.DoSkill(p.S4))
             {
                 WriteMessage(p.Name + " failed " + p.S4.Name + "!");
             }

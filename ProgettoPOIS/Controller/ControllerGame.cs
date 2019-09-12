@@ -167,7 +167,7 @@ namespace ProgettoPOIS.Controller
         /// </remarks>
         /// <param name="s">Skill to try to perform.</param>
         /// <returns>Boolean for the success of the skill.</returns>
-        public bool BoSkill(Skill s)
+        public bool DoSkill(Skill s)
         {
             bool success = CalculatesPossibility((_isRoundPlayer1) ? _pokémonSelectedPlayer1 : _pokémonSelectedPlayer2);
 
@@ -314,6 +314,7 @@ namespace ProgettoPOIS.Controller
 
             // Calculation of actual damage.
             totalDmg = (int)((s.Damage + ((s.Damage * p1.Attack) / 100)) * bonusAttribute);
+            totalDmg -= totalDmg * p2.Defence / 100;
 
             return totalDmg;
         }

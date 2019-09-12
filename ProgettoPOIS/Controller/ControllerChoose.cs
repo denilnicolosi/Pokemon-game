@@ -181,7 +181,7 @@ namespace ProgettoPOIS.Controller
 
                                 if (prevPokémon == null)
                                 {
-                                    throw new PokémonNotFoundException();
+                                    throw new PokémonNotFoundException("Prev. pokémon not found for level 2.");
                                 }
 
                                 // Pokémon instance creation.
@@ -199,7 +199,7 @@ namespace ProgettoPOIS.Controller
 
                                 if (prevPokémon == null)
                                 {
-                                    throw new PokémonNotFoundException();
+                                    throw new PokémonNotFoundException("Prev. pokémon not found for level 3.");
                                 }
 
                                 // Pokémon instance creation.
@@ -248,7 +248,7 @@ namespace ProgettoPOIS.Controller
             catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
-                MessageBox.Show("Error reading pokémon.", "Error",
+                MessageBox.Show("Error reading pokémon.\n" + sysEx.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit();
             }

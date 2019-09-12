@@ -13,12 +13,12 @@ attack;Bubble Beam;30;16
 attack;Surf;45;40
 attack;Hydro Cannon;50;35
 
-attack;Scratch;12;20
-attack;Bite;15;15
+attack;Scratch;12;25
+attack;Bite;15;30
 attack;Comet Punch;20;30
 attack;Mega Punch;25;50
 
 defence;Growth;10;25
-defence;Retreat;20;25
 defence;Repose;15;10
+defence;Retreat;20;25
 defence;Comeback;25;40
