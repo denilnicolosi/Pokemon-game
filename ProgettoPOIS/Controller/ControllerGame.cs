@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ProgettoPOIS.Exceptions;
 using ProgettoPOIS.Model;
 using ProgettoPOIS.View;
-using ProgettoPOIS.Exceptions;
 
 namespace ProgettoPOIS.Controller
 {
@@ -11,13 +11,17 @@ namespace ProgettoPOIS.Controller
     /// Controller for the game.
     /// Contains all the basic attributes and methods to control the game.
     /// </summary>
-    public class ControllerGame: IController
+    /// <remarks>
+    /// It implements the "IController" interface.
+    /// See <see cref="IController"/> For more information.
+    /// </remarks>
+    public class ControllerGame : IController
     {
         // Definition of private internal attributes.
         #region Private 
         private int _numRound;
         private bool _isRoundPlayer1;
-        private FormChange change;
+        private FormChange _change;
         private Pokémon _pokémonSelectedPlayer1;
         private Pokémon _pokémonSelectedPlayer2;
         private List<Pokémon> _pokémonPlayer1;
@@ -26,8 +30,11 @@ namespace ProgettoPOIS.Controller
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public 
+        /// <summary>Pokémon selected by player one.</summary>
         public Pokémon PokémonSelectedPlayer1 { get => _pokémonSelectedPlayer1; set => _pokémonSelectedPlayer1 = value; }
+        /// <summary>Pokémon selected by player two.</summary>
         public Pokémon PokémonSelectedPlayer2 { get => _pokémonSelectedPlayer2; set => _pokémonSelectedPlayer2 = value; }
+        /// <summary>Number of the current round.</summary>
         public int NumRound
         {
             get => _numRound;
@@ -37,8 +44,10 @@ namespace ProgettoPOIS.Controller
                 _isRoundPlayer1 = (_numRound % 2 == 0) ? true : false;
             }
         }
+        /// <summary>Boolean that identifies if it is the round of the player one.</summary>
         public bool IsRoundPlayer1 { get => _isRoundPlayer1; set => _isRoundPlayer1 = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods
@@ -59,12 +68,16 @@ namespace ProgettoPOIS.Controller
         /// Select the main Pokémon of current player.
         /// </summary>
         /// <param name="p">Pokémon that will become the main one.</param>
-        public void choosePokèmon(Pokémon p)
+        public void ChoosePokèmon(Pokémon p)
         {
             if (_isRoundPlayer1)
+            {
                 _pokémonSelectedPlayer1 = p;
+            }
             else
+            {
                 _pokémonSelectedPlayer2 = p;
+            }
         }
 
         /// <summary>
@@ -75,27 +88,35 @@ namespace ProgettoPOIS.Controller
         /// <exception cref="ProgettoPOIS.Exceptions.ChangeException">
         /// Pokémon already in the battlefield.
         /// </exception>
-        public bool changePokémon()
+        public bool ChangePokémon()
         {
             bool success = false;
             Pokémon selectePokémon;
-            
-            if (!checkDefeat())
+
+            if (!CheckDefeat())
             {
                 if (_isRoundPlayer1)
-                    change = new FormChange(_pokémonPlayer1);
+                {
+                    _change = new FormChange(_pokémonPlayer1);
+                }
                 else
-                    change = new FormChange(_pokémonPlayer2);
+                {
+                    _change = new FormChange(_pokémonPlayer2);
+                }
 
-                change.ShowDialog();
-                selectePokémon = change.SelectedPokémon;
+                _change.ShowDialog();
+                selectePokémon = _change.SelectedPokémon;
 
                 if (selectePokémon == ((_isRoundPlayer1) ? _pokémonSelectedPlayer1
                                                          : _pokémonSelectedPlayer2))
+                {
                     throw new ChangeException();
+                }
 
                 if (selectePokémon != null)
-                    choosePokèmon(selectePokémon);
+                {
+                    ChoosePokèmon(selectePokémon);
+                }
 
                 success = true;
             }
@@ -110,23 +131,31 @@ namespace ProgettoPOIS.Controller
         /// to verify the defeat.
         /// </remarks>
         /// <returns>Boolean for the outcome of the defeat check.</returns>
-        public bool checkDefeat()
+        public bool CheckDefeat()
         {
             bool success = true;
 
             if (_isRoundPlayer1)
             {
                 foreach (Pokémon p in _pokémonPlayer1)
+                {
                     if (p.HealthPoints > 0)
+                    {
                         success = false;
+                    }
+                }
             }
             else
             {
                 foreach (Pokémon p in _pokémonPlayer2)
+                {
                     if (p.HealthPoints > 0)
+                    {
                         success = false;
+                    }
+                }
             }
-            
+
             return success;
         }
 
@@ -138,26 +167,38 @@ namespace ProgettoPOIS.Controller
         /// </remarks>
         /// <param name="s">Skill to try to perform.</param>
         /// <returns>Boolean for the success of the skill.</returns>
-        public bool doSkill(Skill s)
+        public bool BoSkill(Skill s)
         {
-            bool success = calculatesPossibility((_isRoundPlayer1) ? _pokémonSelectedPlayer1 : _pokémonSelectedPlayer2);
+            bool success = CalculatesPossibility((_isRoundPlayer1) ? _pokémonSelectedPlayer1 : _pokémonSelectedPlayer2);
 
             if (success)
+            {
                 if (s.GetType() == typeof(Attack))
+                {
                     if (_isRoundPlayer1)
                     {
-                        _pokémonSelectedPlayer2.HealthPoints -= calculatesDamage(_pokémonSelectedPlayer1, _pokémonSelectedPlayer2, (Attack)s);
+                        _pokémonSelectedPlayer2.HealthPoints -= CalculatesDamage(_pokémonSelectedPlayer1,
+                                                                                 _pokémonSelectedPlayer2,
+                                                                                 (Attack)s);
                         _pokémonSelectedPlayer1.Exp += s.ExpEarned;
                     }
                     else
                     {
-                        _pokémonSelectedPlayer1.HealthPoints -= calculatesDamage(_pokémonSelectedPlayer2, _pokémonSelectedPlayer1, (Attack)s);
+                        _pokémonSelectedPlayer1.HealthPoints -= CalculatesDamage(_pokémonSelectedPlayer2,
+                                                                                 _pokémonSelectedPlayer1,
+                                                                                 (Attack)s);
                         _pokémonSelectedPlayer2.Exp += s.ExpEarned;
                     }
+                }
                 else if (_isRoundPlayer1)
+                {
                     _pokémonSelectedPlayer1.HealthPoints += ((Defence)s).HealthEarned;
+                }
                 else
+                {
                     _pokémonSelectedPlayer2.HealthPoints += ((Defence)s).HealthEarned;
+                }
+            }
 
             return success;
         }
@@ -166,17 +207,19 @@ namespace ProgettoPOIS.Controller
         /// Try to evolve the current pokémon.
         /// </summary>
         /// <returns>Boolean for the success of evolution.</returns>
-        public bool evolve()
+        public bool Evolve()
         {
             bool success = false;
             Pokémon next;
 
+            // A pokémon evolves after using a skill, so it is checked
+            // if it has the max. experience points on its turn.
             if (_isRoundPlayer1)
             {
                 if (_pokémonSelectedPlayer1.Exp == 100 && _pokémonSelectedPlayer1.NextLevel != null)
                 {
                     next = (Pokémon)_pokémonSelectedPlayer1.NextLevel.Clone();
-                    _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);                    
+                    _pokémonPlayer1.Remove(_pokémonSelectedPlayer1);
                     _pokémonPlayer1.Add(next);
                     _pokémonSelectedPlayer1 = next;
                     success = true;
@@ -201,15 +244,17 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         /// <param name="p">Pokémon for which you want to calculate the chance of success.</param>
         /// <returns>Boolean for calculation success.</returns>
-        private bool calculatesPossibility(Pokémon p)
+        private bool CalculatesPossibility(Pokémon p)
         {
             bool success = false;
             Random rnd = new Random();
 
-            if (((levelOf(p) == 1) && (rnd.Next(1, 4) < 3)) ||
-                ((levelOf(p) == 2) && (rnd.Next(1, 6) < 5)) ||
-                ((levelOf(p) == 3) && (rnd.Next(1, 11) < 10)))
+            if (((LevelOf(p) == 1) && (rnd.Next(1, 4) < 3)) ||
+                ((LevelOf(p) == 2) && (rnd.Next(1, 6) < 5)) ||
+                ((LevelOf(p) == 3) && (rnd.Next(1, 11) < 10)))
+            {
                 success = true;
+            }
 
             return success;
         }
@@ -223,7 +268,7 @@ namespace ProgettoPOIS.Controller
         /// <param name="p1">Attacking pokémon.</param>
         /// <param name="p2">Attacked pokémon.</param>
         /// <param name="s">Attack skill used.</param>
-        private int calculatesDamage(Pokémon p1, Pokémon p2, Attack s)
+        private int CalculatesDamage(Pokémon p1, Pokémon p2, Attack s)
         {
             double bonusAttribute = 1;
             int totalDmg = 0;
@@ -234,21 +279,36 @@ namespace ProgettoPOIS.Controller
             {
                 case Pokémon.typeAttribute.Fire:
                     if (p2.Attribute == Pokémon.typeAttribute.Grass)
+                    {
                         bonusAttribute = 2;
+                    }
                     else if (p2.Attribute == Pokémon.typeAttribute.Water)
+                    {
                         bonusAttribute = 0.5;
+                    }
+
                     break;
                 case Pokémon.typeAttribute.Water:
                     if (p2.Attribute == Pokémon.typeAttribute.Fire)
+                    {
                         bonusAttribute = 2;
+                    }
                     else if (p2.Attribute == Pokémon.typeAttribute.Grass)
+                    {
                         bonusAttribute = 0.5;
+                    }
+
                     break;
                 case Pokémon.typeAttribute.Grass:
                     if (p2.Attribute == Pokémon.typeAttribute.Water)
+                    {
                         bonusAttribute = 2;
+                    }
                     else if (p2.Attribute == Pokémon.typeAttribute.Fire)
+                    {
                         bonusAttribute = 0.5;
+                    }
+
                     break;
             }
 
@@ -263,18 +323,26 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         /// <param name="p">Pokémon that wants to determine the level.</param>
         /// <returns>Level in integer format.</returns>
-        public static int levelOf(Pokémon p)
+        public static int LevelOf(Pokémon p)
         {
             int level;
 
             if (p.GetType() == typeof(Level1))
+            {
                 level = 1;
+            }
             else if (p.GetType() == typeof(Level2))
+            {
                 level = 2;
+            }
             else if (p.GetType() == typeof(Level3))
+            {
                 level = 3;
+            }
             else
+            {
                 level = -1;     // Error.
+            }
 
             return level;
         }
@@ -282,18 +350,18 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Method that starts the form.
         /// </summary>
-        public void start()
+        public void Start()
         {
-            changePokémon();
+            ChangePokémon();
             NumRound++;
-            changePokémon();
+            ChangePokémon();
             NumRound++;
         }
 
         /// <summary>
         /// End program execution.
         /// </summary>
-        public void exit()
+        public void Exit()
         {
             Application.Exit();
             Environment.Exit(0);
@@ -302,10 +370,10 @@ namespace ProgettoPOIS.Controller
         /// <summary>
         /// Restart program execution.
         /// </summary>
-        public void restart()
-        {   
+        public void Restart()
+        {
             System.Diagnostics.Process.Start(Application.ExecutablePath);
-            exit();
+            Exit();
         }
 
         #endregion

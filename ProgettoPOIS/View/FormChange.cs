@@ -4,8 +4,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using ProgettoPOIS.Model;
 using ProgettoPOIS.Controller;
+using ProgettoPOIS.Model;
 
 namespace ProgettoPOIS.View
 {
@@ -48,8 +48,12 @@ namespace ProgettoPOIS.View
             _pokémonList = pokémonList;
 
             foreach (Pokémon p in _pokémonList)
-                if(p.HealthPoints>0)
+            {
+                if (p.HealthPoints > 0)
+                {
                     comboBox.Items.Add(p.Name);
+                }
+            }
 
             comboBox.SelectedIndex = 0;
         }
@@ -76,7 +80,7 @@ namespace ProgettoPOIS.View
             // Detail pokémon on the right side.
             string pokemonName = (string)comboBox.SelectedItem;
             Level1 pokémonSelected = (Level1)_pokémonList.Where(p => p.Name == pokemonName).FirstOrDefault();
-            int level = ControllerGame.levelOf(pokémonSelected);
+            int level = ControllerGame.LevelOf(pokémonSelected);
 
             picture.Image = Image.FromFile(Properties.Settings.Default.pathSprites + "/front/" + pokémonSelected.Name + ".gif");
             labelName.Text = pokémonSelected.Name;
@@ -95,7 +99,7 @@ namespace ProgettoPOIS.View
                 labelSkill3.Visible = true;
                 labelTxtSkill3.Visible = true;
             }
-            else if(level == 3)
+            else if (level == 3)
             {
                 labelSkill4.Text = ((Level3)pokémonSelected).S4.Name;
                 labelSkill4.Visible = true;

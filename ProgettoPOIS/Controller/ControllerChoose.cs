@@ -1,11 +1,11 @@
-﻿using ProgettoPOIS.Model;
-using ProgettoPOIS.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ProgettoPOIS.View;
 using System.Windows.Forms;
+using ProgettoPOIS.Exceptions;
+using ProgettoPOIS.Model;
+using ProgettoPOIS.View;
 
 namespace ProgettoPOIS.Controller
 {
@@ -15,24 +15,28 @@ namespace ProgettoPOIS.Controller
     /// </summary>
     /// <remarks>
     /// It implements the "IController" interface.
-    /// See <see cref="ProgettoPOIS.Controller.IController"/> For more information.
+    /// See <see cref="IController"/> For more information.
     /// </remarks>
     public class ControllerChoose : IController
     {
         // Definition of private internal attributes.
         #region Private 
-        private List<Pokémon> pokémonList;
-        private List<Pokémon> pokémonPlayer1;
-        private List<Pokémon> pokémonPlayer2;
-        private FormGame viewGame;
+        private List<Pokémon> _pokémonList;
+        private List<Pokémon> _pokémonPlayer1;
+        private List<Pokémon> _pokémonPlayer2;
+        private FormGame _viewGame;
         #endregion
 
         // Definition of public attributes, for the "get/set" methods.
         #region Public
-        public List<Pokémon> PokémonPlayer1 { get => pokémonPlayer1; set => pokémonPlayer1 = value; }
-        public List<Pokémon> PokémonPlayer2 { get => pokémonPlayer2; set => pokémonPlayer2 = value; }
-        public List<Pokémon> PokémonList { get => pokémonList; set => pokémonList = value; }
+        /// <summary>List of pokémon chosen by player one.</summary>
+        public List<Pokémon> PokémonPlayer1 { get => _pokémonPlayer1; set => _pokémonPlayer1 = value; }
+        /// <summary>List of pokémon chosen by player one.</summary>
+        public List<Pokémon> PokémonPlayer2 { get => _pokémonPlayer2; set => _pokémonPlayer2 = value; }
+        /// <summary>List of pokémon to choose.</summary>
+        public List<Pokémon> PokémonList { get => _pokémonList; set => _pokémonList = value; }
         #endregion
+
 
         // Definition of class methods.
         #region Methods
@@ -42,10 +46,10 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         public ControllerChoose()
         {
-            pokémonPlayer1 = new List<Pokémon>();
-            pokémonPlayer2 = new List<Pokémon>();
+            _pokémonPlayer1 = new List<Pokémon>();
+            _pokémonPlayer2 = new List<Pokémon>();
 
-            pokémonList = loadPokémon(Properties.Settings.Default.pathPokemon,
+            _pokémonList = LoadPokémon(Properties.Settings.Default.pathPokemon,
                                       Properties.Settings.Default.pathSkill);
         }
 
@@ -58,7 +62,7 @@ namespace ProgettoPOIS.Controller
         /// <param name="pathPokémon">File path with pokémon data.</param>
         /// <param name="pathSkill">file path with skills data.</param>
         /// <returns>List of pokémon with the appropriate skills.</returns>
-        public List<Pokémon> loadPokémon(string pathPokémon, string pathSkill)
+        public List<Pokémon> LoadPokémon(string pathPokémon, string pathSkill)
         {
             Pokémon tmpPokémon, prevPokémon;
             Skill tmpSkill;
@@ -100,33 +104,33 @@ namespace ProgettoPOIS.Controller
                     }
                 }
             }
-            catch (ArgumentNullException argNullEx)
+            catch (ArgumentNullException argNullEx)     // A value is missing.
             {
                 Console.WriteLine(argNullEx);
                 MessageBox.Show("A value of a skill is missing.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
-            catch (ArgumentException argEx)
+            catch (ArgumentException argEx)     // A value is incorrect.
             {
                 Console.WriteLine(argEx);
                 MessageBox.Show("A value of a skill is incorrect.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
-            catch (OverflowException overfEx)
+            catch (OverflowException overfEx)       // A value is overflowed.
             {
                 Console.WriteLine(overfEx);
                 MessageBox.Show("A value of a skill is overflowed.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
             catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
                 MessageBox.Show("Error reading skill.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
 
             #endregion
@@ -176,7 +180,9 @@ namespace ProgettoPOIS.Controller
                                 prevPokémon = (Level1)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
                                 if (prevPokémon == null)
+                                {
                                     throw new PokémonNotFoundException();
+                                }
 
                                 // Pokémon instance creation.
                                 tmpPokémon = new Level2(prevPokémon.Attribute, values[2],
@@ -192,7 +198,9 @@ namespace ProgettoPOIS.Controller
                                 prevPokémon = (Level2)listPokémon.Where(p => p.Name == values[1]).FirstOrDefault();
 
                                 if (prevPokémon == null)
+                                {
                                     throw new PokémonNotFoundException();
+                                }
 
                                 // Pokémon instance creation.
                                 tmpPokémon = new Level3(prevPokémon.Attribute, values[2],
@@ -211,7 +219,9 @@ namespace ProgettoPOIS.Controller
                         }
 
                         if (tmpPokémon != null)
+                        {
                             listPokémon.Add(tmpPokémon);
+                        }
                     }
                 }
             }
@@ -226,21 +236,21 @@ namespace ProgettoPOIS.Controller
                 Console.WriteLine(argNullEx);
                 MessageBox.Show("A value of a pokémon is missing.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
             catch (ArgumentException argEx)     // Errors during instance creation.
             {
                 Console.WriteLine(argEx);
                 MessageBox.Show(argEx.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
             catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
                 MessageBox.Show("Error reading pokémon.", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-                exit();
+                Exit();
             }
 
             #endregion
@@ -254,21 +264,21 @@ namespace ProgettoPOIS.Controller
         /// <remarks>
         /// It instantiates a <c>FormGame</c> object and shows it.
         /// </remarks>
-        public void start()
+        public void Start()
         {
-            viewGame = new FormGame(pokémonPlayer1, pokémonPlayer2);
-            viewGame.Show(); 
+            _viewGame = new FormGame(_pokémonPlayer1, _pokémonPlayer2);
+            _viewGame.Show();
         }
 
         /// <summary>
         /// End program execution.
         /// </summary>
-        public void exit()
+        public void Exit()
         {
             Application.Exit();
             Environment.Exit(0);
         }
-        
+
         #endregion
     }
 }

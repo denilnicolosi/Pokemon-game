@@ -49,7 +49,9 @@ namespace ProgettoPOIS.Model
                 _s2 = s2;
             }
             else
+            {
                 throw new SkillNotFoundException();
+            }
         }
 
         /// <summary>

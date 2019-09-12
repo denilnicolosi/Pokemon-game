@@ -1,9 +1,9 @@
-﻿using ProgettoPOIS.Controller;
-using ProgettoPOIS.Model;
-using ProgettoPOIS.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using ProgettoPOIS.Controller;
+using ProgettoPOIS.Exceptions;
+using ProgettoPOIS.Model;
 
 
 namespace ProgettoPOIS.View
@@ -20,8 +20,10 @@ namespace ProgettoPOIS.View
         // Definition of private internal attributes.
         #region Private 
         private ControllerGame _game;
-        private Pokémon _p1, _p2;
+        private Pokémon _p1;
+        private Pokémon _p2;
         #endregion
+
 
         // Definition of class methods.
         #region Methods
@@ -33,7 +35,7 @@ namespace ProgettoPOIS.View
         /// <param name="pokémonPlayer2">List of pokémon chosen by player two.</param>
         public FormGame(List<Pokémon> pokémonPlayer1, List<Pokémon> pokémonPlayer2)
         {
-            InitializeComponent();                   
+            InitializeComponent();
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -42,37 +44,44 @@ namespace ProgettoPOIS.View
 
             _game = new ControllerGame(pokémonPlayer1, pokémonPlayer2);
 
-            _game.start(); 
+            _game.Start();
 
-            change_round();
+            Change_round();
         }
 
         /// <summary>
         /// Change the game round and then the form too.
         /// </summary>
-        private void change_round()
+        private void Change_round()
         {
             int p1_level, p2_level;
 
             _game.NumRound++;
 
+            // If the pokémon has been defeated it will be asked to change it.
             if (_game.PokémonSelectedPlayer1.HealthPoints == 0)
-                changeDeadPokémon(_game.PokémonSelectedPlayer1);
+            {
+                ChangeDeadPokémon(_game.PokémonSelectedPlayer1);
+            }
 
             if (_game.PokémonSelectedPlayer2.HealthPoints == 0)
-                changeDeadPokémon(_game.PokémonSelectedPlayer2);
-            
+            {
+                ChangeDeadPokémon(_game.PokémonSelectedPlayer2);
+            }
+
+            // The correct values are assigned to the graphic elements based on the round.
+
             progressBar1.Value = _game.PokémonSelectedPlayer1.HealthPoints;
             progressBar4.Value = _game.PokémonSelectedPlayer1.HealthPoints;
             progressBar2.Value = _game.PokémonSelectedPlayer2.HealthPoints;
-            progressBar3.Value = _game.PokémonSelectedPlayer2.HealthPoints;                       
-            
-            if (_game.NumRound % 2 == 0)
+            progressBar3.Value = _game.PokémonSelectedPlayer2.HealthPoints;
+
+            if (_game.IsRoundPlayer1)
             {
                 labelPlayer.Text = "Player 1";
                 _p1 = _game.PokémonSelectedPlayer1;
                 _p2 = _game.PokémonSelectedPlayer2;
-                              
+
                 progressBar1.BringToFront();
                 progressBar2.BringToFront();
             }
@@ -81,23 +90,23 @@ namespace ProgettoPOIS.View
                 labelPlayer.Text = "Player 2";
                 _p1 = _game.PokémonSelectedPlayer2;
                 _p2 = _game.PokémonSelectedPlayer1;
-                               
+
                 progressBar3.BringToFront();
-                progressBar4.BringToFront();                            
+                progressBar4.BringToFront();
             }
 
             hp1.Text = _p1.HealthPoints.ToString();
             hp2.Text = _p2.HealthPoints.ToString();
 
-            p1_level = ControllerGame.levelOf(_p1);
-            p2_level = ControllerGame.levelOf(_p2);
+            p1_level = ControllerGame.LevelOf(_p1);
+            p2_level = ControllerGame.LevelOf(_p2);
 
-       
+
             picture1.Image = Image.FromFile(Properties.Settings.Default.pathSprites +
-                "/back/" + _p1.Name + ".gif");            
-            picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites + 
+                "/back/" + _p1.Name + ".gif");
+            picture2.Image = Image.FromFile(Properties.Settings.Default.pathSprites +
                 "/front/" + _p2.Name + ".gif");
-                      
+
             labelLevel1.Text = p1_level.ToString();
             labelLevel2.Text = p2_level.ToString();
 
@@ -107,6 +116,7 @@ namespace ProgettoPOIS.View
             labelExp1.Text = _p1.Exp.ToString();
             labelExp2.Text = _p2.Exp.ToString();
 
+            // Different actions are performed based on the level of the pokémon of the indicator.
             if (p1_level == 1)
             {
                 buttonSkill1.Text = ((Level1)_p1).S1.Name;
@@ -137,27 +147,31 @@ namespace ProgettoPOIS.View
         /// Write a new message.
         /// </summary>
         /// <param name="message">The new message.</param>
-        public void writeMessage(string message)
+        public void WriteMessage(string message)
         {
-            labelMessage.Text = message;                     
+            labelMessage.Text = message;
         }
 
         /// <summary>
         /// Allows you to change the pokémon that was defeated.
         /// </summary>
         /// <param name="p">Pokémon to change.</param>
-        private void changeDeadPokémon(Pokémon p)
-        {           
-            writeMessage("Pokémon " + p.Name + " died!");
-            if (!_game.changePokémon())
+        private void ChangeDeadPokémon(Pokémon p)
+        {
+            WriteMessage("Pokémon " + p.Name + " died!");
+            if (!_game.ChangePokémon())
             {
-                if (MessageBox.Show("Player " + ((_game.IsRoundPlayer1)?"1":"2") + " win! \n Do you want restart?", "End game",
+                if (MessageBox.Show("Player " + ((_game.IsRoundPlayer1) ? "1" : "2") + " win! \n Do you want restart?", "End game",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    _game.restart();
+                {
+                    _game.Restart();
+                }
                 else
-                    _game.exit();
+                {
+                    _game.Exit();
+                }
             }
-        }       
+        }
 
         /// <summary>
         /// Action to take when "ButtonChangePokémon" is clicked.
@@ -168,12 +182,12 @@ namespace ProgettoPOIS.View
         {
             try
             {
-                _game.changePokémon();
-                change_round();
+                _game.ChangePokémon();
+                Change_round();
             }
-            catch(ChangeException ex) 
+            catch (ChangeException ex)
             {
-                MessageBox.Show(ex.Message, "Pokémon change",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Pokémon change", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
@@ -186,7 +200,7 @@ namespace ProgettoPOIS.View
         /// <param name="e"></param>
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _game.exit();
+            _game.Exit();
         }
 
         #region BUTTON SKILL
@@ -195,60 +209,84 @@ namespace ProgettoPOIS.View
         {
             Level1 p = (Level1)_p1;
 
-            if (!_game.doSkill(p.S1))
-                writeMessage(p.Name + " failed " + p.S1.Name + "!");
+            if (!_game.BoSkill(p.S1))
+            {
+                WriteMessage(p.Name + " failed " + p.S1.Name + "!");
+            }
             else
-                writeMessage(p.Name + " use " + p.S1.Name + "!");
+            {
+                WriteMessage(p.Name + " use " + p.S1.Name + "!");
+            }
 
-            if (_game.evolve())
-                writeMessage(p.Name + " evolved!");
+            if (_game.Evolve())
+            {
+                WriteMessage(p.Name + " evolved!");
+            }
 
-            change_round();
+            Change_round();
         }
 
         private void ButtonSkill2_Click(object sender, System.EventArgs e)
         {
-            Level1 p = (Level1) _p1;
-            
-            if (!_game.doSkill(p.S2))                
-                writeMessage(p.Name + " failed " + p.S2.Name + "!");
+            Level1 p = (Level1)_p1;
+
+            if (!_game.BoSkill(p.S2))
+            {
+                WriteMessage(p.Name + " failed " + p.S2.Name + "!");
+            }
             else
-                writeMessage(p.Name + " use " + p.S2.Name + "!");
+            {
+                WriteMessage(p.Name + " use " + p.S2.Name + "!");
+            }
 
-            if (_game.evolve())
-                writeMessage(p.Name + " evolved!");
+            if (_game.Evolve())
+            {
+                WriteMessage(p.Name + " evolved!");
+            }
 
-            change_round();
+            Change_round();
         }
 
         private void ButtonSkill3_Click(object sender, System.EventArgs e)
         {
-            Level2 p = (Level2) _p1;         
+            Level2 p = (Level2)_p1;
 
-            if (!_game.doSkill(p.S3))
-                writeMessage(p.Name + " failed " + p.S3.Name + "!");
+            if (!_game.BoSkill(p.S3))
+            {
+                WriteMessage(p.Name + " failed " + p.S3.Name + "!");
+            }
             else
-                writeMessage(p.Name + " use " + p.S3.Name + "!");
+            {
+                WriteMessage(p.Name + " use " + p.S3.Name + "!");
+            }
 
-            if (_game.evolve())
-                writeMessage(p.Name + " evolved!");
+            if (_game.Evolve())
+            {
+                WriteMessage(p.Name + " evolved!");
+            }
 
-            change_round();
+            Change_round();
         }
 
         private void ButtonSkill4_Click(object sender, System.EventArgs e)
         {
-            Level3 p = (Level3) _p1;           
+            Level3 p = (Level3)_p1;
 
-            if (!_game.doSkill(p.S4))                
-                writeMessage(p.Name + " failed " + p.S4.Name + "!");
+            if (!_game.BoSkill(p.S4))
+            {
+                WriteMessage(p.Name + " failed " + p.S4.Name + "!");
+            }
             else
-                writeMessage(p.Name + " use " + p.S4.Name + "!");
+            {
+                WriteMessage(p.Name + " use " + p.S4.Name + "!");
+            }
 
-            if (_game.evolve())            
-                writeMessage(p.Name + " evolved!");         
-                  
-            change_round();
+            if (_game.Evolve())
+            {
+                WriteMessage(p.Name + " evolved!");
+            }
+
+            Change_round();
         }
 
         #endregion

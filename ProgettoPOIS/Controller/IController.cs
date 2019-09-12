@@ -11,12 +11,12 @@
         /// <summary>
         /// End program execution.
         /// </summary>
-        void exit();
+        void Exit();
 
         /// <summary>
         /// Method that starts the form.
         /// </summary>
-        void start();
+        void Start();
 
         #endregion
     }

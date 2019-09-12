@@ -42,9 +42,13 @@ namespace ProgettoPOIS.Model
             : base(attribute, name, attack, defence, s1, s2)
         {
             if (s1 != null && s2 != null)
+            {
                 _s3 = s3;
+            }
             else
+            {
                 throw new SkillNotFoundException();
+            }
         }
 
         /// <summary>

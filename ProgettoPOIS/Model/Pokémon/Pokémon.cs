@@ -48,26 +48,43 @@ namespace ProgettoPOIS.Model
             set
             {
                 if (value > 0)
+                {
                     if (value > 100)
+                    {
                         _healthPoints = 100;
+                    }
                     else
+                    {
                         _healthPoints = value;
+                    }
+                }
                 else
+                {
                     _healthPoints = 0;
+                }
             }
         }
         /// <summary>Current experience points of the pokémon.</summary>
-        public int Exp {
+        public int Exp
+        {
             get => _exp;
             set
             {
                 if (value > 0)
+                {
                     if (value > 100)
+                    {
                         _exp = 100;
+                    }
                     else
+                    {
                         _exp = value;
+                    }
+                }
                 else
+                {
                     _exp = 0;
+                }
             }
         }
         /// <summary>Points of defence of the pokémon.</summary>
@@ -93,7 +110,9 @@ namespace ProgettoPOIS.Model
         public Pokémon(typeAttribute attribute, string name, int attack, int defence)
         {
             if (attack < 0 && defence < 0)
+            {
                 throw new ArgumentException(name + ": attack/defence must be positive.");
+            }
             else
             {
                 _attribute = attribute;
