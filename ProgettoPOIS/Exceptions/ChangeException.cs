@@ -8,7 +8,7 @@ namespace ProgettoPOIS.Exceptions
     /// <remarks>
     /// The exception extends directly <c>Exception</c>.
     /// </remarks>
-    class ChangeException : Exception
+    public class ChangeException : Exception
     {
         // Definition of class methods.
         #region Methods
