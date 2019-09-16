@@ -61,7 +61,7 @@ namespace ProgettoPOIS.Controller
         {
             _pokemonPlayer1 = pokemonPlayer1;
             _pokemonPlayer2 = pokemonPlayer2;
-            NumRound = 0;
+            NumRound = -1;
         }
 
         /// <summary>
@@ -97,11 +97,11 @@ namespace ProgettoPOIS.Controller
             {
                 if (_isRoundPlayer1)
                 {
-                    _change = new FormChange(_pokemonPlayer1);
+                    _change = new FormChange(_pokemonPlayer1, _isRoundPlayer1);
                 }
                 else
                 {
-                    _change = new FormChange(_pokemonPlayer2);
+                    _change = new FormChange(_pokemonPlayer2, _isRoundPlayer1);
                 }
 
                 _change.ShowDialog();
@@ -353,10 +353,10 @@ namespace ProgettoPOIS.Controller
         /// </summary>
         public void Start()
         {
-            ChangePokemon();
             NumRound++;
             ChangePokemon();
             NumRound++;
+            ChangePokemon();
         }
 
         /// <summary>

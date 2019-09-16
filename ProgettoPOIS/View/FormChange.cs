@@ -38,12 +38,15 @@ namespace ProgettoPOIS.View
         /// Constructor method of the <c>FormChange</c> class.
         /// </summary>
         /// <param name="pokemonList">List of pokemon of which one can choose.</param>
-        public FormChange(List<Pokemon> pokemonList)
+        /// <param name="isRoundPlayer1">Boolean that identifies if it is the round of the player one.</param>
+        public FormChange(List<Pokemon> pokemonList, bool isRoundPlayer1)
         {
             InitializeComponent();
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+
+            labelPlayer.Text = (isRoundPlayer1) ? "Player1" : "Player2";
 
             _pokemonList = pokemonList;
 

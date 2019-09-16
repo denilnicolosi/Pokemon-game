@@ -11,7 +11,7 @@ namespace ProgettoPOIS.View
     /// <summary>
     /// Form for fighting between the pokemon of the two players.
     /// </summary>
-    /// /// <remarks>
+    /// <remarks>
     /// Extends the <c>Form</c> class.
     /// <see cref="Form"/>
     /// </remarks>

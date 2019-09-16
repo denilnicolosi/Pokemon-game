@@ -56,6 +56,7 @@
             this.buttonChange = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.labelPlayer = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +86,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.labelName);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 47);
+            this.panel1.Location = new System.Drawing.Point(16, 92);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(306, 412);
             this.panel1.TabIndex = 7;
@@ -315,7 +316,7 @@
             // buttonChange
             // 
             this.buttonChange.Font = new System.Drawing.Font("Snap ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonChange.Location = new System.Drawing.Point(93, 465);
+            this.buttonChange.Location = new System.Drawing.Point(92, 510);
             this.buttonChange.Name = "buttonChange";
             this.buttonChange.Size = new System.Drawing.Size(142, 30);
             this.buttonChange.TabIndex = 8;
@@ -326,7 +327,7 @@
             // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(172, 15);
+            this.comboBox.Location = new System.Drawing.Point(172, 67);
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(146, 21);
             this.comboBox.TabIndex = 9;
@@ -336,17 +337,28 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Snap ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(12, 15);
+            this.label10.Location = new System.Drawing.Point(12, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 22);
             this.label10.TabIndex = 10;
             this.label10.Text = "Change pokemon";
             // 
+            // labelPlayer
+            // 
+            this.labelPlayer.AutoSize = true;
+            this.labelPlayer.Font = new System.Drawing.Font("Snap ITC", 18F);
+            this.labelPlayer.Location = new System.Drawing.Point(12, 19);
+            this.labelPlayer.Name = "labelPlayer";
+            this.labelPlayer.Size = new System.Drawing.Size(230, 31);
+            this.labelPlayer.TabIndex = 11;
+            this.labelPlayer.Text = "Change pokemon";
+            // 
             // FormChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 502);
+            this.ClientSize = new System.Drawing.Size(330, 552);
+            this.Controls.Add(this.labelPlayer);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.buttonChange);
@@ -393,5 +405,6 @@
         private System.Windows.Forms.Label labelTxtSkill3;
         private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelPlayer;
     }
 }

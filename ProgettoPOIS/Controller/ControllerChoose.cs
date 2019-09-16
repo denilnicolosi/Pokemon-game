@@ -10,7 +10,7 @@ using ProgettoPOIS.View;
 namespace ProgettoPOIS.Controller
 {
     /// <summary>
-    /// "Controller" class for the pokèmon selection.
+    /// Controller class for the pokemon selection.
     /// Contains methods and attributes used to interact with models.
     /// </summary>
     /// <remarks>
