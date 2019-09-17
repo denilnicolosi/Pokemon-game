@@ -347,11 +347,11 @@
             // 
             this.labelPlayer.AutoSize = true;
             this.labelPlayer.Font = new System.Drawing.Font("Snap ITC", 18F);
-            this.labelPlayer.Location = new System.Drawing.Point(12, 19);
+            this.labelPlayer.Location = new System.Drawing.Point(113, 19);
             this.labelPlayer.Name = "labelPlayer";
-            this.labelPlayer.Size = new System.Drawing.Size(230, 31);
+            this.labelPlayer.Size = new System.Drawing.Size(102, 31);
             this.labelPlayer.TabIndex = 11;
-            this.labelPlayer.Text = "Change pokemon";
+            this.labelPlayer.Text = "Player";
             // 
             // FormChange
             // 

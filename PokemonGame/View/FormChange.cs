@@ -95,26 +95,29 @@ namespace PokemonGame.View
             labelHealtPoints.Text = pokemonSelected.HealthPoints.ToString();
             labelSkill1.Text = pokemonSelected.S1.Name;
             labelSkill2.Text = pokemonSelected.S2.Name;
-
-            if (level == 2)
-            {
-                labelSkill3.Text = ((Level2)pokemonSelected).S3.Name;
-                labelSkill3.Visible = true;
-                labelTxtSkill3.Visible = true;
-            }
-            else if (level == 3)
-            {
-                labelSkill4.Text = ((Level3)pokemonSelected).S4.Name;
-                labelSkill4.Visible = true;
-                labelTxtSkill4.Visible = true;
-            }
-            else
+                       
+            if (level == 1)
             {
                 labelSkill3.Visible = false;
                 labelTxtSkill3.Visible = false;
                 labelSkill4.Visible = false;
                 labelTxtSkill4.Visible = false;
             }
+
+            if (level >= 2)
+            {
+                labelSkill3.Text = ((Level2)pokemonSelected).S3.Name;
+                labelSkill3.Visible = true;
+                labelTxtSkill3.Visible = true;
+            }
+
+            if (level == 3)
+            {
+                labelSkill4.Text = ((Level3)pokemonSelected).S4.Name;
+                labelSkill4.Visible = true;
+                labelTxtSkill4.Visible = true;
+            }
+           
         }
 
         /// <summary>
