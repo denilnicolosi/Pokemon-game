@@ -363,7 +363,7 @@ namespace PokemonGame.Controller
         /// </summary>
         public void Exit()
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         /// <summary>

@@ -98,11 +98,18 @@ namespace PokemonGame.Controller
                                                        Int32.Parse(values[3]));
                                 break;
                             default:
-                                throw new FormatException();
+                                throw new FormatException("Attribute: " + values[0] + " is invalid.");
                         }
                         listSkill.Add(tmpSkill);
                     }
                 }
+            }
+            catch (FormatException formatEx)     // The type of skill is invalid.
+            {
+                Console.WriteLine(formatEx);
+                MessageBox.Show(formatEx.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Exit();
             }
             catch (ArgumentNullException argNullEx)     // A value is missing.
             {
@@ -114,7 +121,7 @@ namespace PokemonGame.Controller
             catch (ArgumentException argEx)     // A value is incorrect.
             {
                 Console.WriteLine(argEx);
-                MessageBox.Show("A value of a skill is incorrect.", "Error",
+                MessageBox.Show(argEx.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit();
             }
@@ -125,7 +132,7 @@ namespace PokemonGame.Controller
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit();
             }
-            catch (SystemException sysEx)      // Capture the StreamReader exceptions.
+            catch (SystemException sysEx)           // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
                 MessageBox.Show("Error reading skill.", "Error",
@@ -164,7 +171,7 @@ namespace PokemonGame.Controller
                                         attribute = Pokemon.typeAttribute.Water;
                                         break;
                                     default:
-                                        throw new ArgumentException("Attribute not found.");
+                                        throw new ArgumentException(values[2] + ": attribute not found.");
                                 }
 
                                 // Pokemon instance creation.
@@ -181,7 +188,7 @@ namespace PokemonGame.Controller
 
                                 if (prevPokemon == null)
                                 {
-                                    throw new PokemonNotFoundException("Prev. pokemon not found for level 2.");
+                                    throw new PokemonNotFoundException(values[2] + ": prev. pokemon not found.");
                                 }
 
                                 // Pokemon instance creation.
@@ -199,7 +206,7 @@ namespace PokemonGame.Controller
 
                                 if (prevPokemon == null)
                                 {
-                                    throw new PokemonNotFoundException("Prev. pokemon not found for level 3.");
+                                    throw new PokemonNotFoundException(values[2] + ": prev. pokemon not found.");
                                 }
 
                                 // Pokemon instance creation.
@@ -213,9 +220,7 @@ namespace PokemonGame.Controller
                                 break;
 
                             default:
-                                Console.WriteLine("Error reading from pokèmon file.");
-                                tmpPokemon = null;
-                                break;
+                                throw new FormatException(values[2] + ": level must be between 1 and 3.");
                         }
 
                         if (tmpPokemon != null)
@@ -225,11 +230,26 @@ namespace PokemonGame.Controller
                     }
                 }
             }
+            catch (FormatException formatEx)
+            {
+                Console.WriteLine("Error reading from pokemon file.");
+                MessageBox.Show(formatEx.Message, "Error", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                Exit();
+            }
             catch (PokemonNotFoundException pnfEx)      // Pokemon not found.
             {
                 Console.WriteLine(pnfEx);
                 MessageBox.Show(pnfEx.Message, "Error", MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                Exit();
+            }
+            catch (SkillNotFoundException snfEx)      // Skill not found.
+            {
+                Console.WriteLine(snfEx);
+                MessageBox.Show(snfEx.Message, "Error", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                Exit();
             }
             catch (ArgumentNullException argNullEx)     // Missing argument.
             {
@@ -241,15 +261,15 @@ namespace PokemonGame.Controller
             catch (ArgumentException argEx)     // Errors during instance creation.
             {
                 Console.WriteLine(argEx);
-                MessageBox.Show(argEx.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(argEx.Message, "Error", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 Exit();
             }
             catch (SystemException sysEx)      // Capture the StreamReader exceptions.
             {
                 Console.WriteLine(sysEx);
-                MessageBox.Show("Error reading pokemon.\n" + sysEx.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error reading pokemon.", "Error", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 Exit();
             }
 
@@ -275,7 +295,7 @@ namespace PokemonGame.Controller
         /// </summary>
         public void Exit()
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         #endregion

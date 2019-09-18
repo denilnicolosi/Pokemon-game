@@ -41,13 +41,13 @@ namespace PokemonGame.Model
         public Level2(typeAttribute attribute, string name, int attack, int defence, Skill s1, Skill s2, Skill s3)
             : base(attribute, name, attack, defence, s1, s2)
         {
-            if (s1 != null && s2 != null)
+            if (s3 != null)
             {
                 _s3 = s3;
             }
             else
             {
-                throw new SkillNotFoundException();
+                throw new SkillNotFoundException(name + ": skill not found.");
             }
         }
 

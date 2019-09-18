@@ -1,4 +1,6 @@
-﻿namespace PokemonGame.Model
+﻿using System;
+
+namespace PokemonGame.Model
 {
     /// <summary>
     /// The father of all Skills.
@@ -31,6 +33,10 @@
         /// <param name="expEarned">Experience earned.</param>
         public Skill(string name, int expEarned)
         {
+            if (expEarned < 0)
+            {
+                throw new ArgumentException(name + ": exp. earned must be positive.");
+            }
             _name = name;
             _expEarned = expEarned;
         }

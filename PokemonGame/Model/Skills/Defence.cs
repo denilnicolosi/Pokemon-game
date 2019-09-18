@@ -1,4 +1,6 @@
-﻿namespace PokemonGame.Model
+﻿using System;
+
+namespace PokemonGame.Model
 {
     /// <summary>
     /// Class that extends Skill.
@@ -29,6 +31,10 @@
         /// <param name="expEarned">Experience earned.</param>
         public Defence(string name, int healthEarned, int expEarned) : base(name, expEarned)
         {
+            if (healthEarned < 0)
+            {
+                throw new ArgumentException(name + ": healt earned must be positive.");
+            }
             _healthEarned = healthEarned;
         }
 

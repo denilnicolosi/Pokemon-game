@@ -50,7 +50,7 @@ namespace PokemonGame.Model
             }
             else
             {
-                throw new SkillNotFoundException();
+                throw new SkillNotFoundException(name + ": skill not found.");
             }
         }
 

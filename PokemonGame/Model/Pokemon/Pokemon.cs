@@ -109,9 +109,13 @@ namespace PokemonGame.Model
         /// <exception cref="System.ArgumentException">Negative attack or defense.</exception>
         public Pokemon(typeAttribute attribute, string name, int attack, int defence)
         {
-            if (attack < 0 && defence < 0)
+            if (attack < 0)
             {
-                throw new ArgumentException(name + ": attack/defence must be positive.");
+                throw new ArgumentException(name + ": attack must be positive.");
+            }
+            if (defence < 0)
+            {
+                throw new ArgumentException(name + ": defence must be positive.");
             }
             else
             {
