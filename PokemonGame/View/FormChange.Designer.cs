@@ -34,7 +34,7 @@
             this.labelTxtSkill4 = new System.Windows.Forms.Label();
             this.labelSkill3 = new System.Windows.Forms.Label();
             this.labelTxtSkill3 = new System.Windows.Forms.Label();
-            this.labelHealtPoints = new System.Windows.Forms.Label();
+            this.labelHealthPoints = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelExperience = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this.panel1.Controls.Add(this.labelTxtSkill4);
             this.panel1.Controls.Add(this.labelSkill3);
             this.panel1.Controls.Add(this.labelTxtSkill3);
-            this.panel1.Controls.Add(this.labelHealtPoints);
+            this.panel1.Controls.Add(this.labelHealthPoints);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.labelExperience);
             this.panel1.Controls.Add(this.label7);
@@ -133,14 +133,14 @@
             this.labelTxtSkill3.Text = "Skill 3";
             this.labelTxtSkill3.Visible = false;
             // 
-            // labelHealtPoints
+            // labelHealthPoints
             // 
-            this.labelHealtPoints.AutoSize = true;
-            this.labelHealtPoints.Location = new System.Drawing.Point(204, 265);
-            this.labelHealtPoints.Name = "labelHealtPoints";
-            this.labelHealtPoints.Size = new System.Drawing.Size(61, 13);
-            this.labelHealtPoints.TabIndex = 19;
-            this.labelHealtPoints.Text = "healt points";
+            this.labelHealthPoints.AutoSize = true;
+            this.labelHealthPoints.Location = new System.Drawing.Point(204, 265);
+            this.labelHealthPoints.Name = "labelHealthPoints";
+            this.labelHealthPoints.Size = new System.Drawing.Size(69, 13);
+            this.labelHealthPoints.TabIndex = 19;
+            this.labelHealthPoints.Text = "Health points";
             // 
             // label8
             // 
@@ -148,9 +148,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(49, 265);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 13);
+            this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 18;
-            this.label8.Text = "Healt points";
+            this.label8.Text = "Health points";
             // 
             // labelExperience
             // 
@@ -393,7 +393,7 @@
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonChange;
-        private System.Windows.Forms.Label labelHealtPoints;
+        private System.Windows.Forms.Label labelHealthPoints;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelExperience;
         private System.Windows.Forms.Label label7;

@@ -33,7 +33,7 @@ namespace PokemonGame.Model
         {
             if (healthEarned < 0)
             {
-                throw new ArgumentException(name + ": healt earned must be positive.");
+                throw new ArgumentException(name + ": health earned must be positive.");
             }
             _healthEarned = healthEarned;
         }

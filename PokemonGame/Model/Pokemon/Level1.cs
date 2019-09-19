@@ -13,7 +13,7 @@ namespace PokemonGame.Model
     public class Level1 : Pokemon, ICloneable
     {
         // Definition of private internal attributes.
-        #region Protected
+        #region Private
         private Skill _s1;
         private Skill _s2;
         #endregion
@@ -28,7 +28,7 @@ namespace PokemonGame.Model
 
 
         // Definition of class methods.
-        #region Methonds
+        #region Methods
 
         /// <summary>
         /// Constructor method of the <c>Level</c> class.

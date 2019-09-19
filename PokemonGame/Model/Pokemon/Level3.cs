@@ -25,7 +25,7 @@ namespace PokemonGame.Model
 
 
         // Definition of class methods.
-        #region Methonds
+        #region Methods
 
         /// <summary>
         /// Constructor method of the <c>Level3</c> class.

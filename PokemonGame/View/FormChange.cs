@@ -92,7 +92,7 @@ namespace PokemonGame.View
             labelDefence.Text = pokemonSelected.Defence.ToString();
             labelLevel.Text = level.ToString();
             labelExperience.Text = pokemonSelected.Exp.ToString();
-            labelHealtPoints.Text = pokemonSelected.HealthPoints.ToString();
+            labelHealthPoints.Text = pokemonSelected.HealthPoints.ToString();
             labelSkill1.Text = pokemonSelected.S1.Name;
             labelSkill2.Text = pokemonSelected.S2.Name;
                        
