@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['fire_22',['Fire',['../class_pokemon_game_1_1_model_1_1_pokemon.html#a734806b14e2fc54daa817ca81decc094abd2b7e5f85a6ea65065c4ebc6d7c95bb',1,'PokemonGame::Model::Pokemon']]],
+  ['form1_2ecs_23',['Form1.cs',['../_form1_8cs.html',1,'']]],
+  ['form1_2edesigner_2ecs_24',['Form1.Designer.cs',['../_form1_8_designer_8cs.html',1,'']]],
+  ['form2_2ecs_25',['Form2.cs',['../_form2_8cs.html',1,'']]],
+  ['form2_2edesigner_2ecs_26',['Form2.Designer.cs',['../_form2_8_designer_8cs.html',1,'']]],
+  ['formchange_27',['FormChange',['../class_pokemon_game_1_1_view_1_1_form_change.html',1,'PokemonGame.View.FormChange'],['../class_pokemon_game_1_1_view_1_1_form_change.html#a39590d7f1e0ce274e31f0dbb4e1c351d',1,'PokemonGame.View.FormChange.FormChange()']]],
+  ['formchange_2ecs_28',['FormChange.cs',['../_form_change_8cs.html',1,'']]],
+  ['formchange_2edesigner_2ecs_29',['FormChange.Designer.cs',['../_form_change_8_designer_8cs.html',1,'']]],
+  ['formchoose_30',['FormChoose',['../class_pokemon_game_1_1_view_1_1_form_choose.html',1,'PokemonGame.View.FormChoose'],['../class_pokemon_game_1_1_view_1_1_form_choose.html#adea32d002f1092ac3e0c2c806b7aaf17',1,'PokemonGame.View.FormChoose.FormChoose()']]],
+  ['formchoose_2ecs_31',['FormChoose.cs',['../_form_choose_8cs.html',1,'']]],
+  ['formchoose_2edesigner_2ecs_32',['FormChoose.Designer.cs',['../_form_choose_8_designer_8cs.html',1,'']]],
+  ['formgame_33',['FormGame',['../class_pokemon_game_1_1_view_1_1_form_game.html',1,'PokemonGame.View.FormGame'],['../class_pokemon_game_1_1_view_1_1_form_game.html#ae2815468587ec3d7d1562d263dcb99d9',1,'PokemonGame.View.FormGame.FormGame()']]],
+  ['formgame_2ecs_34',['FormGame.cs',['../_form_game_8cs.html',1,'']]],
+  ['formgame_2edesigner_2ecs_35',['FormGame.Designer.cs',['../_form_game_8_designer_8cs.html',1,'']]],
+  ['formgioco_2ecs_36',['FormGioco.cs',['../_form_gioco_8cs.html',1,'']]],
+  ['formgioco_2edesigner_2ecs_37',['FormGioco.Designer.cs',['../_form_gioco_8_designer_8cs.html',1,'']]]
+];
